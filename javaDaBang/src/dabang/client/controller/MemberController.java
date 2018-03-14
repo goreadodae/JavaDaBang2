@@ -4,6 +4,9 @@ import java.util.HashMap;
 import dabang.client.model.Member;
 public class MemberController {
 	private HashMap<String, Member> member = new HashMap<String, Member>();
+	public HashMap<String,Member> selectAll(){
+		return member;
+	}
 	public boolean memberJoin(Member m) {
 		if(member.containsKey(m.getId())) {
 			return false;
@@ -38,4 +41,5 @@ public class MemberController {
 			return false;
 		}
 	}
+	
 }

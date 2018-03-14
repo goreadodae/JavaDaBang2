@@ -25,7 +25,7 @@ import dabang.client.model.Member;
 public class Application extends JFrame implements ActionListener {
 	MemberController mCon = new MemberController();
 	Member m = new Member();
-	
+
 	private JPanel panel1 = new JPanel();
 	private JPanel panel2 = new JPanel();
 	private JPanel panel3 = new JPanel();
@@ -39,7 +39,7 @@ public class Application extends JFrame implements ActionListener {
 	private JLabel label2 = new JLabel("ID");
 	private JLabel label3 = new JLabel("PW");
 	private JLabel label4 = new JLabel("생년월일");//콤보박스
-	private JLabel label5 = new JLabel("P.H");
+	private JLabel label5 = new JLabel("H.P");
 	private JLabel label6 = new JLabel("별명");
 	private JLabel label7 = new JLabel("★★★★★회원가입을 합시다 ^ㅅ^★★★★★");
 	private JLabel mainLabel = new JLabel();
@@ -56,24 +56,18 @@ public class Application extends JFrame implements ActionListener {
 	private JComboBox combox1 = new JComboBox();  //연도year
 	private JComboBox combox2 = new JComboBox(); //달monthly
 	private JComboBox combox3 = new JComboBox(); //일day
-	private String year    [] = new String[98];  //연수
-	private String monthly [] = new String[12];  //월
-	private String day     [] = new String[31];  //일
+	private String year    [] = new String[100];  //연수
+	private String monthly [] = new String[13];  //월
+	private String day     [] = new String[32];  //일
 	private JRadioButton solar = new JRadioButton("양력",false);
 	private JRadioButton lunar = new JRadioButton("음력",false);
 
-	private String id;        //아이디
-	private String passWord;  //비밀번호
-	private String nickName;  //별명 
-	private String name;      //이름
-	private int sclc;//0양력, 1음력
+
+	private int sclc=1;//1양력, 2음력
 	private int ageY;
 	private int ageM;
 	private int ageD;
-	private char gender;
-	private String phoneNumber;  //폰번
-	private String grade;     //회원등급
-	private double point;     //포인트
+
 
 
 	public Application() 
@@ -95,7 +89,6 @@ public class Application extends JFrame implements ActionListener {
 		panel1.setBackground(Color.yellow);
 		panel1.add(label1);//이름
 		panel1.add(nameField);//칸
-
 		panel1.setLayout(new FlowLayout(FlowLayout.LEFT));
 		this.add(panel1);
 	}
@@ -103,23 +96,25 @@ public class Application extends JFrame implements ActionListener {
 	{
 		panel9.setBackground(Color.yellow);//배경
 		panel9.add(label4);//생년월일 글자
-		////////////////////////////////////////////////////////      
-		for(int i=0;i<year.length;i++) {
-			year[i] = Integer.toString(1920+i);
+		//////////////////////////////////////////////////////// 
+		year[0] = "연도";
+		for(int i=1;i<year.length;i++) {
+			year[i] = Integer.toString(1915+i);
 		}  //연수   
 		combox1 = new JComboBox(year);//연수 콤박
 		panel9.add(combox1);//추가
 		/////////////////////////////////////////////////////////      
-
-		for(int i=0;i<monthly.length;i++) {
-			monthly[i] = Integer.toString(1+i);
+		monthly[0] = "월";
+		for(int i=1;i<monthly.length;i++) {
+			monthly[i] = Integer.toString(i);
 		}  //연수   
 		combox2 = new JComboBox(monthly);
 		panel9.add(combox2);//월
 
 		//////////////////////////////////////////////////////////
-		for(int i=0;i<day.length;i++) {
-			day[i] = Integer.toString(1+i);
+		day[0] = "일";
+		for(int i=1;i<day.length;i++) {
+			day[i] = Integer.toString(i);
 		}  //연수   
 		combox3 = new JComboBox(day);
 		panel9.add(combox3);//일
@@ -129,9 +124,10 @@ public class Application extends JFrame implements ActionListener {
 		bg.add(lunar);
 		panel9.add(solar);
 		panel9.add(lunar);
+		solar.setSelected(true);
 		panel9.setLayout(new FlowLayout(FlowLayout.LEFT));
 		this.add(panel9);
-		
+
 		combox1.addActionListener(this);
 		combox2.addActionListener(this);
 		combox3.addActionListener(this);
@@ -144,33 +140,19 @@ public class Application extends JFrame implements ActionListener {
 		panel2.add(label2);//아이디
 		panel2.add(idField);//칸
 		panel2.add(button1);//중복
-		
-		button1.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				if(e.getSource()==button1)
-				{
-					if(mCon.memberCheck(id)) {
-						JOptionPane.showMessageDialog(null,"중복된 ID입니다. 다시 입력해주세요");
-					}
-					else {
-						JOptionPane.showMessageDialog(null,"해당ID는 가입가능합니다");
-					}
-					
-				}}});   
+
+		button1.addActionListener(this);
 		panel2.setLayout(new FlowLayout(FlowLayout.LEFT));
 		this.add(panel2);
 	}
-	
+
 	private void passwordgo()//비번
 	{
 		panel3.setBackground(Color.yellow);
 		panel3.add(label3);//비번
 		panel3.add(pwdField);//비번칸
 		pwdField.setText("");
-		passWord = pwdField.getText();
+
 		panel3.setLayout(new FlowLayout(FlowLayout.LEFT));
 		this.add(panel3);
 	}
@@ -188,15 +170,7 @@ public class Application extends JFrame implements ActionListener {
 		panel6.add(label6);//닉네임
 		panel6.add(nickNameField);//닉네임칸
 		panel6.add(button4);//중복확인칸
-		button4.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				if(e.getSource()==button4)
-				{
-					JOptionPane.showMessageDialog(null,"해당 닉네임은 가입가능합니다");
-				}}});   
+		button4.addActionListener(this);  
 		panel6.setLayout(new FlowLayout(FlowLayout.LEFT));
 		this.add(panel6);
 	}
@@ -221,10 +195,10 @@ public class Application extends JFrame implements ActionListener {
 	{  
 		setImage();
 		say();
-		NameAge();
-		birthday();
 		idgo();
 		passwordgo();
+		NameAge();
+		birthday();
 		nicknamego();
 		phonenumbergo();
 		imagego();
@@ -253,6 +227,19 @@ public class Application extends JFrame implements ActionListener {
 		{
 			this.dispose();
 		}
+		if(e.getSource()==button1)
+		{
+			if(idField.getText().length()==0) 
+				JOptionPane.showMessageDialog(null,"ID를 입력하세요");
+			else if(mCon.memberCheck(idField.getText())) {
+				JOptionPane.showMessageDialog(null,"중복된 ID입니다. 다시 입력해주세요");
+			}
+			else	JOptionPane.showMessageDialog(null,"해당ID는 가입가능합니다");
+		}
+		if(e.getSource()==button4)
+		{
+			JOptionPane.showMessageDialog(null,"해당 닉네임은 가입가능합니다");
+		}
 		else if(e.getSource()==combox1) {
 			ageY = Integer.valueOf((String)combox1.getSelectedItem());
 		}
@@ -268,24 +255,24 @@ public class Application extends JFrame implements ActionListener {
 		else if(e.getSource()==lunar) {
 			sclc = 2;
 		}else if(e.getSource()==button5) {
-			System.out.println(idField.getText());
-			System.out.println(pwdField.getText());
-			System.out.println(nickNameField.getText());
-			System.out.println(nameField.getText());
-			System.out.println(sclc);
-			System.out.println(ageY);
-			System.out.println(ageM);
-			System.out.println(ageD);
-			System.out.println(gender);
-			System.out.println(phoneField.getText());
-			m = new Member(idField.getText(),pwdField.getText(),nickNameField.getText(),nameField.getText(),
-					sclc,ageY,ageM,ageD,gender,phoneField.getText(),"Welcome",0.0);
-			if(mCon.memberJoin(m)) {
-				JOptionPane.showMessageDialog(null,"가입에 성공하였습니다.");
-			}else {
-				JOptionPane.showMessageDialog(null,"가입에 실패하였습니다.");
+			if(idField.getText().length()==0) JOptionPane.showMessageDialog(null,"ID를 입력해주세요");
+			else if(pwdField.getText().length()==0) JOptionPane.showMessageDialog(null,"비밀번호를 입력해주세요");
+			else if(nameField.getText().length()==0) JOptionPane.showMessageDialog(null,"이름을 입력해주세요");
+			else if(ageY==0||ageM==0||ageD==0) JOptionPane.showMessageDialog(null,"생년월일을 입력해주세요");
+			else if(nickNameField.getText().length()==0) JOptionPane.showMessageDialog(null,"별명을 입력해주세요");
+			else if(phoneField.getText().length()==0) JOptionPane.showMessageDialog(null,"휴대폰번호를 입력해주세요");
+			else {
+				m = new Member(idField.getText(),pwdField.getText(),nickNameField.getText(),nameField.getText(),
+						sclc,ageY,ageM,ageD,'남',phoneField.getText(),"Welcome",0.0);
+				if(mCon.memberJoin(m)) {
+					JOptionPane.showMessageDialog(null,"가입에 성공하였습니다.");
+				}else {
+					JOptionPane.showMessageDialog(null,"가입에 실패하였습니다.");
+				}
+				this.dispose();
 			}
-			this.dispose();
+			
+
 		}
 	}
 }
