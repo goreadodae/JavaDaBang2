@@ -37,7 +37,7 @@ public class ViewMain extends JFrame implements ActionListener{
 	private ImageIcon teaPic[] = new ImageIcon[6];
 	private ImageIcon desPic[] = new ImageIcon[6];
 	
-	private JLabel espPicLabel[] = new JLabel[6];
+	private JButton espPicButton[] = new JButton[6];
 	private JLabel fraPicLabel[] = new JLabel[6];
 	private JLabel teaPicLabel[] = new JLabel[6];
 	private JLabel desPicLabel[] = new JLabel[6];
@@ -70,7 +70,7 @@ public class ViewMain extends JFrame implements ActionListener{
 	public void menuInit1() {
 		for(int i=0;i<espPanel.length;i++) {
 			espName[i] = new JLabel();
-			espPicLabel[i] = new JLabel();
+			espPicButton[i] = new JButton();
 		}
 		
 		espPic[0] = new ImageIcon(new ImageIcon("Image\\MenuImage\\1아메리카노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
@@ -80,8 +80,8 @@ public class ViewMain extends JFrame implements ActionListener{
 		espPic[4] = new ImageIcon(new ImageIcon("Image\\MenuImage\\1카라멜마키아또.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
 		espPic[5] = new ImageIcon(new ImageIcon("Image\\MenuImage\\1카푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
 		
-		for(int i=0;i<espPicLabel.length;i++) {
-			espPicLabel[i].setIcon(espPic[i]);
+		for(int i=0;i<espPicButton.length;i++) {
+			espPicButton[i].setIcon(espPic[i]);
 		}
 		
 		espName[0].setText("아메리카노");
@@ -100,9 +100,12 @@ public class ViewMain extends JFrame implements ActionListener{
 
 		for(int i=0;i<espPanel.length;i++) {
 			espName[i].setHorizontalAlignment(JLabel.CENTER);
-			espPicLabel[i].setHorizontalAlignment(JLabel.CENTER);
-			espPanel[i].add(espPicLabel[i],BorderLayout.NORTH);
+			espPicButton[i].setHorizontalAlignment(JButton.CENTER);
+			espPanel[i].add(espPicButton[i],BorderLayout.NORTH);
 			espPanel[i].add(espName[i],BorderLayout.CENTER);
+			espPicButton[i].setBorderPainted(false);
+			espPicButton[i].setFocusPainted(false);
+			espPicButton[i].setContentAreaFilled(false);
 		}
 		
 	}
