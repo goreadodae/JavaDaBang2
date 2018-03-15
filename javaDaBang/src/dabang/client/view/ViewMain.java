@@ -73,12 +73,12 @@ public class ViewMain extends JFrame implements ActionListener{
 			espPicLabel[i] = new JLabel();
 		}
 		
-		espPic[0] = new ImageIcon(new ImageIcon("1아메리카노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		espPic[1] = new ImageIcon(new ImageIcon("1돌체라떼.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		espPic[2] = new ImageIcon(new ImageIcon("1카페모카.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		espPic[3] = new ImageIcon(new ImageIcon("1카페라떼.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		espPic[4] = new ImageIcon(new ImageIcon("1카라멜마키아또.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		espPic[5] = new ImageIcon(new ImageIcon("1카푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		espPic[0] = new ImageIcon(new ImageIcon("Image\\MenuImage\\1아메리카노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		espPic[1] = new ImageIcon(new ImageIcon("Image\\MenuImage\\1돌체라떼.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		espPic[2] = new ImageIcon(new ImageIcon("Image\\MenuImage\\1카페모카.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		espPic[3] = new ImageIcon(new ImageIcon("Image\\MenuImage\\1카페라떼.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		espPic[4] = new ImageIcon(new ImageIcon("Image\\MenuImage\\1카라멜마키아또.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		espPic[5] = new ImageIcon(new ImageIcon("Image\\MenuImage\\1카푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
 		
 		for(int i=0;i<espPicLabel.length;i++) {
 			espPicLabel[i].setIcon(espPic[i]);
@@ -111,12 +111,12 @@ public class ViewMain extends JFrame implements ActionListener{
 			fraName[i] = new JLabel();
 			fraPicLabel[i] = new JLabel();
 		}
-		fraPic[0] = new ImageIcon(new ImageIcon("2자바 칩 프라푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		fraPic[1] = new ImageIcon(new ImageIcon("2화이트 초콜릿 모카 프라푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		fraPic[2] = new ImageIcon(new ImageIcon("2카라멜 프라푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		fraPic[3] = new ImageIcon(new ImageIcon("2모카 프라푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		fraPic[4] = new ImageIcon(new ImageIcon("2에스프레소 프라푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		fraPic[5] = new ImageIcon(new ImageIcon("2그린 티 프라푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		fraPic[0] = new ImageIcon(new ImageIcon("Image\\MenuImage\\2자바 칩 프라푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		fraPic[1] = new ImageIcon(new ImageIcon("Image\\MenuImage\\2화이트 초콜릿 모카 프라푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		fraPic[2] = new ImageIcon(new ImageIcon("Image\\MenuImage\\2카라멜 프라푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		fraPic[3] = new ImageIcon(new ImageIcon("Image\\MenuImage\\2모카 프라푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		fraPic[4] = new ImageIcon(new ImageIcon("Image\\MenuImage\\2에스프레소 프라푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		fraPic[5] = new ImageIcon(new ImageIcon("Image\\MenuImage\\2그린 티 프라푸치노.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
 		
 		for(int i=0;i<fraPicLabel.length;i++) {
 			fraPicLabel[i].setIcon(fraPic[i]);
@@ -149,12 +149,12 @@ public class ViewMain extends JFrame implements ActionListener{
 			teaPicLabel[i] = new JLabel();
 		}
 		
-		teaPic[0] = new ImageIcon(new ImageIcon("3그린 티 라떼.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		teaPic[1] = new ImageIcon(new ImageIcon("3민트 블렌드 티.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		teaPic[2] = new ImageIcon(new ImageIcon("3얼 그레이 티.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		teaPic[3] = new ImageIcon(new ImageIcon("3유스베리 티.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		teaPic[4] = new ImageIcon(new ImageIcon("3차이 티.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		teaPic[5] = new ImageIcon(new ImageIcon("3캐모마일 블렌드 티.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		teaPic[0] = new ImageIcon(new ImageIcon("Image\\MenuImage\\3그린 티 라떼.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		teaPic[1] = new ImageIcon(new ImageIcon("Image\\MenuImage\\3민트 블렌드 티.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		teaPic[2] = new ImageIcon(new ImageIcon("Image\\MenuImage\\3얼 그레이 티.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		teaPic[3] = new ImageIcon(new ImageIcon("Image\\MenuImage\\3유스베리 티.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		teaPic[4] = new ImageIcon(new ImageIcon("Image\\MenuImage\\3차이 티.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		teaPic[5] = new ImageIcon(new ImageIcon("Image\\MenuImage\\3캐모마일 블렌드 티.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
 		
 		for(int i=0;i<teaPicLabel.length;i++) {
 			teaPicLabel[i].setIcon(teaPic[i]);
@@ -187,12 +187,12 @@ public class ViewMain extends JFrame implements ActionListener{
 			desPicLabel[i] = new JLabel();
 		}
 		
-		desPic[0] = new ImageIcon(new ImageIcon("4부드러운 생크림 카스텔라.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		desPic[1] = new ImageIcon(new ImageIcon("4블루베리 쿠키 치즈 케이크.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		desPic[2] = new ImageIcon(new ImageIcon("4티라미수.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		desPic[3] = new ImageIcon(new ImageIcon("4크랜베리 치킨 치즈 샌드위치.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		desPic[4] = new ImageIcon(new ImageIcon("4크로크 무슈.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-		desPic[5] = new ImageIcon(new ImageIcon("4터키 멜팅 치즈 샌드위치.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		desPic[0] = new ImageIcon(new ImageIcon("Image\\MenuImage\\4부드러운 생크림 카스텔라.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		desPic[1] = new ImageIcon(new ImageIcon("Image\\MenuImage\\4블루베리 쿠키 치즈 케이크.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		desPic[2] = new ImageIcon(new ImageIcon("Image\\MenuImage\\4티라미수.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		desPic[3] = new ImageIcon(new ImageIcon("Image\\MenuImage\\4크랜베리 치킨 치즈 샌드위치.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		desPic[4] = new ImageIcon(new ImageIcon("Image\\MenuImage\\4크로크 무슈.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+		desPic[5] = new ImageIcon(new ImageIcon("Image\\MenuImage\\4터키 멜팅 치즈 샌드위치.jpg").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
 		
 		for(int i=0;i<desPicLabel.length;i++) {
 			desPicLabel[i].setIcon(desPic[i]);
