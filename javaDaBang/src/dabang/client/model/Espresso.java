@@ -3,7 +3,7 @@ package dabang.client.model;
 public class Espresso extends MenuDrink{
 	
 	private String hotAndIce;//Hot/Ice
-	private int shot;//샷
+	private int shot;//샷2
 	private int iceAmount;//얼음의 양 1~4 없이, 적게, 보통, 많이
 	private int waterAmount;//물의 양 1~3 적게, 보통, 많이
 	
