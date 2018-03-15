@@ -1,8 +1,8 @@
 package dabang.client.view;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,8 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import dabang.client.controller.LoginController;
-import dabang.client.model.Member;
-public  class Login extends JFrame implements ActionListener{
+public  class Login extends JPanel implements ActionListener{
 	private JPanel panel1 = new JPanel();//아이디
 	private JPanel panel2 = new JPanel();//비밀번호
 	private JPanel panel3 = new JPanel();//맨위에 
@@ -40,20 +38,23 @@ public  class Login extends JFrame implements ActionListener{
 	private ImageIcon picup = null;
 	private ImageIcon picdown = null;
 	private ImageIcon mainpic = null;
-
+	private JPanel mainPanel = null;
 	private ImageIcon gaep  = null;
 	private ImageIcon login = null;
 
 	LoginController lCon = new LoginController();
-
-	public Login() 
+	
+	private int loginSuccess = 0;//0로그인 실패, 1사용자 로그인, 2관리자 로그인
+	
+	public Login(JPanel mainPanel) 
 	{
-		super("잡다방"); //이름설정
+//		super("잡다방"); //이름설정
 		//this.setTitle("이름") 이랑 같음
 		this.setSize(1000,800); //프레임 사이즈
-		this.setLocationRelativeTo(null); //화면 가운데로 위치설정
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE); //종료버튼시 아예다꺼버림
-		this.setResizable(false);
+//		this.setLocationRelativeTo(null); //화면 가운데로 위치설정
+//		this.setDefaultCloseOperation(EXIT_ON_CLOSE); //종료버튼시 아예다꺼버림
+//		this.setResizable(false);
+		this.mainPanel = mainPanel;
 		this.setLayout(new GridLayout(6,1));
 		this.compInit(); //사용자 정의 메소드
 
@@ -144,11 +145,14 @@ public  class Login extends JFrame implements ActionListener{
 		gaep = new ImageIcon(new ImageIcon("gaep.jpg").getImage().getScaledInstance(150,30,Image.SCALE_DEFAULT));
 		login = new ImageIcon(new ImageIcon("login.jpg").getImage().getScaledInstance(150,30,Image.SCALE_DEFAULT));
 	}
+	public int isLogin() {
+		return loginSuccess;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==button3)
 		{
-			new Application();
+			new Application(lCon);
 		}
 		else if(e.getSource()==button1) {
 			if(field1.getText().length()==0) JOptionPane.showMessageDialog(null,"ID를 입력하여주세요");
@@ -156,6 +160,7 @@ public  class Login extends JFrame implements ActionListener{
 				if(lCon.checkId(field1.getText())) {
 					if(lCon.checkPwd(field1.getText(), field2.getText())) {
 						JOptionPane.showMessageDialog(null,"로그인 성공");
+						((CardLayout)mainPanel.getLayout()).next(mainPanel);
 					}
 					else JOptionPane.showMessageDialog(null,"비밀번호를 확인하세요");
 				}

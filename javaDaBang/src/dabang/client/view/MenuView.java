@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class ViewMain extends JFrame implements ActionListener{
+public class MenuView extends JFrame implements ActionListener{
 	private JPanel title = new JPanel();
 	private JPanel payment = new JPanel();
 	private JPanel menu = new JPanel();
@@ -277,17 +277,17 @@ public class ViewMain extends JFrame implements ActionListener{
 		paymentCenter2.add(paymentCenter1);
 		paymentScroll = new JScrollPane(paymentCenter2);
 		
-		JPanel jp[] = new JPanel[4];
+		JPanel jp[] = new JPanel[10];
 		payList.add(jp[0] = new JPanel()); 
 		payList.add(jp[1] = new JPanel()); 
 		payList.add(jp[2] = new JPanel()); 
 		payList.add(jp[3] = new JPanel()); 
-//		payList.add(jp[4] = new JPanel()); 
-//		payList.add(jp[5] = new JPanel()); 
-//		payList.add(jp[6] = new JPanel()); 
-//		payList.add(jp[7] = new JPanel()); 
-//		payList.add(jp[8] = new JPanel()); 
-//		payList.add(jp[9] = new JPanel()); 
+		payList.add(jp[4] = new JPanel()); 
+		payList.add(jp[5] = new JPanel()); 
+		payList.add(jp[6] = new JPanel()); 
+		payList.add(jp[7] = new JPanel()); 
+		payList.add(jp[8] = new JPanel()); 
+		payList.add(jp[9] = new JPanel()); 
 		
 		for(int i=0;i<jp.length;i++) {
 			if(i%2==0) {
@@ -319,7 +319,7 @@ public class ViewMain extends JFrame implements ActionListener{
 		this.add(menu,BorderLayout.CENTER);
 	}
 
-	public ViewMain() {
+	public MenuView() {
 		this.setSize(1000,800);
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

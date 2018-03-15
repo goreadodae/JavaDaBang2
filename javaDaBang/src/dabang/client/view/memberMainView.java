@@ -13,11 +13,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class DaBangGui extends JFrame {
+public class memberMainView extends JPanel {
 	
 	private Font ft = new Font("Bitstream Vera Sans Mono",Font.BOLD,50);
 	private Font ft2 = new Font("Bitstream Vera Sans Mono",Font.BOLD,30);
-	//jhh
 	private JPanel p1 = new JPanel();
 	private JPanel p2 = new JPanel();
 	private JPanel p3 = new JPanel();
@@ -124,14 +123,14 @@ public class DaBangGui extends JFrame {
 		panel5();
 	}
 	
-	public DaBangGui()
+	public memberMainView()
 	{
 		this.setSize(1000,800);
-		this.setTitle("잡다방");
+//		this.setTitle("잡다방");
 		this.setLayout(null);
-		this.setResizable(false);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		this.setResizable(false);
+//		this.setLocationRelativeTo(null);
+//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBackground(Color.BLACK);
 		this.comInit();
 		this.setVisible(true);

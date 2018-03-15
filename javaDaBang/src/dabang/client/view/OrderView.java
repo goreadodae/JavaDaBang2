@@ -1,7 +1,7 @@
 package dabang.client.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -17,15 +17,18 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class OrderView extends JFrame {
+public class OrderView {
+	private static int orderID = 0;
+	private JFrame frame = new JFrame();
 	private ImageIcon img = new ImageIcon(new ImageIcon("Image\\MenuImage\\1아메리카노.jpg").getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
 	private JLabel imgLabel = new JLabel(img);
-//	private Container c = getContentPane();//gdd22
+	private Container c = frame.getContentPane();
 	private JPanel p1 = new JPanel();
 	private JPanel p2 = new JPanel();
 	private JPanel p3 = new JPanel();
@@ -184,6 +187,7 @@ public class OrderView extends JFrame {
 		personalO.setSize(470,50);
 		personalO.setFont(new Font("굴림",Font.BOLD,20));
 		personalO.setHorizontalAlignment(SwingConstants.LEFT);
+		personalO.addActionListener(lisener);
 		p6.add(personalO);
 		
 		p7.setSize(1000,70);
@@ -212,26 +216,27 @@ public class OrderView extends JFrame {
 		toWebPage.addActionListener(lisener);
 		p8.add(toWebPage);
 		
-		this.add(p1);
-		this.add(p2);
-		this.add(p3);
-		this.add(p4);
-		this.add(p5);
-		this.add(p6);
-		this.add(p7);
-		this.add(p8);
+		frame.add(p1);
+		frame.add(p2);
+		frame.add(p3);
+		frame.add(p4);
+		frame.add(p5);
+		frame.add(p6);
+		frame.add(p7);
+		frame.add(p8);
 	}
 	
 	public OrderView() {
-		super("OrderView");
-		this.setSize(1000,800);
-		this.setBackground(Color.WHITE);
-		this.setLayout(null);
-		this.setLocationRelativeTo(null);
-		this.setResizable(false);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		frame.setTitle("OrderView");
+		frame.setSize(1000,800);
+		frame.setBackground(Color.WHITE);
+		frame.setLayout(null);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.comInit();
-		this.setVisible(true);
+		frame.setVisible(true);
+		orderID++;
 	}
 	
 	public class MyActionListener implements ActionListener {
@@ -251,6 +256,9 @@ public class OrderView extends JFrame {
 			} else if(e.getSource()==icedButton) {
 				hotButton.setIcon(img_hot_unselected);
 				icedButton.setIcon(img_iced_selected);
+			} else if(e.getSource()==personalO) {
+				EspressoCustom ec = new EspressoCustom(frame,"Personal Option",true);
+				
 			} else if(e.getSource()==orderButton) {
 				
 			} else if(e.getSource()==cancelButton) {
