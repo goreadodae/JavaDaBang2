@@ -265,6 +265,7 @@ public class Application extends JFrame implements ActionListener {
 				m = new Member(idField.getText(),pwdField.getText(),nickNameField.getText(),nameField.getText(),
 						sclc,ageY,ageM,ageD,'남',phoneField.getText(),"Welcome",0.0);
 				if(mCon.memberJoin(m)) {
+					mCon.saveMember();
 					JOptionPane.showMessageDialog(null,"가입에 성공하였습니다.");
 				}else {
 					JOptionPane.showMessageDialog(null,"가입에 실패하였습니다.");
