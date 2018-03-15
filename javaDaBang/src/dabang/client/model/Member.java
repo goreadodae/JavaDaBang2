@@ -1,6 +1,12 @@
 package dabang.client.model;
 
-public class Member {
+import java.io.Serializable;
+
+public class Member implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1425457L;
 	private String id;        //아이디
 	private String passWord;  //비밀번호
 	private String nickName;  //별명 

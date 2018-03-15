@@ -16,6 +16,7 @@ public class MemberView {
             System.out.println("3. 회원 정보 보기(1명)");
             System.out.println("4. 회원 정보 변경하기");
             System.out.println("5. 회원 삭제 하기");
+            System.out.println("6. 로드");
             System.out.println("0. 프로그램 종료");
             System.out.print("선택 : ");
             switch(sc.nextInt()) {
@@ -24,11 +25,17 @@ public class MemberView {
             case 3: memberSelect(); break;
             case 4: memberModify(); break;
             case 5: memberDelete(); break;
+            case 6: memberLoad(); break;
             case 0: System.out.println("프로그램 종료"); return;
             }
         }
     }
-    private void memberDelete() {
+    private void memberLoad() {
+		// TODO Auto-generated method stub
+		mCon.loadMember();
+		memberSelect();
+	}
+	private void memberDelete() {
         // TODO Auto-generated method stub
         System.out.print("\n\n========== 회원 삭제 하기 ==========\n\n");
         System.out.print("삭제할 회원의 아이디를 입력하세요 : ");

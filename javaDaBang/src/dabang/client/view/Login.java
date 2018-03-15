@@ -77,6 +77,7 @@ public  class Login extends JFrame implements ActionListener{
 
 
 	private void compInit() {
+		lCon.startLogin();
 		picme();
 		saygo();
 		idgo();

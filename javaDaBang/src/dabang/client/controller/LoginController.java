@@ -7,7 +7,12 @@ import dabang.client.model.Member;
 public class LoginController {
 	private HashMap<String, Member> member = new HashMap<String, Member>();
 	MemberController mCon = new MemberController();
+	public void startLogin() {
+		mCon.loadMember();
+	}
+	
 	public boolean checkId(String userId) {
+		mCon.loadMember();
 		member = mCon.selectAll();        
 		return member.containsKey(userId);
 	}
