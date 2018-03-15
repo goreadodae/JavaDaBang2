@@ -25,7 +25,7 @@ import javax.swing.SwingConstants;
 public class OrderView extends JFrame {
 	private ImageIcon img = new ImageIcon(new ImageIcon("Image\\MenuImage\\1아메리카노.jpg").getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
 	private JLabel imgLabel = new JLabel(img);
-//	private Container c = getContentPane();//gdd
+//	private Container c = getContentPane();//gdd2
 	private JPanel p1 = new JPanel();
 	private JPanel p2 = new JPanel();
 	private JPanel p3 = new JPanel();
