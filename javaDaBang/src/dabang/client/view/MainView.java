@@ -16,7 +16,7 @@ public class MainView extends JFrame implements ActionListener {
 		mainPanel.setLayout(new CardLayout());
 		cards[0] = new Login(mainPanel);
 		cards[1] = new memberMainView(mainPanel);
-		cards[2] = new MenuView();
+		cards[2] = new MenuView(mainPanel);
 		mainPanel.add("Login",cards[0]);
 		mainPanel.add("memberMain",cards[1]);
 		mainPanel.add("menu",cards[2]);

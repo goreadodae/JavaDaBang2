@@ -67,6 +67,8 @@ public class MenuView extends JPanel implements ActionListener{
 	private JScrollPane paymentScroll = null;
 	private ArrayList<JPanel> payList = new ArrayList<JPanel>();
 	
+	private JPanel mainPanel = null;
+	
 	public void menuInit1() {
 		for(int i=0;i<espPanel.length;i++) {
 			espName[i] = new JLabel();
@@ -309,6 +311,7 @@ public class MenuView extends JPanel implements ActionListener{
 		paymentSouth.add(totalPrice);
 		paymentSouth.add(paymentPayButton);
 		paymentSouth.add(paymentCancelButon);
+		paymentCancelButon.addActionListener(this);
 	}
 	
 	public void comInit() {
@@ -319,13 +322,14 @@ public class MenuView extends JPanel implements ActionListener{
 		this.add(menu,BorderLayout.CENTER);
 	}
 
-	public MenuView() {
+	public MenuView(JPanel mainPanel) {
 		this.setSize(1000,800);
 		this.setLayout(new BorderLayout());
 //		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		this.setResizable(false);
 //		this.setTitle("¸Þ´º");
 //		this.setLocationRelativeTo(null);
+		this.mainPanel = mainPanel;
 		comInit();
 		this.setVisible(true);
 	}
@@ -343,6 +347,8 @@ public class MenuView extends JPanel implements ActionListener{
 		}
 		else if(e.getSource()==dessortButton) {
 			cardNumber = 4;
+		}else if(e.getSource()==paymentCancelButon) {
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "memberMain");
 		}
 		((CardLayout)(menuCenter.getLayout())).show(menuCenter, Integer.toString(cardNumber));
 	}
