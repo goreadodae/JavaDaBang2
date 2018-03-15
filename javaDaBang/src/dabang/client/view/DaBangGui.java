@@ -17,7 +17,7 @@ public class DaBangGui extends JFrame {
 	
 	private Font ft = new Font("Bitstream Vera Sans Mono",Font.BOLD,50);
 	private Font ft2 = new Font("Bitstream Vera Sans Mono",Font.BOLD,30);
-	
+	//j
 	private JPanel p1 = new JPanel();
 	private JPanel p2 = new JPanel();
 	private JPanel p3 = new JPanel();
