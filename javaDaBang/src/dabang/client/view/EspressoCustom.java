@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import dabang.admin.model.Espresso;
+import dabang.client.model.Espresso;
 
 public class EspressoCustom extends JDialog {
 //	private JFrame customFrame = new JFrame();
