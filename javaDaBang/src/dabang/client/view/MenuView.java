@@ -20,7 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class MenuView extends JFrame implements ActionListener{
+public class MenuView extends JPanel implements ActionListener{
 	private JPanel title = new JPanel();
 	private JPanel payment = new JPanel();
 	private JPanel menu = new JPanel();
@@ -322,10 +322,10 @@ public class MenuView extends JFrame implements ActionListener{
 	public MenuView() {
 		this.setSize(1000,800);
 		this.setLayout(new BorderLayout());
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
-		this.setTitle("메뉴");
-		this.setLocationRelativeTo(null);
+//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		this.setResizable(false);
+//		this.setTitle("메뉴");
+//		this.setLocationRelativeTo(null);
 		comInit();
 		this.setVisible(true);
 	}

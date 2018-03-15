@@ -9,18 +9,17 @@ import javax.swing.JPanel;
 
 public class MainView extends JFrame implements ActionListener {
 	private JPanel[] cards = new JPanel[7];
-	//private Login login = new Login();
-	private memberMainView nextLogin = new memberMainView();
 	private CardLayout card = new CardLayout();
 	private JPanel mainPanel = new JPanel();
 	public void comInit() {
 
 		mainPanel.setLayout(new CardLayout());
 		cards[0] = new Login(mainPanel);
-		cards[1] = new memberMainView();
-		mainPanel.add(cards[0], 0);
-		mainPanel.add(cards[1], 1);
-		
+		cards[1] = new memberMainView(mainPanel);
+		cards[2] = new MenuView();
+		mainPanel.add("Login",cards[0]);
+		mainPanel.add("memberMain",cards[1]);
+		mainPanel.add("menu",cards[2]);
 		//this.add("login",login);
 		this.add(mainPanel);
 		//login.button1.addActionListener(this);

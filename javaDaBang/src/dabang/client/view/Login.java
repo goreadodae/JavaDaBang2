@@ -160,7 +160,7 @@ public  class Login extends JPanel implements ActionListener{
 				if(lCon.checkId(field1.getText())) {
 					if(lCon.checkPwd(field1.getText(), field2.getText())) {
 						JOptionPane.showMessageDialog(null,"로그인 성공");
-						((CardLayout)mainPanel.getLayout()).next(mainPanel);
+						((CardLayout)mainPanel.getLayout()).show(mainPanel, "memberMain");;
 					}
 					else JOptionPane.showMessageDialog(null,"비밀번호를 확인하세요");
 				}
