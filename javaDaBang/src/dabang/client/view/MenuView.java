@@ -49,10 +49,10 @@ public class MenuView extends JPanel implements ActionListener{
 	
 	private JPanel menuCard[] = new JPanel[4];
 	
-	private JPanel espPanel[] = new JPanel[6];
-	private JPanel fraPanel[] = new JPanel[6];
-	private JPanel teaPanel[] = new JPanel[6];
-	private JPanel desPanel[] = new JPanel[6];
+	private JButton espPanel[] = new JButton[6];
+	private JButton fraPanel[] = new JButton[6];
+	private JButton teaPanel[] = new JButton[6];
+	private JButton desPanel[] = new JButton[6];
 	private int cardNumber = 1;
 	
 //	private JButton
@@ -94,7 +94,7 @@ public class MenuView extends JPanel implements ActionListener{
 		espName[5].setText("카푸치노");
 		
 		for(int i=0;i<espPanel.length;i++) {
-			espPanel[i] = new JPanel();
+			espPanel[i] = new JButton();
 			menuCard[0].add(espPanel[i]);
 			espPanel[i].setLayout(new BorderLayout());
 			espPanel[i].setBackground(Color.white);
@@ -132,7 +132,7 @@ public class MenuView extends JPanel implements ActionListener{
 		fraName[5].setText("그린 티 프라푸치노");
 		
 		for(int i=0;i<fraPanel.length;i++) {
-			fraPanel[i] = new JPanel();
+			fraPanel[i] = new JButton();
 			menuCard[1].add(fraPanel[i]);
 			fraPanel[i].setLayout(new BorderLayout());
 			fraPanel[i].setBackground(Color.white);
@@ -170,7 +170,7 @@ public class MenuView extends JPanel implements ActionListener{
 		teaName[5].setText("캐모마일 블렌드 티");
 		
 		for(int i=0;i<teaPanel.length;i++) {
-			teaPanel[i] = new JPanel();
+			teaPanel[i] = new JButton();
 			menuCard[2].add(teaPanel[i]);
 			teaPanel[i].setLayout(new BorderLayout());
 			teaPanel[i].setBackground(Color.white);
@@ -208,7 +208,7 @@ public class MenuView extends JPanel implements ActionListener{
 		desName[5].setText("터키 멜팅 치즈 샌드위치");
 		
 		for(int i=0;i<desPanel.length;i++) {
-			desPanel[i] = new JPanel();
+			desPanel[i] = new JButton();
 			menuCard[3].add(desPanel[i]);
 			desPanel[i].setLayout(new BorderLayout());
 			desPanel[i].setBackground(Color.white);
@@ -256,6 +256,7 @@ public class MenuView extends JPanel implements ActionListener{
 			menuCard[i] = new JPanel();
 			menuCenter.add(Integer.toString(i+1),menuCard[i]);
 			menuCard[i].setLayout(new GridLayout(2, 3));
+			menuCard[i].setBackground(Color.WHITE);
 		}
 	}
 	
