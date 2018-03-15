@@ -148,7 +148,7 @@ public  class Login extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==button3)
 		{
-			new Application();
+			new Application(lCon);
 		}
 		else if(e.getSource()==button1) {
 			if(field1.getText().length()==0) JOptionPane.showMessageDialog(null,"ID를 입력하여주세요");

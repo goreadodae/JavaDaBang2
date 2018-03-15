@@ -277,17 +277,17 @@ public class ViewMain extends JFrame implements ActionListener{
 		paymentCenter2.add(paymentCenter1);
 		paymentScroll = new JScrollPane(paymentCenter2);
 		
-		JPanel jp[] = new JPanel[4];
+		JPanel jp[] = new JPanel[10];
 		payList.add(jp[0] = new JPanel()); 
 		payList.add(jp[1] = new JPanel()); 
 		payList.add(jp[2] = new JPanel()); 
 		payList.add(jp[3] = new JPanel()); 
-//		payList.add(jp[4] = new JPanel()); 
-//		payList.add(jp[5] = new JPanel()); 
-//		payList.add(jp[6] = new JPanel()); 
-//		payList.add(jp[7] = new JPanel()); 
-//		payList.add(jp[8] = new JPanel()); 
-//		payList.add(jp[9] = new JPanel()); 
+		payList.add(jp[4] = new JPanel()); 
+		payList.add(jp[5] = new JPanel()); 
+		payList.add(jp[6] = new JPanel()); 
+		payList.add(jp[7] = new JPanel()); 
+		payList.add(jp[8] = new JPanel()); 
+		payList.add(jp[9] = new JPanel()); 
 		
 		for(int i=0;i<jp.length;i++) {
 			if(i%2==0) {

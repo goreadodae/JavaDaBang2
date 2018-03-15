@@ -22,5 +22,8 @@ public class LoginController {
 		}
 		else return false;
 	}
+	public MemberController memCon() {
+		return mCon;
+	}
 
 }
