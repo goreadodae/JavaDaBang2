@@ -1,7 +1,7 @@
 package dabang.client.view;
 
+import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -12,23 +12,25 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class OrderView {
+import dabang.client.model.OrderList;
+
+public class OrderView extends JPanel {
 	private static int orderID = 0;
-	private JFrame frame = new JFrame();
+	private JFrame mainFrame = null;
+	private JPanel mainPanel = null;
 	private ImageIcon img = new ImageIcon(new ImageIcon("Image\\MenuImage\\1아메리카노.jpg").getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
 	private JLabel imgLabel = new JLabel(img);
-	private Container c = frame.getContentPane();
 	private JPanel p1 = new JPanel();
 	private JPanel p2 = new JPanel();
 	private JPanel p3 = new JPanel();
@@ -61,6 +63,7 @@ public class OrderView {
 	private JButton cancelButton = new JButton(img_cancel);
 	private ImageIcon img_event1 = new ImageIcon(new ImageIcon("Image\\OrderImage\\event1.png").getImage().getScaledInstance(500, 150, Image.SCALE_DEFAULT));
 	private JButton toWebPage = new JButton(img_event1);
+	private ArrayList<OrderList> orderAl = null;
 	
 	public void comInit() {
 		ActionListener lisener = new MyActionListener();
@@ -216,26 +219,25 @@ public class OrderView {
 		toWebPage.addActionListener(lisener);
 		p8.add(toWebPage);
 		
-		frame.add(p1);
-		frame.add(p2);
-		frame.add(p3);
-		frame.add(p4);
-		frame.add(p5);
-		frame.add(p6);
-		frame.add(p7);
-		frame.add(p8);
+		this.add(p1);
+		this.add(p2);
+		this.add(p3);
+		this.add(p4);
+		this.add(p5);
+		this.add(p6);
+		this.add(p7);
+		this.add(p8);
 	}
 	
-	public OrderView() {
-		frame.setTitle("OrderView");
-		frame.setSize(1000,800);
-		frame.setBackground(Color.WHITE);
-		frame.setLayout(null);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public OrderView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl) {
+		this.mainFrame = mainFrame;
+		this.mainPanel = mainPanel;
+		this.orderAl  = orderAl;
+		this.setSize(1000,800);
+		this.setBackground(Color.WHITE);
+		this.setLayout(null);
 		this.comInit();
-		frame.setVisible(true);
+		this.setVisible(true);
 		orderID++;
 	}
 	
@@ -257,17 +259,18 @@ public class OrderView {
 				hotButton.setIcon(img_hot_unselected);
 				icedButton.setIcon(img_iced_selected);
 			} else if(e.getSource()==personalO) {
-				EspressoCustom ec = new EspressoCustom(frame,"Personal Option",true);
+				EspressoCustom ec = new EspressoCustom(mainFrame,"Personal Option",true);
 				
 			} else if(e.getSource()==orderButton) {
 				
 			} else if(e.getSource()==cancelButton) {
-				goodsNum=0;
+				/*goodsNum=0;
 				orderCnt.setText(""+goodsNum);
 				hotButton.setIcon(img_hot_selected);
 				icedButton.setIcon(img_iced_unselected);
 				sizeCb.setSelectedIndex(1);
-				cupCb.setSelectedIndex(0);
+				cupCb.setSelectedIndex(0);*/
+				((CardLayout)mainPanel.getLayout()).show(mainPanel, "menu");
 			} else if(e.getSource()==toWebPage) {
 				try {
 					Desktop.getDesktop().browse(new URL("http://www.youtube.com/watch?v=ClbJ41ll8og").toURI());

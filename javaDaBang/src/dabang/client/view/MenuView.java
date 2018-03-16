@@ -15,10 +15,11 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import dabang.client.model.OrderList;
 
 public class MenuView extends JPanel implements ActionListener{
 	private JPanel title = new JPanel();
@@ -68,6 +69,7 @@ public class MenuView extends JPanel implements ActionListener{
 	private ArrayList<JPanel> payList = new ArrayList<JPanel>();
 	
 	private JPanel mainPanel = null;
+	private ArrayList<OrderList> orderAl = null;
 	
 	public void menuInit1() {
 		for(int i=0;i<espPanel.length;i++) {
@@ -105,6 +107,7 @@ public class MenuView extends JPanel implements ActionListener{
 			espPicLabel[i].setHorizontalAlignment(JLabel.CENTER);
 			espPanel[i].add(espPicLabel[i],BorderLayout.NORTH);
 			espPanel[i].add(espName[i],BorderLayout.CENTER);
+			espPanel[i].addActionListener(this);
 		}
 		
 	}
@@ -279,6 +282,7 @@ public class MenuView extends JPanel implements ActionListener{
 		paymentCenter1.setLayout(new GridBagLayout());
 		paymentCenter2.add(paymentCenter1);
 		paymentScroll = new JScrollPane(paymentCenter2);
+		paymentScroll.getVerticalScrollBar().setUnitIncrement(16);
 		
 		JPanel jp[] = new JPanel[10];
 		payList.add(jp[0] = new JPanel()); 
@@ -323,7 +327,7 @@ public class MenuView extends JPanel implements ActionListener{
 		this.add(menu,BorderLayout.CENTER);
 	}
 
-	public MenuView(JPanel mainPanel) {
+	public MenuView(JPanel mainPanel,ArrayList<OrderList> orderAl) {
 		this.setSize(1000,800);
 		this.setLayout(new BorderLayout());
 //		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -331,6 +335,7 @@ public class MenuView extends JPanel implements ActionListener{
 //		this.setTitle("¸Þ´º");
 //		this.setLocationRelativeTo(null);
 		this.mainPanel = mainPanel;
+		this.orderAl = orderAl;
 		comInit();
 		this.setVisible(true);
 	}
@@ -350,6 +355,8 @@ public class MenuView extends JPanel implements ActionListener{
 			cardNumber = 4;
 		}else if(e.getSource()==paymentCancelButon) {
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "memberMain");
+		}else if(e.getSource()==espPanel[0]) {
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "order");
 		}
 		((CardLayout)(menuCenter.getLayout())).show(menuCenter, Integer.toString(cardNumber));
 	}
