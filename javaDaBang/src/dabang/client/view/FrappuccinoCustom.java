@@ -445,4 +445,5 @@ public class FrappuccinoCustom extends JDialog{
 		this.setVisible(true);
 	}
 
+	public FrappuccinoCustom() {}
 }
