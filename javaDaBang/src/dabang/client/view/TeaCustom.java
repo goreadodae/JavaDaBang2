@@ -120,9 +120,9 @@ public class TeaCustom extends JFrame{
 								public void actionPerformed(ActionEvent e) {
 									if(e.getSource() == button2m)
 									{
-										if(count2 >= 1) {
-											count2--; // -카운팅
-											clabel2.setText(Integer.toString(count2));
+										if(0 <= count2 && count2 <= 8) {
+											count2++; // +카운팅
+									 		clabel2.setText(Integer.toString(count2));
 										}
 									}
 								}
@@ -173,10 +173,10 @@ public class TeaCustom extends JFrame{
 						public void actionPerformed(ActionEvent e) {
 							if(e.getSource() == button3p)
 							{
-								if(count3 >= 0) {
-									count3++; // +버튼
-									clabel3.setText(Integer.toString(count3));
-								}	
+								if(0 <= count3 && count3 <= 8) {
+									count3++; // +카운팅
+							 		clabel3.setText(Integer.toString(count3));
+								}
 							}
 						}
 					});
