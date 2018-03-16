@@ -195,44 +195,12 @@ public class TeaCustom extends JFrame{
 					milkregular.setBackground(Color.white); //백그라운드 색과 동일하게 설정
 					milklow.setBackground(Color.white);
 					milkno.setBackground(Color.white);
-					
+				
 					panel4.add(milkregular);
 					panel4.add(milklow);
 					panel4.add(milkno);
 					
-					// 물 리스너
-					milkregular.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == milkregular)
-							{
-								
-							}
-						}
-					});
-					
-					milklow.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == milklow)
-							{
-								
-							}	
-						}
-					});
-					
-					milkno.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == milkno)
-							{
-								
-							}	
-						}
-					});
+					milkbg.getSelection();
 					
 					
 					//베이스
@@ -254,39 +222,7 @@ public class TeaCustom extends JFrame{
 					panel5.add(baseregular);
 					panel5.add(baselots);
 
-					//얼음 리스너
-					basefew.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == basefew)
-							{
-								
-							}	
-						}	
-					});
-					
-					baseregular.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == baseregular)
-							{
-								
-							}	
-						}	
-					});
-					
-					baselots.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == baselots)
-							{
-								
-							}	
-						}	
-					});
+					basebg.getSelection();
 					
 					
 					
@@ -309,45 +245,7 @@ public class TeaCustom extends JFrame{
 					panel6.add(whipregular);
 					panel6.add(whiplots);
 					
-					//휘핑 리스너
-					whipfew.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == whipfew)
-							{
-								
-							}
-							
-						}
-						
-					});
-					
-					whipregular.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == whipregular)
-							{
-								
-							}
-							
-						}
-						
-					});
-					
-					whiplots.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == whiplots)
-							{
-								
-							}
-							
-						}
-						
-					});
+					whipbg.getSelection();
 					
 					
 					//드리즐
@@ -370,39 +268,7 @@ public class TeaCustom extends JFrame{
 					panel7.add(drizzlelots);
 					
 					
-					//드리즐리스너
-					drizzlefew.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == drizzlefew)
-							{
-								
-							}
-						}
-					});
-					
-					drizzleregular.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == drizzleregular)
-							{
-								
-							}
-						}
-					});
-					
-					drizzlelots.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == drizzlelots)
-							{
-								
-							}
-						}
-					});
+					drizzlebg.getSelection();
 					
 					panel8.setBackground(Color.white); //패널 배경색
 					panel8.setLayout(new FlowLayout(FlowLayout.CENTER,10,15)); //패널 레이아웃
