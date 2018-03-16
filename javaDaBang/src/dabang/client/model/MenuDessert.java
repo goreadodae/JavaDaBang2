@@ -2,7 +2,7 @@ package dabang.client.model;
 
 import java.util.Calendar;
 
-public class MenuDessert {
+public class MenuDessert implements Comparable{
 
 	private int kindDessert; 		// 디저트 종류(케이크, 샌드위치)
 	private String dessertName; 	// 디저트 이름
@@ -68,5 +68,13 @@ public class MenuDessert {
 					this.dessertNum + "\t" + this.dessertPrice + "\t"
 					+ this.orderDate;
 	}
+
+	@Override
+	public int compareTo(Object o) { //디저트 이름순정렬
+		
+		return this.dessertName.charAt(0) - ((MenuDessert)o).dessertName.charAt(0);
+	}
+
+	
 
 }
