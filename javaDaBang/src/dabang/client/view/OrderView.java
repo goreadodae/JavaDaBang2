@@ -2,7 +2,6 @@ package dabang.client.view;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -13,16 +12,18 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import dabang.client.model.OrderList;
 
 public class OrderView extends JPanel {
 	private static int orderID = 0;
@@ -62,6 +63,7 @@ public class OrderView extends JPanel {
 	private JButton cancelButton = new JButton(img_cancel);
 	private ImageIcon img_event1 = new ImageIcon(new ImageIcon("Image\\OrderImage\\event1.png").getImage().getScaledInstance(500, 150, Image.SCALE_DEFAULT));
 	private JButton toWebPage = new JButton(img_event1);
+	private ArrayList<OrderList> orderAl = null;
 	
 	public void comInit() {
 		ActionListener lisener = new MyActionListener();
@@ -227,9 +229,10 @@ public class OrderView extends JPanel {
 		this.add(p8);
 	}
 	
-	public OrderView(JPanel mainPanel, JFrame mainFrame) {
+	public OrderView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl) {
 		this.mainFrame = mainFrame;
 		this.mainPanel = mainPanel;
+		this.orderAl  = orderAl;
 		this.setSize(1000,800);
 		this.setBackground(Color.WHITE);
 		this.setLayout(null);

@@ -3,21 +3,26 @@ package dabang.client.view;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import dabang.client.model.OrderList;
 
 public class MainView implements ActionListener {
 	private JFrame mainFrame = new JFrame();
 	private JPanel[] cards = new JPanel[7];
 	private JPanel mainPanel = new JPanel();
+	private ArrayList<OrderList> orderAl = new ArrayList<OrderList>();
+	
 	public void comInit() {
 
 		mainPanel.setLayout(new CardLayout());
 		cards[0] = new Login(mainPanel);
 		cards[1] = new memberMainView(mainPanel);
-		cards[2] = new MenuView(mainPanel);
-		cards[3] = new OrderView(mainPanel, mainFrame);
+		cards[2] = new MenuView(mainPanel,orderAl);
+		cards[3] = new OrderView(mainPanel, mainFrame,orderAl);
 		mainPanel.add("Login",cards[0]);
 		mainPanel.add("memberMain",cards[1]);
 		mainPanel.add("menu",cards[2]);
