@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -19,18 +20,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableCellRenderer;
 
 import dabang.client.model.MenuDrink;
 import dabang.client.model.OrderList;
 
 public class MenuView extends JPanel implements ActionListener{
+	private static Color bgc = new Color(246,245,239);
+	private Font f1 = new Font("돋움",Font.BOLD,20);
+	private Font f2 = new Font("돋움",Font.PLAIN,25);
 	private JFrame mainFrame = null;
 	private MenuDrink md = null; 
 	private JPanel title = new JPanel();
+	private ImageIcon titleIcon = new ImageIcon(new ImageIcon("Image\\menuViewImage\\menu.png").getImage());
 	private JPanel payment = new JPanel();
 	private JPanel menu = new JPanel();
-	private JLabel titleName = new JLabel("메뉴");
+	private JLabel titleName = new JLabel();
 	private JPanel menuTitle = new JPanel();
 	private JPanel menuCenter = new JPanel();
 	private JButton espressoButton = new JButton("에스프레소");
@@ -62,7 +66,8 @@ public class MenuView extends JPanel implements ActionListener{
 	private JButton desPanel[] = new JButton[6];
 	private int cardNumber = 1;
 
-	private JLabel paymentTitle = new JLabel("결제");
+	private JLabel paymentTitle = new JLabel();
+	private ImageIcon paymentTitleIcon = new ImageIcon(new ImageIcon("Image\\menuViewImage\\payment.png").getImage());
 	private JPanel paymentCenter1 = new JPanel();
 	private JPanel paymentCenter2 = new JPanel();
 	private JPanel paymentSouth = new JPanel();
@@ -243,9 +248,13 @@ public class MenuView extends JPanel implements ActionListener{
 	public void menuInit() {
 		title.setPreferredSize(new Dimension(100,100));
 		menu.setPreferredSize(new Dimension(300,100));
+		titleName.setIcon(titleIcon);
+		title.setLayout(new GridLayout(1,2));
 		title.add(titleName);
 		menu.setLayout(new BorderLayout());
-		menuTitle.setBackground(Color.white);
+		title.setBackground(bgc);
+		menuTitle.setBackground(bgc);
+		menu.setBackground(bgc);
 		menuTitle.setPreferredSize(new Dimension(300,100));
 		menu.add(menuTitle, BorderLayout.NORTH);
 		menu.add(menuCenter, BorderLayout.CENTER);
@@ -274,7 +283,7 @@ public class MenuView extends JPanel implements ActionListener{
 			menuCard[i] = new JPanel();
 			menuCenter.add(Integer.toString(i+1),menuCard[i]);
 			menuCard[i].setLayout(new GridLayout(2, 3));
-			menuCard[i].setBackground(Color.WHITE);
+			menuCard[i].setBackground(bgc);
 		}
 	}
 
@@ -282,11 +291,11 @@ public class MenuView extends JPanel implements ActionListener{
 
 		paymentCenterInit();
 		paymentSouthInit();
-		payment.setBackground(Color.YELLOW);
-		payment.setPreferredSize(new Dimension(250,100));
+		payment.setBackground(bgc);
+		payment.setPreferredSize(new Dimension(250,50));
 		payment.setLayout(new BorderLayout());
-		paymentTitle.setPreferredSize(new Dimension(250,100));
-
+		paymentTitle.setPreferredSize(new Dimension(250,70));
+		paymentTitle.setIcon(paymentTitleIcon);
 		payment.add(paymentScroll,BorderLayout.CENTER);
 		payment.add(paymentTitle,BorderLayout.NORTH);
 		payment.add(paymentSouth,BorderLayout.SOUTH);
@@ -298,6 +307,9 @@ public class MenuView extends JPanel implements ActionListener{
 		paymentCenter2.add(paymentCenter1);
 		paymentScroll = new JScrollPane(paymentCenter2);
 		paymentScroll.getVerticalScrollBar().setUnitIncrement(16);
+		
+		paymentCenter1.setBackground(bgc);
+		paymentCenter2.setBackground(bgc);
 		jp = new ArrayList<JPanel>();
 		orderName = new ArrayList<JLabel>();
 		orderNum = new ArrayList<JLabel>();
@@ -307,6 +319,8 @@ public class MenuView extends JPanel implements ActionListener{
 
 		for(int i=0;i<orderAl.size();i++) {
 			jp.add(new JPanel());
+			jp.get(i).setLayout(new BorderLayout());
+			
 			deleteButton.add(new JButton("x"));
 			jp.get(i).setPreferredSize(new Dimension(230,100));
 			orderName.add(new JLabel());
@@ -318,14 +332,30 @@ public class MenuView extends JPanel implements ActionListener{
 			orderNum.get(i).setText(Integer.toString(orderAl.get(i).getOrderNum())+" 개");
 			orderSize.get(i).setText("사이즈 : "+orderAl.get(i).getSize());
 			orderPrice.get(i).setText(Integer.toString(orderAl.get(i).getPrice()*orderAl.get(i).getOrderNum())+"원");
-
-			jp.get(i).add(orderName.get(i));
-			jp.get(i).add(orderNum.get(i));
-			jp.get(i).add(orderSize.get(i));
-			jp.get(i).add(orderPrice.get(i));
-			jp.get(i).add(deleteButton.get(i));
+			orderName.get(i).setFont(f1);
+			
+			jp.get(i).add(orderName.get(i),BorderLayout.NORTH);
+			JPanel nspPanel = new JPanel();
+			orderNum.get(i).setHorizontalAlignment(JLabel.RIGHT);
+			orderSize.get(i).setHorizontalAlignment(JLabel.RIGHT);
+			orderPrice.get(i).setHorizontalAlignment(JLabel.RIGHT);
+			nspPanel.setLayout(new GridLayout(3,1));
+			nspPanel.setBackground(Color.white);
+			nspPanel.add(orderNum.get(i));
+			nspPanel.add(orderSize.get(i));
+			nspPanel.add(orderPrice.get(i));
+			jp.get(i).add(nspPanel,BorderLayout.CENTER);
+//			jp.get(i).add(orderNum.get(i),BorderLayout.CENTER);
+//			jp.get(i).add(orderSize.get(i),BorderLayout.CENTER);
+//			jp.get(i).add(orderPrice.get(i),BorderLayout.CENTER);
+			JPanel buttonPanel = new JPanel();
+			buttonPanel.add(deleteButton.get(i));
+			buttonPanel.setBackground(Color.white);
+			deleteButton.get(i).setPreferredSize(new Dimension(35,35));
+			jp.get(i).add(buttonPanel,BorderLayout.EAST);
+			
 			jp.get(i).setBackground(Color.white);
-			jp.get(i).setLayout(new GridLayout(5,1));
+//			jp.get(i).setLayout(new GridLayout(5,1));
 			payList.add(jp.get(i));
 			totalPriceNum += orderAl.get(i).getPrice()*orderAl.get(i).getOrderNum();
 			deleteButton.get(i).addActionListener(new ActionListener() {
@@ -357,8 +387,12 @@ public class MenuView extends JPanel implements ActionListener{
 	}
 	public void paymentSouthInit() {
 		paymentSouth.setLayout(new GridLayout(3,2));
+		paymentSouth.setBackground(bgc);
 		paymentSouth.add(paymentTotalPrice);
+		paymentTotalPrice.setFont(f2);
 		totalPrice = new JLabel(Integer.valueOf(totalPriceNum)+"원");
+		totalPrice.setFont(f2);
+		totalPrice.setHorizontalAlignment(JLabel.RIGHT);
 		paymentSouth.add(totalPrice);
 		paymentSouth.add(paymentPayButton);
 		paymentSouth.add(paymentCancelButon);
@@ -384,6 +418,7 @@ public class MenuView extends JPanel implements ActionListener{
 		//		this.setLocationRelativeTo(null);
 		this.mainPanel = mainPanel;
 		this.orderAl = orderAl;
+		this.setBackground(Color.WHITE);
 		comInit();
 		this.setVisible(true);
 	}

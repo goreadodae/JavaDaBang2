@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 
 import dabang.client.controller.LoginController;
 public  class Login extends JPanel implements ActionListener{
+	private static Color bgc = new Color(246,245,239);
 	private JPanel panel1 = new JPanel();//아이디
 	private JPanel panel2 = new JPanel();//비밀번호
 	private JPanel panel3 = new JPanel();//맨위에 
@@ -62,14 +63,14 @@ public  class Login extends JPanel implements ActionListener{
 	}
 	private void idgo()//아이디
 	{
-		panel1.setBackground(Color.WHITE);
+		panel1.setBackground(bgc);
 		panel1.add(label1);//아이디
 		panel1.add(field1);//칸
 		this.add(panel1);
 	}
 	private void passwordgo()//비번
 	{
-		panel2.setBackground(Color.WHITE);
+		panel2.setBackground(bgc);
 		panel2.add(label2);//비번
 		panel2.add(field2);//비번칸
 		this.add(panel2);
@@ -92,7 +93,7 @@ public  class Login extends JPanel implements ActionListener{
 
 
 	private void saygo() {
-		panel3.setBackground(Color.WHITE);
+		panel3.setBackground(bgc);
 		panel3.setPreferredSize(new Dimension(1,1));
 		label3.setIcon(mainpic);
 		panel3.add(label3);
@@ -101,12 +102,12 @@ public  class Login extends JPanel implements ActionListener{
 	}
 	private void loginchang()
 	{
-		panel4.setBackground(Color.WHITE);
+		panel4.setBackground(bgc);
 		button1.setIcon(login);
-		button1.setBackground(Color.WHITE);
+		button1.setBackground(bgc);
 		panel4.add(button1);
 		panel4.add(button2);
-		button3.setBackground(Color.WHITE);
+		button3.setBackground(bgc);
 		button3.setIcon(gaep);
 		panel4.add(button3);
 		button1.addActionListener(this);
@@ -119,7 +120,7 @@ public  class Login extends JPanel implements ActionListener{
 	}
 	private void pic1()
 	{
-		panel5.setBackground(Color.YELLOW);
+		panel5.setBackground(bgc);
 		panel5.setPreferredSize(new Dimension(1,1));
 		label4.setIcon(picup);
 		panel5.add(label4);
@@ -129,7 +130,7 @@ public  class Login extends JPanel implements ActionListener{
 	}
 	private void pic2()
 	{
-		panel6.setBackground(Color.LIGHT_GRAY);
+		panel6.setBackground(bgc);
 		panel6.setPreferredSize(new Dimension(1,1));
 		label5.setIcon(picdown);
 		panel6.add(label5);
