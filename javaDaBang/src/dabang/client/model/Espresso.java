@@ -4,8 +4,8 @@ public class Espresso extends MenuDrink{
 	
 	private String hotAndIce;//Hot/Ice
 	private int shot;//샷23
-	private int iceAmount;//얼음의 양 0~1 없거나, 적게
 	private int waterAmount;//물의 양 1~3 적게, 보통, 많이
+	private int iceAmount;//얼음의 양 0~1 없거나, 적게
 	private int whipAmount;//휘핑 양 0~3 없거나, 적게, 보통, 많이
 	private int drizzleAmount;//드리즐 양 0~3 없거나, 적게, 보통, 많이
 	
