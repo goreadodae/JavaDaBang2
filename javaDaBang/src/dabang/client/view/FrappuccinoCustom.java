@@ -338,7 +338,7 @@ public class FrappuccinoCustom extends JFrame{
 								if(0 <= count6 && count6 <= 8) {
 									count6++; // +Ä«¿îÆÃ
 							 		clabel6.setText(Integer.toString(count6));
-								}		
+								}	
 							}
 						}
 					});
