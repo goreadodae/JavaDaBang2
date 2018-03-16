@@ -7,7 +7,7 @@ import java.util.Iterator;
 import javax.swing.JLabel;
 
 import dabang.client.model.MenuManage;
-
+//
 public class MenuManageControl {
 
 	HashMap <String,MenuManage> adminmenu = new HashMap<String,MenuManage>();
