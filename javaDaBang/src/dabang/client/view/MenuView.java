@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import dabang.client.model.MenuDrink;
 import dabang.client.model.OrderList;
@@ -68,7 +69,7 @@ public class MenuView extends JPanel implements ActionListener{
 	private JButton paymentPayButton = new JButton("주문하기");
 	private JButton paymentCancelButon = new JButton("취소하기");
 	private JLabel paymentTotalPrice = new JLabel("총 가격 : ");
-	private JLabel totalPrice = new JLabel("원");
+	private JLabel totalPrice = null;
 	private JScrollPane paymentScroll = null;
 	private ArrayList<JPanel> payList = new ArrayList<JPanel>();
 
@@ -81,7 +82,7 @@ public class MenuView extends JPanel implements ActionListener{
 	ArrayList<JLabel> orderSize = null;
 	ArrayList<JLabel> orderPrice = null;
 	ArrayList<JLabel> orderCancel = null;
-	
+	private int totalPriceNum;
 	public void menuInit1() {
 		for(int i=0;i<espPanel.length;i++) {
 			espName[i] = new JLabel();
@@ -303,7 +304,7 @@ public class MenuView extends JPanel implements ActionListener{
 		orderSize = new ArrayList<JLabel>();
 		orderPrice = new ArrayList<JLabel>();
 		orderCancel = new ArrayList<JLabel>();
-		
+
 		for(int i=0;i<orderAl.size();i++) {
 			jp.add(new JPanel());
 			deleteButton.add(new JButton("x"));
@@ -314,18 +315,37 @@ public class MenuView extends JPanel implements ActionListener{
 			orderPrice.add(new JLabel());
 			orderCancel.add(new JLabel());
 			orderName.get(i).setText(orderAl.get(i).getName());
-			orderNum.get(i).setText(Integer.toString(orderAl.get(i).getOrderNum()));
-			orderSize.get(i).setText(orderAl.get(i).getSize());
-			orderPrice.get(i).setText(Integer.toString(orderAl.get(i).getPrice()*orderAl.get(i).getOrderNum()));
-			GridBagConstraints c = new GridBagConstraints();
+			orderNum.get(i).setText(Integer.toString(orderAl.get(i).getOrderNum())+" 개");
+			orderSize.get(i).setText("사이즈 : "+orderAl.get(i).getSize());
+			orderPrice.get(i).setText(Integer.toString(orderAl.get(i).getPrice()*orderAl.get(i).getOrderNum())+"원");
+
 			jp.get(i).add(orderName.get(i));
 			jp.get(i).add(orderNum.get(i));
 			jp.get(i).add(orderSize.get(i));
 			jp.get(i).add(orderPrice.get(i));
 			jp.get(i).add(deleteButton.get(i));
 			jp.get(i).setBackground(Color.white);
-			jp.get(i).setLayout(new GridBagLayout());
+			jp.get(i).setLayout(new GridLayout(5,1));
 			payList.add(jp.get(i));
+			totalPriceNum += orderAl.get(i).getPrice()*orderAl.get(i).getOrderNum();
+			deleteButton.get(i).addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					for(int i=0;i<deleteButton.size();i++) {
+						if(e.getSource()==deleteButton.get(i)) {
+							orderAl.remove(i);
+							deleteButton.remove(i);
+							jp.remove(i);
+							mainPanel.remove(2);
+							MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md);
+							mainPanel.add(mv,"menu",2);
+							((CardLayout)mainPanel.getLayout()).show(mainPanel, "menu");
+						}
+					}
+				}
+			});
 		}
 		GridBagConstraints c = new GridBagConstraints();
 		for(int i=0;i<payList.size();i++) {
@@ -338,6 +358,7 @@ public class MenuView extends JPanel implements ActionListener{
 	public void paymentSouthInit() {
 		paymentSouth.setLayout(new GridLayout(3,2));
 		paymentSouth.add(paymentTotalPrice);
+		totalPrice = new JLabel(Integer.valueOf(totalPriceNum)+"원");
 		paymentSouth.add(totalPrice);
 		paymentSouth.add(paymentPayButton);
 		paymentSouth.add(paymentCancelButon);
@@ -369,7 +390,6 @@ public class MenuView extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
 		if(e.getSource()==espressoButton) {
 			cardNumber = 1;
 		}else if(e.getSource()==frappuccinoButton) {
@@ -392,88 +412,59 @@ public class MenuView extends JPanel implements ActionListener{
 
 			if(e.getSource()==espPanel[0]) {//에에스프레소!
 				md.setGoodsName("americano");
-				md.setKindOfDrink(1);
 			}else if(e.getSource()==espPanel[1]) {
 				md.setGoodsName("dolceLatte");
-				md.setKindOfDrink(1);
 			}else if(e.getSource()==espPanel[2]) {
 				md.setGoodsName("cafeMocha"); 
-				md.setKindOfDrink(1);
 			}else if(e.getSource()==espPanel[3]) {
 				md.setGoodsName("cafeLatte");
-				md.setKindOfDrink(1);
 			}else if(e.getSource()==espPanel[4]) {
 				md.setGoodsName("caramelMacchiato");
-				md.setKindOfDrink(1);
 			}else if(e.getSource()==espPanel[5]) {
 				md.setGoodsName("cappuccino");
-				md.setKindOfDrink(1);
 			}//프으라푸치노!
 			else if(e.getSource()==fraPanel[0]){
 				md.setGoodsName("javaChip");
-				md.setKindOfDrink(2);
 			}else if(e.getSource()==fraPanel[1]){
 				md.setGoodsName("whiteChocolate");
-				md.setKindOfDrink(2);
 			}else if(e.getSource()==fraPanel[2]){
 				md.setGoodsName("caramel");
-				md.setKindOfDrink(2);
 			}else if(e.getSource()==fraPanel[3]){
 				md.setGoodsName("mocha");
-				md.setKindOfDrink(2);
 			}else if(e.getSource()==fraPanel[4]){
 				md.setGoodsName("espresso");
-				md.setKindOfDrink(2);
 			}else if(e.getSource()==fraPanel[5]){
 				md.setGoodsName("greenTea");
-				md.setKindOfDrink(2);
 			}//티이~
 			else if(e.getSource()==teaPanel[0]){
 				md.setGoodsName("greenTeaLatte");
-				md.setKindOfDrink(3);
 			}else if(e.getSource()==teaPanel[1]){
 				md.setGoodsName("mintTea");
-				md.setKindOfDrink(3);
 			}else if(e.getSource()==teaPanel[2]){
 				md.setGoodsName("earlGrey");
-				md.setKindOfDrink(3);
 			}else if(e.getSource()==teaPanel[3]){
 				md.setGoodsName("youthBerry");
-				md.setKindOfDrink(3);
 			}else if(e.getSource()==teaPanel[4]){
 				md.setGoodsName("chaiTea");
-				md.setKindOfDrink(3);
 			}else if(e.getSource()==teaPanel[5]){
 				md.setGoodsName("chamomile");
-				md.setKindOfDrink(3);
 			}//디이절트!
 			else if(e.getSource()==desPanel[0]){
 				md.setGoodsName("castella");
-				md.setKindOfDrink(4);
 			}else if(e.getSource()==desPanel[1]){
 				md.setGoodsName("blueberryCake");
-				md.setKindOfDrink(4);
 			}else if(e.getSource()==desPanel[2]){
 				md.setGoodsName("tiramisu");
-				md.setKindOfDrink(4);
 			}else if(e.getSource()==desPanel[3]){
 				md.setGoodsName("cranberrySandwich");
-				md.setKindOfDrink(4);
 			}else if(e.getSource()==desPanel[4]){
 				md.setGoodsName("croqueMonsieur");
-				md.setKindOfDrink(4);
 			}else if(e.getSource()==desPanel[5]){
 				md.setGoodsName("turkeySandwich");
-				md.setKindOfDrink(4);
 			}
-			
-			if(md.getKindOfDrink()>0 && md.getKindOfDrink()<4) {
-				OrderView ov = new OrderView(mainPanel, mainFrame, orderAl, md);
-				mainPanel.add(ov,"order",3);
-			}else if(md.getKindOfDrink()==4) {
-				OrderDessertView odv = new OrderDessertView(mainPanel, mainFrame, orderAl, md);
-				mainPanel.add(odv,"order",3);
-			}
+
+			OrderView ov = new OrderView(mainPanel, mainFrame, orderAl, md);
+			mainPanel.add(ov,"order",3);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "order");
 		}
 

@@ -24,6 +24,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -76,7 +77,6 @@ public class OrderView extends JPanel {
 	private ArrayList<OrderList> orderAl = null;
 	private OrderList ol = new OrderList();
 	private int sendPrice;
-	
 	public void comInit() {
 		ActionListener lisener = new MyActionListener();
 		
@@ -296,23 +296,22 @@ public class OrderView extends JPanel {
 				hotButton.setIcon(img_hot_unselected);
 				icedButton.setIcon(img_iced_selected);
 			} else if(e.getSource()==personalO) {
-				if(md.getKindOfDrink()==1) {
-					EspressoCustom ec = new EspressoCustom(mainFrame,"Espresso Personal Option",true);
-				}else if(md.getKindOfDrink()==2) {
-					FrappuccinoCustom fc = new FrappuccinoCustom(mainFrame,"Frappuccino Personal Option",true);
-				}else if(md.getKindOfDrink()==3) {
-					TeaCustom tc = new TeaCustom(mainFrame,"Tea Personal Option",true);
-				}
+				EspressoCustom ec = new EspressoCustom(mainFrame,"Personal Option",true);
+				
 			} else if(e.getSource()==orderButton) {
-				ol.setName(goodsName.getText());
-				ol.setOrderNum(goodsNum);
-				ol.setPrice(sendPrice);
-				ol.setSize((String)sizeCb.getSelectedItem());
-				orderAl.add(ol);
-				mainPanel.remove(2);
-				MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md);
-				mainPanel.add(mv,"menu",2);
-				((CardLayout)mainPanel.getLayout()).show(mainPanel, "menu");
+				if(goodsNum == 0) {
+					JOptionPane.showMessageDialog(null,"주문 실패");
+				}else {
+					ol.setName(goodsName.getText());
+					ol.setOrderNum(goodsNum);
+					ol.setPrice(sendPrice);
+					ol.setSize((String)sizeCb.getSelectedItem());
+					orderAl.add(ol);
+					mainPanel.remove(2);
+					MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md);
+					mainPanel.add(mv,"menu",2);
+					((CardLayout)mainPanel.getLayout()).show(mainPanel, "menu");
+				}
 			} else if(e.getSource()==cancelButton) {
 				goodsNum=0;
 				orderCnt.setText(""+goodsNum);
