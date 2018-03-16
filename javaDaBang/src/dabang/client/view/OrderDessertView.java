@@ -1,6 +1,6 @@
 package dabang.client.view;
 
-import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.FlowLayout;
@@ -8,24 +8,35 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Properties;
 
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
-public class OrderDessertView extends JFrame {
-	private ImageIcon img = new ImageIcon(new ImageIcon("Image\\MenuImage\\4티라미수.jpg").getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
-	private JLabel imgLabel = new JLabel(img);
-//	private Container c = getContentPane();
+import dabang.client.model.MenuDrink;
+import dabang.client.model.OrderList;
+
+public class OrderDessertView extends JPanel {
+	private JFrame mainFrame = null;
+	private JPanel mainPanel = null;
+	private MenuDrink md = null;
+	private ImageIcon img = null;
+	private JLabel imgLabel = null;
+	private JLabel goodsName = null;
+	private JLabel goodsNameEng = null;
+	private JLabel price = null;
+	private Properties props = new Properties();
 	private JPanel p1 = new JPanel();
 	private JPanel p2 = new JPanel();
 	private JPanel p3 = new JPanel();
@@ -45,6 +56,8 @@ public class OrderDessertView extends JFrame {
 	private JButton cancelButton = new JButton(img_cancel);
 	private ImageIcon img_event1 = new ImageIcon(new ImageIcon("Image\\OrderImage\\event1.png").getImage().getScaledInstance(500, 150, Image.SCALE_DEFAULT));
 	private JButton toWebPage = new JButton(img_event1);
+	private ArrayList<OrderList> orderAl = null;
+	private OrderList ol = new OrderList();
 	
 	public void comInit() {
 		ActionListener lisener = new MyActionListener();
@@ -60,7 +73,6 @@ public class OrderDessertView extends JFrame {
 		p1_2.setSize(800,30);
 		p1_2.setLocation(200,20);
 		p1_2.setLayout(new FlowLayout(FlowLayout.LEFT,20,5));
-		JLabel goodsName = new JLabel("티라미수");
 		goodsName.setFont(f1);
 		p1_2.add(goodsName);
 		JPanel p1_3 = new JPanel();
@@ -68,7 +80,6 @@ public class OrderDessertView extends JFrame {
 		p1_3.setSize(800,30);
 		p1_3.setLocation(200,50);
 		p1_3.setLayout(new FlowLayout(FlowLayout.LEFT,20,7));
-		JLabel goodsNameEng = new JLabel("Tiramisu");
 		goodsNameEng.setFont(new Font("Arial",Font.PLAIN,15));
 		goodsNameEng.setForeground(new Color(170,160,70));
 		p1_3.add(goodsNameEng);
@@ -77,7 +88,6 @@ public class OrderDessertView extends JFrame {
 		p1_4.setSize(800,50);
 		p1_4.setLocation(200,80);
 		p1_4.setLayout(new FlowLayout(FlowLayout.LEFT,20,10));
-		JLabel price = new JLabel("4,800원");
 		price.setFont(f3);
 		p1_4.add(price);
 		JPanel p1_5 = new JPanel();
@@ -144,14 +154,41 @@ public class OrderDessertView extends JFrame {
 		this.add(p8);
 	}
 	
-	public OrderDessertView() {
-		super("OrderDessertView");
+	public void menuSet() {
+		String str = null;
+		String s[] = null;
+		String showPrice = null;
+		
+		try(BufferedInputStream bfs = new BufferedInputStream(new FileInputStream("menu.properties"))) {
+			props.load(bfs);
+			
+			str = new String(props.getProperty(md.getGoodsName()).getBytes("ISO-8859-1"), "UTF-8");
+			s = str.split("/");
+			
+			showPrice = s[3].charAt(0)+","+s[3].substring(s[3].length()-3, s[3].length())+"원";
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		img = new ImageIcon(new ImageIcon(s[2]).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+		imgLabel = new JLabel(img);
+		goodsName = new JLabel(s[0]);
+		goodsNameEng = new JLabel(s[1]);
+		price = new JLabel(showPrice);
+	}
+	
+	public OrderDessertView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md) {
+		this.md = md;
+		this.mainFrame = mainFrame;
+		this.mainPanel = mainPanel;
+		this.orderAl = orderAl;
 		this.setSize(1000,800);
 		this.setBackground(Color.WHITE);
 		this.setLayout(null);
-		this.setLocationRelativeTo(null);
-		this.setResizable(false);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.menuSet();
 		this.comInit();
 		this.setVisible(true);
 	}
@@ -172,6 +209,7 @@ public class OrderDessertView extends JFrame {
 			} else if(e.getSource()==cancelButton) {
 				goodsNum=0;
 				orderCnt.setText(""+goodsNum);
+				((CardLayout)mainPanel.getLayout()).show(mainPanel, "menu");
 			} else if(e.getSource()==toWebPage) {
 				try {
 					Desktop.getDesktop().browse(new URL("http://www.youtube.com/watch?v=ClbJ41ll8og").toURI());
