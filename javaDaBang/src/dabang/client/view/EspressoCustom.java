@@ -275,11 +275,11 @@ public class EspressoCustom extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == button8_2)
-				{
+				{ //물, 휘핑, 드리즐, 아이스체크
 					int water = 0, whip = 0, drizzle = 0, iceChk = 0;
 					for(Enumeration<AbstractButton> waterbs = waterbg.getElements(); waterbs.hasMoreElements();) {
 						AbstractButton waterb = waterbs.nextElement();
-						if(waterb.isSelected()) {
+						if(waterb.isSelected()) { //물
 							switch(waterb.getText()) {
 							case "적게" : water = 1; break;
 							case "보통" : water = 2; break;
@@ -288,8 +288,8 @@ public class EspressoCustom extends JDialog {
 						}
 					}
 					for(Enumeration<AbstractButton> whipbs = whipbg.getElements(); whipbs.hasMoreElements();) {
-						AbstractButton whipb = whipbs.nextElement();
-						if(whipb.isSelected()) {
+						AbstractButton whipb = whipbs.nextElement(); //Enumeration은 버튼을 하나씩 처리
+						if(whipb.isSelected()) { //휘핑
 							switch(whipb.getText()) {
 							case "적게" : whip = 1; break;
 							case "보통" : whip = 2; break;
@@ -300,7 +300,7 @@ public class EspressoCustom extends JDialog {
 					}
 					for(Enumeration<AbstractButton> drizzlebs = drizzlebg.getElements(); drizzlebs.hasMoreElements();) {
 						AbstractButton drizzleb = drizzlebs.nextElement();
-						if(drizzleb.isSelected()) {
+						if(drizzleb.isSelected()) { //드리즐
 							switch(drizzleb.getText()) {
 							case "적게" : drizzle = 1; break;
 							case "보통" : drizzle = 2; break;
@@ -309,7 +309,7 @@ public class EspressoCustom extends JDialog {
 							}
 						}
 					}
-					if(ice.isSelected()) iceChk = 1;
+					if(ice.isSelected()) iceChk = 1; //아이스가 체크되어있을때  아이스를 1로 만듦
 					
 					System.out.println("샷 : "+Integer.toString(count2));
 					System.out.println("시럽 : "+Integer.toString(count3));
@@ -319,12 +319,12 @@ public class EspressoCustom extends JDialog {
 					System.out.println("드리즐 : "+drizzle);
 					
 					Espresso eps = new Espresso();
-					eps.setShot(count2);
-					eps.setSyrupNum(count3);
-					eps.setWaterAmount(water);
-					eps.setIceAmount(iceChk);
-					eps.setWhipAmount(whip);
-					eps.setDrizzleAmount(drizzle);
+					eps.setShot(count2); // 샷 양
+					eps.setSyrupNum(count3); // 시럽 양
+					eps.setWaterAmount(water); //물 양
+					eps.setIceAmount(iceChk); //아이스 양
+					eps.setWhipAmount(whip);  // 휘핑 양
+					eps.setDrizzleAmount(drizzle); //드리즐 양
 					
 					setVisible(false);
 				}
