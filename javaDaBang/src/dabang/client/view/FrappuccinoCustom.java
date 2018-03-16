@@ -436,7 +436,7 @@ public class FrappuccinoCustom extends JDialog{
 	public FrappuccinoCustom(JFrame frame, String title, boolean b)
 	{
 		super(frame, title, b);
-		this.setLayout(new GridLayout(8, 1, 10, 10));
+		this.setLayout(new GridLayout(9, 1, 10, 10));
 		this.setSize(500,700);
 		this.setLocation(950,  170);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
