@@ -30,6 +30,7 @@ public class MainView extends JFrame implements ActionListener {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); //종료버튼시 아예다꺼버림
 		this.setResizable(false);
 		this.setLayout(new CardLayout());
+		this.setTitle("Java다방");
 		this.comInit(); //사용자 정의 메소드
 
 		this.setVisible(true); //가시적으로 보여주어라
