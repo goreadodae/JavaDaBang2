@@ -12,8 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import dabang.admin.controller.MenuManageControl;
-import dabang.admin.model.MenuManage;
+import dabang.client.controller.MenuManageControl;
+import dabang.client.model.MenuManage;
+
 
 public class GuiAllmenu extends JFrame{
 	
@@ -22,8 +23,8 @@ public class GuiAllmenu extends JFrame{
 	private JPanel p2 = new JPanel();
 	private JPanel p3 = new JPanel();
 	private JButton back = new JButton("뒤로가기");
-	private ArrayList<JLabel> menuAllLabel = new ArrayList<JLabel>();
-	private ArrayList<MenuManage> menuAll = new ArrayList<MenuManage>();
+	//private ArrayList<JLabel> menuAllLabel = new ArrayList<JLabel>();
+	private ArrayList<String> menuAll = new ArrayList<String>();
 	
 	MenuManageControl mCon = new MenuManageControl();
 	
@@ -42,11 +43,9 @@ public class GuiAllmenu extends JFrame{
 		p2.setSize(980,570);
 		p2.setLocation(0,90);
 		p2.setBackground(Color.blue);
-		JScrollPane sp = new JScrollPane();
 		for(int i=0;i<menuAll.size();i++) {
-			p2.add(new Label(menuAll.get(i).getMenuname()+": " +menuAll.get(i).getMenuprice()));
+			p2.add(new Label(menuAll.get(i)));
 		}
-		
 		this.add(p2);
 	}
 	
@@ -56,7 +55,6 @@ public class GuiAllmenu extends JFrame{
 		p3.setBackground(Color.red);
 		this.add(p3);
 		p3.add(back);
-		
 		p3.setLayout(new BorderLayout());
 		p3.add(back,BorderLayout.CENTER);
 		back.setFont(new Font("Serif",Font.BOLD,30));
@@ -77,8 +75,7 @@ public class GuiAllmenu extends JFrame{
 		m.setMenuname("ㅁㄴㅇㄻㄴㅇㄹ");
 		m.setMenuprice(10000);
 		mCon.menuPlus(m);
-		menuAll = mCon.selectAll();
-		
+		ArrayList<String> menuAll = mCon.selectAll();
 		
 	    this.p1();
 		this.p2();

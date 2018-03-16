@@ -11,11 +11,15 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class GuiAddmenu extends JFrame{
-	
+import dabang.client.controller.MenuManageControl;
+import dabang.client.model.MenuManage;
+
+public class GuiAddmenu extends JFrame implements ActionListener{
+
 	private JPanel p1 = new JPanel();
 	private JLabel addmenutitle = new JLabel("  메뉴 추가");
 	private JPanel p2 = new JPanel();
@@ -25,14 +29,15 @@ public class GuiAddmenu extends JFrame{
 	private JTextField tprice = new JTextField(25);
 	private JLabel addmenupicturelabel = new JLabel("   사진");
 	private JPanel p3 = new JPanel();
-	private JLabel addmenupictureaddr=new JLabel("여기에 사진주소값"); 
+	private JLabel addmenupictureaddr=new JLabel("사진");
 	private JButton calladdrbutton = new JButton("불러오기");
 	private JButton save = new JButton("추가하기");
 	private JButton cancel = new JButton("취소하기");
-	
+
 	private JFrame myframe = this;
-	
-	
+
+	MenuManageControl menuCon = new MenuManageControl();
+
 	public void p1 () { //제목
 		p1.setSize(980,90);
 		p1.setLocation(0,0);
@@ -43,8 +48,9 @@ public class GuiAddmenu extends JFrame{
 		p1.setLayout(new BorderLayout());
 		p1.add(addmenutitle,BorderLayout.WEST);
 	}
-	
+
 	public void p2 () { //메뉴추가
+		MenuManage m = new MenuManage();
 		p2.setSize(980,570);
 		p2.setLocation(0,90);
 		p2.setBackground(Color.blue);
@@ -93,11 +99,8 @@ public class GuiAddmenu extends JFrame{
 		p231.add(addmenupicturelabel,BorderLayout.WEST);
 		p232.add(addmenupictureaddr);
 		p232.add(calladdrbutton);
-		
-
-		
 	}
-	
+
 	public void p3 () { //저장하기,취소하기
 		p3.setSize(980,90);
 		p3.setLocation(0,660);
@@ -112,12 +115,27 @@ public class GuiAddmenu extends JFrame{
 		p31.setLayout(new BorderLayout());
 		p31.add(save,BorderLayout.CENTER);
 		save.setFont(new Font("Serif",Font.BOLD,30));
+		save.addActionListener(this);
 		p32.add(cancel);
 		p32.setLayout(new BorderLayout());
 		p32.add(cancel,BorderLayout.CENTER);
 		cancel.setFont(new Font("Serif",Font.BOLD,30));
 	}
 	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==save) {
+			MenuManage m = new MenuManage();
+			m.setMenuname(tallmenu.getText());
+			m.setMenuprice(Integer.valueOf(tprice.getText()));
+			if(menuCon.menuPlus(m)) { //메뉴등록 완료
+				JOptionPane.showMessageDialog(this, "메뉴 등록이 되었습니다", "등록완료", JOptionPane.INFORMATION_MESSAGE);
+			}else { //메뉴등록 실패
+				JOptionPane.showMessageDialog(this, "중복된 메뉴가 있습니다. 다른 메뉴를 등록해주세요.", "등록실패", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+
 	private void comInit() {
 		this.p1();
 		this.p2();
@@ -128,14 +146,14 @@ public class GuiAddmenu extends JFrame{
 					JFileChooser calladdrjc = new JFileChooser();
 					int choiceValue = calladdrjc.showOpenDialog(myframe);
 					if(choiceValue == JFileChooser.APPROVE_OPTION) {
-						System.out.println("선택한 파일 :"+calladdrjc.getSelectedFile());
+						addmenupictureaddr=new JLabel(calladdrjc.getSelectedFile().getPath());
 					}
 				}
 			}
 		});
 		this.p3();
 	}
-	
+
 	public GuiAddmenu () {
 		super("잡다방");
 		this.setSize(1000,800);
@@ -145,6 +163,7 @@ public class GuiAddmenu extends JFrame{
 		comInit();
 		this.setVisible(true);
 	}
+
 
 
 }
