@@ -118,11 +118,17 @@ public class Member implements Serializable{
 	@Override
 	public String toString()
 	{
-		return 
-				this.nickName     +"¥‘¿« ¡§∫∏"+
-				this.name         +" \t\t"+
-				this.phoneNumber  +" \t\t"+
-				this.grade        +" \t\t"+
+		return  
+				this.id           +
+				this.nickName     +
+				this.name         +
+				this.sclc         +
+				this.ageY         +
+				this.ageM         +
+				this.ageD         +
+				this.gender       +
+				this.phoneNumber  +
+				this.grade        +
 				this.point;
 	}
 
