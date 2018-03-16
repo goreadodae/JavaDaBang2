@@ -2,7 +2,8 @@ package dabang.client.controller;
 
 import java.util.ArrayList;
 
-import dabang.admin.model.MenuManage;
+import dabang.client.model.MenuManage;
+
 
 public class MenuManageControl {
 
