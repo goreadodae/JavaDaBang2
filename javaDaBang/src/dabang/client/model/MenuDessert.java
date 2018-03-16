@@ -10,24 +10,17 @@ public class MenuDessert {
 	private int dessertPrice; 		// 디저트  가격
 	private Calendar orderDate;		// 주문 날짜
 
-	public void setCallendar(Calendar orderDate)
-	{
-		this.orderDate = orderDate;
-	}
-	public Calendar getCallendar()
-	{
-		return orderDate;
-	}
-	
 	
 	public MenuDessert() {}
 
-	public MenuDessert(int kindDessert, String dessertName, int dessertNum,	int dessertPrice) {
+	public MenuDessert(int kindDessert, String dessertName,
+			int dessertNum,	int dessertPrice) {
 
 		this.kindDessert = kindDessert;
 		this.dessertName = dessertName;
 		this.dessertNum = dessertNum;
-		this.dessertPrice = dessertPrice;	
+		this.dessertPrice = dessertPrice;
+		
 	}
 
 
@@ -63,4 +56,17 @@ public class MenuDessert {
 		this.dessertPrice = dessertPrice;
 	}
 	
+	public Calendar getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(Calendar orderDate) {
+		this.orderDate = orderDate;
+	}
+	
+	public String toString() { // 디저트 종류, 이름, 수량, 가격, 주문시간 출력
+		return this.kindDessert + "\t" + this.dessertName + "\t" +
+					this.dessertNum + "\t" + this.dessertPrice + "\t"
+					+ this.orderDate;
+	}
+
 }
