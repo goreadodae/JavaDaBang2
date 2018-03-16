@@ -22,11 +22,11 @@ public class MainView implements ActionListener {
 		cards[0] = new Login(mainPanel);
 		cards[1] = new memberMainView(mainPanel);
 		cards[2] = new MenuView(mainPanel,orderAl);
-		cards[3] = new OrderView(mainPanel, mainFrame,orderAl);
-		mainPanel.add("Login",cards[0]);
-		mainPanel.add("memberMain",cards[1]);
-		mainPanel.add("menu",cards[2]);
-		mainPanel.add("order",cards[3]);
+		cards[3] = new OrderView(mainPanel,mainFrame,orderAl);
+		mainPanel.add(cards[0],"Login",0);
+		mainPanel.add(cards[1],"memberMain",1);
+		mainPanel.add(cards[2],"menu",2);
+		mainPanel.add(cards[3],"order",3);
 		//this.add("login",login);
 		mainFrame.add(mainPanel);
 		//login.button1.addActionListener(this);
@@ -39,7 +39,7 @@ public class MainView implements ActionListener {
 		mainFrame.setLayout(new CardLayout());
 		mainFrame.setTitle("Java다방");
 		this.comInit(); //사용자 정의 메소드
-
+		
 		mainFrame.setVisible(true); //가시적으로 보여주어라
 	}
 	@Override
@@ -47,4 +47,5 @@ public class MainView implements ActionListener {
 		// TODO Auto-generated method stub
 	
 	}
+
 }
