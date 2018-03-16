@@ -18,8 +18,10 @@ public class TestMain {
 		}
 //		MemberView mv = new MemberView();
 //		mv.mainMenu();
-		new ViewMain();
+		//new ViewMain();
 //		new OrderView();
+		new GuiAddmenu();
+		
 	}
 
 }
