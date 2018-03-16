@@ -105,6 +105,7 @@ public class MenuView extends JPanel implements ActionListener{
 			espPicLabel[i].setHorizontalAlignment(JLabel.CENTER);
 			espPanel[i].add(espPicLabel[i],BorderLayout.NORTH);
 			espPanel[i].add(espName[i],BorderLayout.CENTER);
+			espPanel[i].addActionListener(this);
 		}
 		
 	}
@@ -350,6 +351,8 @@ public class MenuView extends JPanel implements ActionListener{
 			cardNumber = 4;
 		}else if(e.getSource()==paymentCancelButon) {
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "memberMain");
+		}else if(e.getSource()==espPanel[0]) {
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "order");
 		}
 		((CardLayout)(menuCenter.getLayout())).show(menuCenter, Integer.toString(cardNumber));
 	}
