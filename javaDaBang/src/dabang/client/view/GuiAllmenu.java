@@ -17,17 +17,17 @@ import dabang.client.model.MenuManage;
 
 
 public class GuiAllmenu extends JFrame{
-	
+
 	private JPanel p1 = new JPanel();
 	private JLabel allmenutitle = new JLabel("전체 메뉴 보기");
 	private JPanel p2 = new JPanel();
 	private JPanel p3 = new JPanel();
 	private JButton back = new JButton("뒤로가기");
-	//private ArrayList<JLabel> menuAllLabel = new ArrayList<JLabel>();
+	private ArrayList<JLabel> menuAllLabel = new ArrayList<JLabel>();
 	private ArrayList<String> menuAll = new ArrayList<String>();
-	
-	MenuManageControl mCon = new MenuManageControl();
-	
+
+	private MenuManageControl mCon = new MenuManageControl();
+	private MenuManage menuInsert = null;
 	public void p1 () { //제목
 		p1.setSize(980,90);
 		p1.setLocation(0,0);
@@ -38,17 +38,17 @@ public class GuiAllmenu extends JFrame{
 		p1.setLayout(new BorderLayout());
 		p1.add(allmenutitle,BorderLayout.WEST);
 	}
-	
-	public void p2 () { //메뉴
+
+	public void p2 () { //메뉴전체출력
 		p2.setSize(980,570);
 		p2.setLocation(0,90);
 		p2.setBackground(Color.blue);
 		for(int i=0;i<menuAll.size();i++) {
-			p2.add(new Label(menuAll.get(i)));
+			p2.add(new Label(menuAll.get(i).toString()));
 		}
 		this.add(p2);
 	}
-	
+
 	public void p3 () { //뒤로가기
 		p3.setSize(980,90);
 		p3.setLocation(0,660);
@@ -59,29 +59,22 @@ public class GuiAllmenu extends JFrame{
 		p3.add(back,BorderLayout.CENTER);
 		back.setFont(new Font("Serif",Font.BOLD,30));
 	}
-	
+
 	private void comInit() {
+
+
+		mCon.menuPlus(new MenuManage("아메리카노",200));
+		mCon.menuPlus(new MenuManage("카페라떼",10000));
+		mCon.menuPlus(new MenuManage("카페모카",900));
+		mCon.menuPlus(new MenuManage("딸기",2000));
+
+		menuAll = mCon.selectAll();
 		
-		MenuManage m = new MenuManage();
-		m.setMenuname("ㅁㄴㅇㄻㄴㅇㄹ");
-		m.setMenuprice(10000);
-		mCon.menuPlus(m);
-		m.setMenuname("ㅁㄴㅇㄻㄴㅇㄹ");
-		m.setMenuprice(10000);
-		mCon.menuPlus(m);
-		m.setMenuname("ㅁㄴㅇㄻㄴㅇㄹ");
-		m.setMenuprice(10000);
-		mCon.menuPlus(m);
-		m.setMenuname("ㅁㄴㅇㄻㄴㅇㄹ");
-		m.setMenuprice(10000);
-		mCon.menuPlus(m);
-		ArrayList<String> menuAll = mCon.selectAll();
-		
-	    this.p1();
+		this.p1();
 		this.p2();
 		this.p3();
 	}
-	
+
 	public GuiAllmenu () {
 		super("잡다방");
 		this.setSize(1000,800);
