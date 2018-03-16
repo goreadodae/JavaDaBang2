@@ -75,7 +75,7 @@ public class OrderView extends JPanel {
 	private JButton toWebPage = new JButton(img_event1);
 	private ArrayList<OrderList> orderAl = null;
 	private OrderList ol = new OrderList();
-	
+	private int sendPrice;
 	public void comInit() {
 		ActionListener lisener = new MyActionListener();
 		
@@ -249,7 +249,7 @@ public class OrderView extends JPanel {
 			s = str.split("/");
 			
 			showPrice = s[3].charAt(0)+","+s[3].substring(s[3].length()-3, s[3].length())+"원";
-
+			sendPrice = Integer.valueOf(s[3]);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -298,9 +298,9 @@ public class OrderView extends JPanel {
 				EspressoCustom ec = new EspressoCustom(mainFrame,"Personal Option",true);
 				
 			} else if(e.getSource()==orderButton) {
-				ol.setName("아메리카노");
+				ol.setName(goodsName.getText());
 				ol.setOrderNum(goodsNum);
-				ol.setPrice(4100);
+				ol.setPrice(sendPrice);
 				ol.setSize((String)sizeCb.getSelectedItem());
 				orderAl.add(ol);
 				mainPanel.remove(2);

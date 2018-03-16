@@ -36,6 +36,7 @@ public class MenuView extends JPanel implements ActionListener{
 	private JButton frappuccinoButton = new JButton("프라푸치노");
 	private JButton teaButton = new JButton("티");
 	private JButton dessortButton = new JButton("디저트");
+	private ArrayList<JButton> deleteButton = new ArrayList<JButton>();
 
 	private ImageIcon espPic[] = new ImageIcon[6];
 	private ImageIcon fraPic[] = new ImageIcon[6];
@@ -305,6 +306,7 @@ public class MenuView extends JPanel implements ActionListener{
 		
 		for(int i=0;i<orderAl.size();i++) {
 			jp.add(new JPanel());
+			deleteButton.add(new JButton("x"));
 			jp.get(i).setPreferredSize(new Dimension(230,100));
 			orderName.add(new JLabel());
 			orderNum.add(new JLabel());
@@ -314,12 +316,15 @@ public class MenuView extends JPanel implements ActionListener{
 			orderName.get(i).setText(orderAl.get(i).getName());
 			orderNum.get(i).setText(Integer.toString(orderAl.get(i).getOrderNum()));
 			orderSize.get(i).setText(orderAl.get(i).getSize());
-			orderPrice.get(i).setText(Integer.toString(orderAl.get(i).getPrice()));
+			orderPrice.get(i).setText(Integer.toString(orderAl.get(i).getPrice()*orderAl.get(i).getOrderNum()));
+			GridBagConstraints c = new GridBagConstraints();
 			jp.get(i).add(orderName.get(i));
 			jp.get(i).add(orderNum.get(i));
 			jp.get(i).add(orderSize.get(i));
 			jp.get(i).add(orderPrice.get(i));
+			jp.get(i).add(deleteButton.get(i));
 			jp.get(i).setBackground(Color.white);
+			jp.get(i).setLayout(new GridBagLayout());
 			payList.add(jp.get(i));
 		}
 		GridBagConstraints c = new GridBagConstraints();
@@ -376,6 +381,10 @@ public class MenuView extends JPanel implements ActionListener{
 		else if(e.getSource()==dessortButton) {
 			cardNumber = 4;
 		}else if(e.getSource()==paymentCancelButon) {
+			orderAl.clear();
+			mainPanel.remove(2);
+			MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md);
+			mainPanel.add(mv,"menu",2);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "memberMain");
 		}else if(e.getSource()==espPanel[0]) {
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "order");
