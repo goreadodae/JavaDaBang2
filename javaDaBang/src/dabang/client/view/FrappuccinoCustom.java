@@ -8,16 +8,21 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
 
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-public class FrappuccinoCustom extends JFrame{
+import dabang.client.model.Frappuccino;
+
+public class FrappuccinoCustom extends JDialog{
 	
 	private JButton button = new JButton("다이얼");
 	private JButton button1 = new JButton("<-");
@@ -43,6 +48,7 @@ public class FrappuccinoCustom extends JFrame{
 	private JRadioButton milkregular = new JRadioButton("일반우유", true);
 	private JRadioButton milklow = new JRadioButton("저지방우유", false);
 	private JRadioButton milkno = new JRadioButton("무지방 우유", false);
+	private JRadioButton milkdu = new JRadioButton("두유", false);
 	
 	private JPanel panel5 =new JPanel();
 	private JLabel label5 = new JLabel("얼음");
@@ -79,10 +85,10 @@ public class FrappuccinoCustom extends JFrame{
 
 	
 	
-	Dialog d = new Dialog(this, "다이얼로그");
+
 	public void comInit()
 	{
-		this.add(button);
+
 		
 		clabel2 = new JLabel(Integer.toString(count2)); // 에스프레소 카운트
 		clabel2.setFont(new Font("Serif", Font.BOLD,20));
@@ -93,14 +99,6 @@ public class FrappuccinoCustom extends JFrame{
 		clabel6 = new JLabel(Integer.toString(count2)); //자바칩 카운트
 		clabel6.setFont(new Font("Serif", Font.BOLD,20));
 		
-		
-		button.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(e.getSource() == button)
-				{
-					d.setLayout(new GridLayout(9,1,10,10));
 					
 					// 퍼스널 옵션
 					panel.setBackground(Color.black); // 1패널 배경색
@@ -108,7 +106,7 @@ public class FrappuccinoCustom extends JFrame{
 					label.setFont(new Font("Serif", Font.ITALIC,20)); // 1패널 폰트, 크기
 					label.setForeground(Color.WHITE);
 					
-					panel.add(button1); 
+					panel.add(button1); //뒤로 가는 버튼
 					
 					button1.addActionListener(new ActionListener()
 					{
@@ -116,7 +114,7 @@ public class FrappuccinoCustom extends JFrame{
 						public void actionPerformed(ActionEvent e) {
 							if(e.getSource() == button1)
 							{
-								System.exit(0);
+								dispose();
 							}
 						}
 					});
@@ -207,6 +205,7 @@ public class FrappuccinoCustom extends JFrame{
 					milkbg.add(milkregular);
 					milkbg.add(milklow);
 					milkbg.add(milkno);
+					milkbg.add(milkdu);
 					
 					milkregular.setBackground(Color.WHITE); //배경색에 맞춤
 					milklow.setBackground(Color.WHITE);
@@ -215,41 +214,8 @@ public class FrappuccinoCustom extends JFrame{
 					panel4.add(milkregular);
 					panel4.add(milklow);
 					panel4.add(milkno);
-					
-					// 우유 리스너
-					milkregular.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == milkregular)
-							{
+					panel4.add(milkdu);
 								
-							}
-						}
-					});
-					
-					milklow.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == milklow)
-							{
-								
-							}	
-						}
-					});
-					
-					milkno.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == milkno)
-							{
-								
-							}	
-						}
-					});
-					
 					
 					//얼음
 					panel5.setBackground(Color.LIGHT_GRAY); // 5패널 배경색
@@ -270,39 +236,6 @@ public class FrappuccinoCustom extends JFrame{
 					panel5.add(iceregular);
 					panel5.add(icelots);
 
-					//얼음 리스너
-					icefew.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == icefew)
-							{
-								
-							}	
-						}	
-					});
-					
-					iceregular.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == iceregular)
-							{
-								
-							}	
-						}	
-					});
-					
-					icelots.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == icelots)
-							{
-								
-							}	
-						}	
-					});
 					
 					
 					
@@ -367,52 +300,7 @@ public class FrappuccinoCustom extends JFrame{
 					panel7.add(whipregular);
 					panel7.add(whiplots);
 					
-					
-					//드리즐리스너
-					whipno.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == whipno)
-							{
-								
-							}
-						}
-					});
-					
-					whipfew.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == whipfew)
-							{
-								
-							}
-						}
-					});
-					
-					whipregular.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == whipregular)
-							{
-								
-							}
-						}
-					});
-					
-					whiplots.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == whiplots)
-							{
-								
-							}
-						}
-					});
-					
+										
 					
 					//드리즐
 					panel8.setBackground(Color.white); // 8패널 배경색
@@ -436,50 +324,6 @@ public class FrappuccinoCustom extends JFrame{
 					panel8.add(drizzlelots);
 					
 					
-					
-					//드리즐 리스너
-					drizzlefew.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == drizzlefew)
-							{
-								
-							}
-						}
-					});
-					
-					drizzleregular.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == drizzleregular)
-							{
-								
-							}
-						}
-					});
-					
-					drizzlelots.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == drizzlelots)
-							{
-								
-							}
-						}
-					});
-					drizzlelots.addActionListener(new ActionListener() {
-
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if(e.getSource() == drizzlelots)
-							{
-								
-							}
-						}
-					});
 					
 					panel9.setBackground(Color.white); //패널 배경색
 					panel9.setLayout(new FlowLayout(FlowLayout.CENTER,10,15)); //패널 레이아웃
@@ -509,49 +353,94 @@ public class FrappuccinoCustom extends JFrame{
 					});
 					
 					button9_2.addActionListener(new ActionListener() {
-
+						
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							if(e.getSource() == button9_2)
-							{
-//								dispose(); //프레임만 종료
-								d.setVisible(false); // 저장하고 창을 안보이게 함
+							{//우유, 얼음, 휘핑, 드리즐
+								String milk = null; 
+								int ice = 0, whip = 0, drizzle = 0;
+								for(Enumeration<AbstractButton> milkbs = milkbg.getElements(); milkbs.hasMoreElements();) {
+									AbstractButton milkb = milkbs.nextElement();
+									if(milkb.isSelected()) {
+										switch(milkb.getText()) {
+										case "일반우유" : milk = "일반우유"; break;
+										case "저지방우유" : milk = "저지방우유"; break;
+										case "무지방우유" : milk = "무지방우유"; break;
+										case "두유" : milk = "두유"; break;
+										
+										}
+									}
+								}
+								for(Enumeration<AbstractButton>icebs = icebg.getElements(); icebs.hasMoreElements();) {
+									AbstractButton iceb = icebs.nextElement();
+									if(iceb.isSelected()) {
+										switch(iceb.getText()) {
+										case "적게" : ice = 1; break;
+										case "보통" : ice = 2; break;
+										case "많이" : ice = 3; break;
+										default : ice = 0;
+										}
+									}
+								}
+								for(Enumeration<AbstractButton>whipbs = whipbg.getElements(); whipbs.hasMoreElements();) {
+									AbstractButton whipb = whipbs.nextElement();
+									if(whipb.isSelected()) {
+										switch(whipb.getText()) {
+										case "없이" : whip = 0; break;
+										case "적게" : whip = 1; break;
+										case "보통" : whip = 2; break;
+										case "많이" : whip = 3; break;
+										}
+									}
+								}
+								for(Enumeration<AbstractButton>drizzlebs = drizzlebg.getElements(); drizzlebs.hasMoreElements();) {
+									AbstractButton drizzleb = drizzlebs.nextElement();
+									if(drizzleb.isSelected()) {
+										switch(drizzleb.getText()) {
+										case "없이" : drizzle = 0; break;
+										case "적게" : drizzle = 1; break;
+										case "보통" : drizzle = 2; break;
+										case "많이" : drizzle = 3; break;
+										}
+									}
+								}
+								Frappuccino fpn = new Frappuccino();
+								fpn.setFrappuccinoRoast(count2);
+								fpn.setSyrupNum(count3);
+								fpn.setMilkType(milk);
+								fpn.setIceAmount(ice);
+								fpn.setJavaChipNum(count6);
+								fpn.setWhippingAmount(whip);
+								fpn.setDrizzleAmount(drizzle);
+								
+								setVisible(false);	
+									
 							}
 						}
 					});
-		
 					
-					d.add(panel);
-					d.add(panel2);
-					d.add(panel3);
-					d.add(panel4);
-					d.add(panel5);
-					d.add(panel6);
-					d.add(panel7);
-					d.add(panel8);
-					d.add(panel9);
-			
 					
-					d.setSize(500, 700);
-					d.setLocationRelativeTo(null);
-					d.setResizable(false);
-					d.setVisible(true);
-					
+					this.add(panel);
+					this.add(panel2);
+					this.add(panel3);
+					this.add(panel4);
+					this.add(panel5);
+					this.add(panel6);
+					this.add(panel7);
+					this.add(panel8);
+					this.add(panel9);		
 					
 				}
-			}
-		});
-	}
 	
-	public FrappuccinoCustom()
+	public FrappuccinoCustom(JFrame frame, String title, boolean b)
 	{
-		super("Personal Option");
-		
-		this.setLayout(new FlowLayout());
-		this.setSize(1000,800);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setResizable(false);
+		super(frame, title, b);
+		this.setLayout(new GridLayout(8, 1, 10, 10));
+		this.setSize(500,700);
+		this.setLocation(950,  170);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setResizable(false);		
 		this.comInit();
 		this.setVisible(true);
 	}
