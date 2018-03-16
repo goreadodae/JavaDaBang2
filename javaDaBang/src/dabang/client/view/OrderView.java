@@ -74,6 +74,7 @@ public class OrderView extends JPanel {
 	private ImageIcon img_event1 = new ImageIcon(new ImageIcon("Image\\OrderImage\\event1.png").getImage().getScaledInstance(500, 150, Image.SCALE_DEFAULT));
 	private JButton toWebPage = new JButton(img_event1);
 	private ArrayList<OrderList> orderAl = null;
+	private OrderList ol = new OrderList();
 	
 	public void comInit() {
 		ActionListener lisener = new MyActionListener();
@@ -297,7 +298,15 @@ public class OrderView extends JPanel {
 				EspressoCustom ec = new EspressoCustom(mainFrame,"Personal Option",true);
 				
 			} else if(e.getSource()==orderButton) {
-				
+				ol.setName("아메리카노");
+				ol.setOrderNum(goodsNum);
+				ol.setPrice(4100);
+				ol.setSize((String)sizeCb.getSelectedItem());
+				orderAl.add(ol);
+				mainPanel.remove(2);
+				MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md);
+				mainPanel.add(mv,"menu",2);
+				((CardLayout)mainPanel.getLayout()).show(mainPanel, "menu");
 			} else if(e.getSource()==cancelButton) {
 				goodsNum=0;
 				orderCnt.setText(""+goodsNum);

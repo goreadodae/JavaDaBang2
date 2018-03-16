@@ -26,10 +26,10 @@ public class MainView implements ActionListener {
 		cards[2] = new MenuView(mainPanel, mainFrame, orderAl, md);
 		cards[3] = new OrderView(mainPanel, mainFrame, orderAl, md);
 		
-		mainPanel.add("Login",cards[0]);
-		mainPanel.add("memberMain",cards[1]);
-		mainPanel.add("menu",cards[2]);
-		mainPanel.add("order",cards[3]);
+		mainPanel.add(cards[0],"Login",0);
+		mainPanel.add(cards[1],"memberMain",1);
+		mainPanel.add(cards[2],"menu",2);
+		mainPanel.add(cards[3],"order",3);
 		//this.add("login",login);
 		mainFrame.add(mainPanel);
 		//login.button1.addActionListener(this);

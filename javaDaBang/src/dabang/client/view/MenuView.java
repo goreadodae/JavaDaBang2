@@ -74,6 +74,13 @@ public class MenuView extends JPanel implements ActionListener{
 	private JPanel mainPanel = null;
 	private ArrayList<OrderList> orderAl = null;
 
+	ArrayList<JPanel> jp = null;
+	ArrayList<JLabel> orderName = null;
+	ArrayList<JLabel> orderNum = null;
+	ArrayList<JLabel> orderSize = null;
+	ArrayList<JLabel> orderPrice = null;
+	ArrayList<JLabel> orderCancel = null;
+	
 	public void menuInit1() {
 		for(int i=0;i<espPanel.length;i++) {
 			espName[i] = new JLabel();
@@ -289,24 +296,31 @@ public class MenuView extends JPanel implements ActionListener{
 		paymentCenter2.add(paymentCenter1);
 		paymentScroll = new JScrollPane(paymentCenter2);
 		paymentScroll.getVerticalScrollBar().setUnitIncrement(16);
-
-		JPanel jp[] = new JPanel[10];
-		payList.add(jp[0] = new JPanel()); 
-		payList.add(jp[1] = new JPanel()); 
-		payList.add(jp[2] = new JPanel()); 
-		payList.add(jp[3] = new JPanel()); 
-		payList.add(jp[4] = new JPanel()); 
-		payList.add(jp[5] = new JPanel()); 
-		payList.add(jp[6] = new JPanel()); 
-		payList.add(jp[7] = new JPanel()); 
-		payList.add(jp[8] = new JPanel()); 
-		payList.add(jp[9] = new JPanel()); 
-
-		for(int i=0;i<jp.length;i++) {
-			if(i%2==0) {
-				jp[i].setBackground(Color.blue);
-			}
-			jp[i].setPreferredSize(new Dimension(230,100));
+		jp = new ArrayList<JPanel>();
+		orderName = new ArrayList<JLabel>();
+		orderNum = new ArrayList<JLabel>();
+		orderSize = new ArrayList<JLabel>();
+		orderPrice = new ArrayList<JLabel>();
+		orderCancel = new ArrayList<JLabel>();
+		
+		for(int i=0;i<orderAl.size();i++) {
+			jp.add(new JPanel());
+			jp.get(i).setPreferredSize(new Dimension(230,100));
+			orderName.add(new JLabel());
+			orderNum.add(new JLabel());
+			orderSize.add(new JLabel());
+			orderPrice.add(new JLabel());
+			orderCancel.add(new JLabel());
+			orderName.get(i).setText(orderAl.get(i).getName());
+			orderNum.get(i).setText(Integer.toString(orderAl.get(i).getOrderNum()));
+			orderSize.get(i).setText(orderAl.get(i).getSize());
+			orderPrice.get(i).setText(Integer.toString(orderAl.get(i).getPrice()));
+			jp.get(i).add(orderName.get(i));
+			jp.get(i).add(orderNum.get(i));
+			jp.get(i).add(orderSize.get(i));
+			jp.get(i).add(orderPrice.get(i));
+			jp.get(i).setBackground(Color.white);
+			payList.add(jp.get(i));
 		}
 		GridBagConstraints c = new GridBagConstraints();
 		for(int i=0;i<payList.size();i++) {
@@ -363,6 +377,8 @@ public class MenuView extends JPanel implements ActionListener{
 			cardNumber = 4;
 		}else if(e.getSource()==paymentCancelButon) {
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "memberMain");
+		}else if(e.getSource()==espPanel[0]) {
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "order");
 		}
 		else {
 			mainPanel.remove(3);
