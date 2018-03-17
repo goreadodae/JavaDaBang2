@@ -11,7 +11,8 @@ import dabang.client.model.MenuManage;
 public class MenuManageControl {
 
 	HashMap <String,MenuManage> adminmenu = new HashMap<String,MenuManage>();
-	ArrayList<String> menuAllLabel = new ArrayList<String>();
+	ArrayList<String> menuname = new ArrayList<String>();
+	ArrayList<String> menuprice = new ArrayList<String>();
 
 
 	public boolean menuPlus(MenuManage menuInsert) { //메뉴추가
@@ -41,7 +42,7 @@ public class MenuManageControl {
 	}
 
 	
-	public  ArrayList<String> selectAll()   {  //출력
+/*	public  ArrayList<String> selectAll()   {  //출력
 	      Iterator<String> iter = adminmenu.keySet().iterator();
 	      while(iter.hasNext()) 
 	      {
@@ -49,6 +50,26 @@ public class MenuManageControl {
 	      }
 	      
 	      return menuAllLabel;
+	   }*/
+	
+	public  ArrayList<String> arraytmenuname()   {  //메뉴명출력
+	      Iterator<String> iter = adminmenu.keySet().iterator();
+	      while(iter.hasNext()) 
+	      {
+	    	  menuname.add(adminmenu.get(iter.next()).getMenuname());
+	      }
+	      
+	      return menuname;
+	   }
+	
+	public  ArrayList<String> arraytmenuprice()   {  //가격출력
+	      Iterator<String> iter = adminmenu.keySet().iterator();
+	      while(iter.hasNext()) 
+	      {
+	    	  menuprice.add(Integer.toString(adminmenu.get(iter.next()).getMenuprice()));
+	      }
+	      
+	      return menuprice;
 	   }
 
 

@@ -14,9 +14,9 @@ public class GuiMember extends JFrame {
 	private JButton button2 = new JButton();
 	private JButton button3 = new JButton("나의 정보 관리");
 	private JButton button4 = new JButton("영수증");
-	private ImageIcon welcome = new ImageIcon("welcomelevel.jpg");
+	private ImageIcon welcome = new ImageIcon("Image/MyInforImage/welcomelevel.jpg");
 	private JLabel welcomelabel = new JLabel(welcome);
-	private ImageIcon star = new ImageIcon("star.png");
+	private ImageIcon star = new ImageIcon("Image/MyInforImage/star.png");
 	private JLabel starlabel = new JLabel(star);
 	private JLabel countvisit = new JLabel("나의 방문 횟수 ");
 	private JLabel countLabel = null;

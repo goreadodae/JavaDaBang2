@@ -5,12 +5,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Label;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import dabang.client.controller.MenuManageControl;
 import dabang.client.model.MenuManage;
@@ -23,11 +26,12 @@ public class GuiAllmenu extends JFrame{
 	private JPanel p2 = new JPanel();
 	private JPanel p3 = new JPanel();
 	private JButton back = new JButton("뒤로가기");
-	private ArrayList<JLabel> menuAllLabel = new ArrayList<JLabel>();
-	private ArrayList<String> menuAll = new ArrayList<String>();
 
 	private MenuManageControl mCon = new MenuManageControl();
-	private MenuManage menuInsert = null;
+	 ArrayList<String> menuname = null;
+	 ArrayList<String> menuprice = null;
+	private MenuManage menuInsert ;
+
 	public void p1 () { //제목
 		p1.setSize(980,90);
 		p1.setLocation(0,0);
@@ -43,10 +47,29 @@ public class GuiAllmenu extends JFrame{
 		p2.setSize(980,570);
 		p2.setLocation(0,90);
 		p2.setBackground(Color.blue);
-		for(int i=0;i<menuAll.size();i++) {
+		/*for(int i=0;i<menuAll.size();i++) {
 			p2.add(new Label(menuAll.get(i).toString()));
-		}
+		}*/
 		this.add(p2);
+
+		String header[] = {"메뉴명","가격"};
+		String contents [][] ={};
+
+		DefaultTableModel allmenumodel = new DefaultTableModel(contents,header);
+		JTable allmenutable = new JTable(allmenumodel);
+		allmenutable.getTableHeader().setReorderingAllowed(false);
+		allmenutable.getTableHeader().setResizingAllowed(false);
+		JScrollPane allmenuscroll = new JScrollPane(allmenutable);
+		p2.add(allmenuscroll);
+
+		
+		String allmenu [] = new String[2];
+		for(int i=0;i<menuname.size();i++) {
+			allmenu[0]=menuname.get(i);
+			allmenu[1]=menuprice.get(i);
+			allmenumodel.addRow(allmenu);
+		}
+		
 	}
 
 	public void p3 () { //뒤로가기
@@ -62,14 +85,16 @@ public class GuiAllmenu extends JFrame{
 
 	private void comInit() {
 
-
 		mCon.menuPlus(new MenuManage("아메리카노",200));
 		mCon.menuPlus(new MenuManage("카페라떼",10000));
 		mCon.menuPlus(new MenuManage("카페모카",900));
 		mCon.menuPlus(new MenuManage("딸기",2000));
+		mCon.menuPlus(new MenuManage("아메아메",500));
 
-		menuAll = mCon.selectAll();
-		
+
+		menuname = mCon.arraytmenuname();
+		menuprice = mCon.arraytmenuprice();
+
 		this.p1();
 		this.p2();
 		this.p3();

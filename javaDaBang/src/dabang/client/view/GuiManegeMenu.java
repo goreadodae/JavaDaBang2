@@ -13,12 +13,12 @@ public class GuiManegeMenu extends JFrame{
 	private JPanel p1 = new JPanel();
 	private JLabel manegeMenuTitle = new JLabel("皋春 包府");
 	private JPanel p2 = new JPanel();
-	private JButton allmenubutton = new JButton(new ImageIcon(new ImageIcon("allmenu.jpg").getImage().getScaledInstance(320,270, Image.SCALE_DEFAULT)));
-	private JButton addmenubutton = new JButton(new ImageIcon(new ImageIcon("addmenu.jpg").getImage().getScaledInstance(320,270, Image.SCALE_DEFAULT)));
-	private JButton deletemenubutton = new JButton(new ImageIcon(new ImageIcon("deletemenu.jpg").getImage().getScaledInstance(320,270, Image.SCALE_DEFAULT)));
-	private JButton modifymenubutton = new JButton(new ImageIcon(new ImageIcon("modifymenu.jpg").getImage().getScaledInstance(320,270, Image.SCALE_DEFAULT)));
-	private JButton todaymenubutton = new JButton(new ImageIcon(new ImageIcon("todaymenu.jpg").getImage().getScaledInstance(320,270, Image.SCALE_DEFAULT)));
-	private JLabel adverlabel = new JLabel(new ImageIcon(new ImageIcon("20180209_springProm_01.jpg").getImage().getScaledInstance(325,283, Image.SCALE_DEFAULT)));
+	private JButton allmenubutton = new JButton(new ImageIcon(new ImageIcon("Image/MenuAdminImage/allmenu.jpg").getImage().getScaledInstance(320,270, Image.SCALE_DEFAULT)));
+	private JButton addmenubutton = new JButton(new ImageIcon(new ImageIcon("Image/MenuAdminImage/addmenu.jpg").getImage().getScaledInstance(320,270, Image.SCALE_DEFAULT)));
+	private JButton deletemenubutton = new JButton(new ImageIcon(new ImageIcon("Image/MenuAdminImage/modifymenu.jpg").getImage().getScaledInstance(320,270, Image.SCALE_DEFAULT)));
+	private JButton modifymenubutton = new JButton(new ImageIcon(new ImageIcon("Image/MenuAdminImage/deletemenu.jpg").getImage().getScaledInstance(320,270, Image.SCALE_DEFAULT)));
+	private JButton todaymenubutton = new JButton(new ImageIcon(new ImageIcon("Image/MenuAdminImage/todaymenu.jpg").getImage().getScaledInstance(320,270, Image.SCALE_DEFAULT)));
+	private JLabel adverlabel = new JLabel(new ImageIcon(new ImageIcon("Image/MenuAdminImage/addmenu.jpg").getImage().getScaledInstance(325,283, Image.SCALE_DEFAULT)));
 	private JPanel p3 = new JPanel();
 	
 	public void p1 () { //力格
