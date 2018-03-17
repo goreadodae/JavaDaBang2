@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import dabang.client.model.MenuDrink;
@@ -58,6 +59,7 @@ public class OrderDessertView extends JPanel {
 	private JButton toWebPage = new JButton(img_event1);
 	private ArrayList<OrderList> orderAl = null;
 	private OrderList ol = new OrderList();
+	private int sendPrice;
 	
 	public void comInit() {
 		ActionListener lisener = new MyActionListener();
@@ -166,7 +168,7 @@ public class OrderDessertView extends JPanel {
 			s = str.split("/");
 			
 			showPrice = s[3].charAt(0)+","+s[3].substring(s[3].length()-3, s[3].length())+"원";
-
+			sendPrice = Integer.valueOf(s[3]);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -205,7 +207,18 @@ public class OrderDessertView extends JPanel {
 					orderCnt.setText(""+goodsNum);
 				}
 			} else if(e.getSource()==orderButton) {
-				
+				if(goodsNum == 0) {
+					JOptionPane.showMessageDialog(null,"주문 실패");
+				}else {
+					ol.setName(goodsName.getText());
+					ol.setOrderNum(goodsNum);
+					ol.setPrice(sendPrice);
+					orderAl.add(ol);
+					mainPanel.remove(2);
+					MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md);
+					mainPanel.add(mv,"menu",2);
+					((CardLayout)mainPanel.getLayout()).show(mainPanel, "menu");
+				}
 			} else if(e.getSource()==cancelButton) {
 				goodsNum=0;
 				orderCnt.setText(""+goodsNum);

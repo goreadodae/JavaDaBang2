@@ -296,8 +296,13 @@ public class OrderView extends JPanel {
 				hotButton.setIcon(img_hot_unselected);
 				icedButton.setIcon(img_iced_selected);
 			} else if(e.getSource()==personalO) {
-				EspressoCustom ec = new EspressoCustom(mainFrame,"Personal Option",true);
-				
+				if(md.getKindOfDrink()==1) {
+					EspressoCustom ec = new EspressoCustom(mainFrame,"Espresso Personal Option",true);
+				}else if(md.getKindOfDrink()==2) {
+					FrappuccinoCustom fc = new FrappuccinoCustom(mainFrame,"Frappuccino Personal Option",true);
+				}else if(md.getKindOfDrink()==3) {
+					TeaCustom tc = new TeaCustom(mainFrame,"Tea Personal Option",true);
+				}
 			} else if(e.getSource()==orderButton) {
 				if(goodsNum == 0) {
 					JOptionPane.showMessageDialog(null,"주문 실패");

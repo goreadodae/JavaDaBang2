@@ -88,6 +88,7 @@ public class MenuView extends JPanel implements ActionListener{
 	ArrayList<JLabel> orderPrice = null;
 	ArrayList<JLabel> orderCancel = null;
 	private int totalPriceNum;
+	
 	public void menuInit1() {
 		for(int i=0;i<espPanel.length;i++) {
 			espName[i] = new JLabel();
@@ -447,59 +448,88 @@ public class MenuView extends JPanel implements ActionListener{
 
 			if(e.getSource()==espPanel[0]) {//에에스프레소!
 				md.setGoodsName("americano");
+				md.setKindOfDrink(1);
 			}else if(e.getSource()==espPanel[1]) {
 				md.setGoodsName("dolceLatte");
+				md.setKindOfDrink(1);
 			}else if(e.getSource()==espPanel[2]) {
 				md.setGoodsName("cafeMocha"); 
+				md.setKindOfDrink(1);
 			}else if(e.getSource()==espPanel[3]) {
 				md.setGoodsName("cafeLatte");
+				md.setKindOfDrink(1);
 			}else if(e.getSource()==espPanel[4]) {
 				md.setGoodsName("caramelMacchiato");
+				md.setKindOfDrink(1);
 			}else if(e.getSource()==espPanel[5]) {
 				md.setGoodsName("cappuccino");
+				md.setKindOfDrink(1);
 			}//프으라푸치노!
 			else if(e.getSource()==fraPanel[0]){
 				md.setGoodsName("javaChip");
+				md.setKindOfDrink(2);
 			}else if(e.getSource()==fraPanel[1]){
 				md.setGoodsName("whiteChocolate");
+				md.setKindOfDrink(2);
 			}else if(e.getSource()==fraPanel[2]){
 				md.setGoodsName("caramel");
+				md.setKindOfDrink(2);
 			}else if(e.getSource()==fraPanel[3]){
 				md.setGoodsName("mocha");
+				md.setKindOfDrink(2);
 			}else if(e.getSource()==fraPanel[4]){
 				md.setGoodsName("espresso");
+				md.setKindOfDrink(2);
 			}else if(e.getSource()==fraPanel[5]){
 				md.setGoodsName("greenTea");
+				md.setKindOfDrink(2);
 			}//티이~
 			else if(e.getSource()==teaPanel[0]){
 				md.setGoodsName("greenTeaLatte");
+				md.setKindOfDrink(3);
 			}else if(e.getSource()==teaPanel[1]){
 				md.setGoodsName("mintTea");
+				md.setKindOfDrink(3);
 			}else if(e.getSource()==teaPanel[2]){
 				md.setGoodsName("earlGrey");
+				md.setKindOfDrink(3);
 			}else if(e.getSource()==teaPanel[3]){
 				md.setGoodsName("youthBerry");
+				md.setKindOfDrink(3);
 			}else if(e.getSource()==teaPanel[4]){
 				md.setGoodsName("chaiTea");
+				md.setKindOfDrink(3);
 			}else if(e.getSource()==teaPanel[5]){
 				md.setGoodsName("chamomile");
+				md.setKindOfDrink(3);
 			}//디이절트!
 			else if(e.getSource()==desPanel[0]){
 				md.setGoodsName("castella");
+				md.setKindOfDrink(4);
 			}else if(e.getSource()==desPanel[1]){
 				md.setGoodsName("blueberryCake");
+				md.setKindOfDrink(4);
 			}else if(e.getSource()==desPanel[2]){
 				md.setGoodsName("tiramisu");
+				md.setKindOfDrink(4);
 			}else if(e.getSource()==desPanel[3]){
 				md.setGoodsName("cranberrySandwich");
+				md.setKindOfDrink(4);
 			}else if(e.getSource()==desPanel[4]){
 				md.setGoodsName("croqueMonsieur");
+				md.setKindOfDrink(4);
 			}else if(e.getSource()==desPanel[5]){
 				md.setGoodsName("turkeySandwich");
+				md.setKindOfDrink(4);
 			}
-
-			OrderView ov = new OrderView(mainPanel, mainFrame, orderAl, md);
-			mainPanel.add(ov,"order",3);
+			
+			if(md.getKindOfDrink()>0 && md.getKindOfDrink()<4) {
+				OrderView ov = new OrderView(mainPanel, mainFrame, orderAl, md);
+				mainPanel.add(ov,"order",3);
+			} else {
+				OrderDessertView odv = new OrderDessertView(mainPanel, mainFrame, orderAl, md);
+				mainPanel.add(odv,"order",3);
+			}
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "order");
 		}
 
