@@ -28,7 +28,8 @@ public class Application extends JFrame implements ActionListener {
 	MemberController mCon = null;
 	LoginController lCon = null;
 	Member m = new Member();
-
+	private static Color bgc = new Color(246,245,239);
+	
 	private JPanel panel1 = new JPanel();
 	private JPanel panel2 = new JPanel();
 	private JPanel panel3 = new JPanel();
@@ -100,7 +101,7 @@ public class Application extends JFrame implements ActionListener {
 	private void nameGenderText()//이름
 	{
 
-		panel1.setBackground(Color.yellow);
+		panel1.setBackground(bgc);
 		panel1.add(nameLabel);//이름
 		panel1.add(nameField);//칸
 		ButtonGroup bg = new ButtonGroup();
@@ -113,7 +114,7 @@ public class Application extends JFrame implements ActionListener {
 	}
 	private void birthText()//생년월일
 	{
-		panel9.setBackground(Color.yellow);//배경
+		panel9.setBackground(bgc);//배경
 		panel9.add(brithLabel);//생년월일 글자
 		//////////////////////////////////////////////////////// 
 		year[0] = "연도";
@@ -155,7 +156,7 @@ public class Application extends JFrame implements ActionListener {
 	}
 	private void idText()//아이디
 	{
-		panel2.setBackground(Color.yellow);
+		panel2.setBackground(bgc);
 		panel2.add(idLabel);//아이디
 		panel2.add(idField);//칸
 		panel2.add(button1);//중복
@@ -168,7 +169,7 @@ public class Application extends JFrame implements ActionListener {
 	private void pwdText()//비번
 
 	{
-		panel3.setBackground(Color.yellow);
+		panel3.setBackground(bgc);
 		panel3.add(pwdLabel);//비번
 		panel3.add(pwdField);//비번칸
 		pwdField.setText("");
@@ -178,7 +179,7 @@ public class Application extends JFrame implements ActionListener {
 	}
 
 	private void pwdCompareText() {
-		panel10.setBackground(Color.yellow);
+		panel10.setBackground(bgc);
 		panel10.add(pwdCompareLabel);//비번
 		panel10.add(pwdCompareField);//비번칸
 		pwdField.setText("");
@@ -187,7 +188,7 @@ public class Application extends JFrame implements ActionListener {
 	}
 	private void phoneText()//전번
 	{
-		panel5.setBackground(Color.YELLOW);//전번배경
+		panel5.setBackground(bgc);//전번배경
 		panel5.add(phoneLabel);//전번
 		panel5.add(phoneField);//전번칸
 		panel5.setLayout(new FlowLayout(FlowLayout.LEFT));//왼쪽으로썌려박음
@@ -195,7 +196,7 @@ public class Application extends JFrame implements ActionListener {
 	}
 	private void nickNameText()//닉네임
 	{
-		panel6.setBackground(Color.yellow);
+		panel6.setBackground(bgc);
 		panel6.add(nickNameLabel);//닉네임
 		panel6.add(nickNameField);//닉네임칸
 		panel6.add(button4);//중복확인칸
@@ -211,7 +212,7 @@ public class Application extends JFrame implements ActionListener {
 
 	private void yesno()
 	{
-		panel4.setBackground(Color.yellow);
+		panel4.setBackground(bgc);
 		panel4.add(button5); 
 		button5.addActionListener(this); 
 		panel4.add(button6);
@@ -237,13 +238,13 @@ public class Application extends JFrame implements ActionListener {
 
 	private void say()
 	{
-		panel7.setBackground(Color.yellow);
+		panel7.setBackground(bgc);
 		panel7.add(label7);
 		this.add(panel7);
 	}
 	private void imagego()
 	{
-		panel8.setBackground(Color.yellow);
+		panel8.setBackground(bgc);
 		panel8.setPreferredSize(new Dimension(1,1));
 		mainLabel.setIcon(muzi);
 		panel8.add(mainLabel);
