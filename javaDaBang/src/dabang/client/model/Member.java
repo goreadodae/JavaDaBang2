@@ -22,8 +22,8 @@ public class Member implements Serializable{
 
 	public Member() {}
 
-	public Member(String id, String passWord, String nickName, String name, int sclc, int ageY, int ageM, int ageD,
-			char gender, String phoneNumber, String grade, double point) {
+	public Member(String id,String passWord,String nickName,
+			String name,int sclc,int ageY,int ageM,int ageD,char gender,String phoneNumber,String grade,double point) {
 		super();
 		this.id = id;
 		this.passWord = passWord;
@@ -39,6 +39,28 @@ public class Member implements Serializable{
 		this.point = point;
 	}
 	
+
+
+
+		// TODO Auto-generated constructor stub
+	
+
+	public Member(String id, String nickName, String name, int sclc, int ageY, int ageM, int ageD, char gender, String phoneNumber,
+			String grade, int point) {
+		
+		this.id = id;
+		this.nickName = nickName;
+		this.name = name;
+		this.sclc = sclc;
+		this.ageY = ageY;
+		this.ageM = ageM;
+		this.ageD = ageD;
+		this.gender = gender;
+		this.phoneNumber = phoneNumber;
+		this.grade = grade;
+		this.point = point;
+	}
+//°ü¸®¿ë
 	public char getGender() {
 		return gender;
 	}
