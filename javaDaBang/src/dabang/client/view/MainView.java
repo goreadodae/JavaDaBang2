@@ -14,7 +14,7 @@ import dabang.client.model.OrderList;
 public class MainView implements ActionListener {
 	private MenuDrink md = new MenuDrink();
 	private JFrame mainFrame = new JFrame();
-	private JPanel[] cards = new JPanel[7];
+	private JPanel[] cards = new JPanel[8];
 	private JPanel mainPanel = new JPanel();
 	private ArrayList<OrderList> orderAl = new ArrayList<OrderList>();
 	
@@ -28,6 +28,7 @@ public class MainView implements ActionListener {
 		cards[4] = new GuiMember(mainPanel); //사용자 나의정보확인 화면
 		cards[5] = new ManagerGui(mainPanel);
 		cards[6] = new GuiPersonalInfor(mainPanel); //사용자개인정보수정화면
+		cards[7] = new SalesView(mainPanel);
 		
 		mainPanel.add(cards[0],"Login",0);
 		mainPanel.add(cards[1],"memberMain",1);
@@ -36,6 +37,7 @@ public class MainView implements ActionListener {
 		mainPanel.add(cards[4],"member",4); //사용자 나의정보확인 화면
 		mainPanel.add(cards[5],"admin",5);
 		mainPanel.add(cards[6],"PersonalInfor",6); //사용자개인정보수정화면
+		mainPanel.add(cards[7],"sales",7);
 		//this.add("login",login);
 		mainFrame.add(mainPanel);
 		//login.button1.addActionListener(this);
