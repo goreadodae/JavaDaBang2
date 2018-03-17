@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 import dabang.client.model.MenuDrink;
 import dabang.client.model.OrderList;
@@ -87,6 +88,8 @@ public class MenuView extends JPanel implements ActionListener{
 	ArrayList<JLabel> orderSize = null;
 	ArrayList<JLabel> orderPrice = null;
 	ArrayList<JLabel> orderCancel = null;
+	
+	private JButton logoutButton = new JButton("·Î±×¾Æ¿ô");
 	private int totalPriceNum;
 	
 	public void menuInit1() {
@@ -399,10 +402,22 @@ public class MenuView extends JPanel implements ActionListener{
 		paymentSouth.add(paymentCancelButon);
 		paymentCancelButon.addActionListener(this);
 	}
+	
+	public void logout() {
+		JPanel logoutPanel = new JPanel();
+		logoutButton.setPreferredSize(new Dimension(90,30));
 
+		logoutPanel.setLayout(new FlowLayout(FlowLayout.RIGHT,54,35));
+		logoutPanel.add(logoutButton);
+		logoutPanel.setBackground(bgc);
+		title.add(logoutPanel);
+		logoutButton.addActionListener(this);
+	}
+	
 	public void comInit() {
 		this.menuInit();
 		this.paymentInit();
+		this.logout();
 		this.add(title, BorderLayout.NORTH);
 		this.add(payment, BorderLayout.EAST);
 		this.add(menu,BorderLayout.CENTER);
@@ -442,6 +457,11 @@ public class MenuView extends JPanel implements ActionListener{
 			MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md);
 			mainPanel.add(mv,"menu",2);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "memberMain");
+		}else if(e.getSource()==logoutButton) {
+			mainPanel.remove(0);
+			Login l = new Login(mainPanel);
+			mainPanel.add(l,"Login",0);
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "Login");
 		}
 		else {
 			mainPanel.remove(3);

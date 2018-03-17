@@ -35,7 +35,7 @@ public class memberMainView extends JPanel implements ActionListener {
 
 	private JPanel mainPanel = null;
 
-
+	private JButton logoutButton = new JButton("·Î±×¾Æ¿ô");
 	private void setImage()
 	{
 		//customImage = new ImageIcon(new ImageIcon("order.jpg").getImage().getScaledInstance(500,250, Image.SCALE_DEFAULT)); 
@@ -118,6 +118,10 @@ public class memberMainView extends JPanel implements ActionListener {
 		storeName.setSize(1000,100);
 		storeName.setLocation(340,0);
 		storeName.setFont(ft);
+		logoutButton.setSize(90,30);
+		logoutButton.setLocation(850, 35);
+		logoutButton.addActionListener(this);
+		this.add(logoutButton);
 		this.add(storeName);
 
 		panel1();
@@ -148,6 +152,11 @@ public class memberMainView extends JPanel implements ActionListener {
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "member");
 		}else if(e.getSource()==order) {
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "menu");
+		}else if(e.getSource()==logoutButton) {
+			mainPanel.remove(0);
+			Login l = new Login(mainPanel);
+			mainPanel.add(l,"Login",0);
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "Login");
 		}
 	}
 
