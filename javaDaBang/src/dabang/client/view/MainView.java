@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import dabang.client.model.Member;
 import dabang.client.model.MenuDrink;
 import dabang.client.model.OrderList;
 
@@ -17,6 +18,8 @@ public class MainView implements ActionListener {
 	private JPanel[] cards = new JPanel[7];
 	private JPanel mainPanel = new JPanel();
 	private ArrayList<OrderList> orderAl = new ArrayList<OrderList>();
+	
+
 	
 	public void comInit() {
 
