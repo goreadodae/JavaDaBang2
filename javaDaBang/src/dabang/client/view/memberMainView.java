@@ -81,6 +81,7 @@ public class memberMainView extends JPanel implements ActionListener {
 		grade.setSize(500,250);
 		grade.setLocation(0,0);
 		p3.add(grade);
+		grade.addActionListener(this);
 		this.add(p3);
 
 	}
@@ -144,7 +145,7 @@ public class memberMainView extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==grade) {
-			
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "member");
 		}else if(e.getSource()==order) {
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "menu");
 		}
