@@ -167,7 +167,8 @@ public class OrderDessertView extends JPanel {
 			str = new String(props.getProperty(md.getGoodsName()).getBytes("ISO-8859-1"), "UTF-8");
 			s = str.split("/");
 			
-			showPrice = s[3].charAt(0)+","+s[3].substring(s[3].length()-3, s[3].length())+"¿ø";
+//			showPrice = s[3].charAt(0)+","+s[3].substring(s[3].length()-3, s[3].length())+"¿ø";
+			showPrice = String.format("%,d", Integer.parseInt(s[3]))+"¿ø";
 			sendPrice = Integer.valueOf(s[3]);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
