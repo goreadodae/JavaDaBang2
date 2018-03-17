@@ -25,15 +25,17 @@ public class MainView implements ActionListener {
 		cards[1] = new memberMainView(mainPanel);
 		cards[2] = new MenuView(mainPanel, mainFrame, orderAl, md);
 		cards[3] = new OrderView(mainPanel, mainFrame, orderAl, md);
-		cards[4] = new GuiMember(mainPanel);
+		cards[4] = new GuiMember(mainPanel); //사용자 나의정보확인 화면
 		cards[5] = new ManagerGui(mainPanel);
+		cards[6] = new GuiPersonalInfor(mainPanel); //사용자개인정보수정화면
 		
 		mainPanel.add(cards[0],"Login",0);
 		mainPanel.add(cards[1],"memberMain",1);
 		mainPanel.add(cards[2],"menu",2);
 		mainPanel.add(cards[3],"order",3);
-		mainPanel.add(cards[4],"member",4);
+		mainPanel.add(cards[4],"member",4); //사용자 나의정보확인 화면
 		mainPanel.add(cards[5],"admin",5);
+		mainPanel.add(cards[6],"PersonalInfor",6); //사용자개인정보수정화면
 		//this.add("login",login);
 		mainFrame.add(mainPanel);
 		//login.button1.addActionListener(this);

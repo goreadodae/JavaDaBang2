@@ -1,48 +1,60 @@
 package dabang.client.view;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
 
-public class GuiPersonalInfor extends JFrame  {
+public class GuiPersonalInfor extends JPanel implements ActionListener {
 
 	private JPanel p1 = new JPanel(); //제목
 	private JLabel modifytitle = new JLabel("개인 정보 확인 및 수정");
+	
 	private JPanel p2 = new JPanel(); //아이디
 	private JLabel modifyid = new JLabel("  아이디");
 	private JLabel modifyidlabel = new JLabel("ID입니당");
+	
 	private JPanel p3 = new JPanel(); //이름 /남,여
 	private JLabel modifyname = new JLabel("  이름");
 	private JTextField modifynametext = new JTextField(10);
 	private JRadioButton man = new JRadioButton("남",false);
 	private JRadioButton woman = new JRadioButton("여",false);
+	
 	private JPanel p4 = new JPanel(); //생년월일
 	private JLabel birthtitle = new JLabel("  생년월일");
 	private JComboBox birthbox = new JComboBox();
 	private JComboBox monthbox = new JComboBox();
 	private JComboBox datebox = new JComboBox();
 	private JComboBox sclcbox = new JComboBox();
+	
 	private JPanel p5 = new JPanel(); //휴대폰
 	private JLabel modifynumber = new JLabel(" 휴대폰");
 	private JTextField modifynumbertext = new JTextField(20);
 	private JCheckBox chagree = new JCheckBox("SMS를 통한 이벤트 정보수신에 동의합니다[선택]",false);
+	
 	private JPanel p6 = new JPanel(); //별명
 	private JLabel modifynickname = new JLabel(" 별명");
 	private JTextField modifynicknametext = new JTextField(7);
 	private JButton overnickname = new JButton("중복확인");
-	private JPanel p7 = new JPanel(); //사진
+	
+	private JPanel p7 = new JPanel(); //광고사진
 	private ImageIcon banner01 = new ImageIcon("1카라멜마키아또.jpg");
 	private JLabel banner01label = new JLabel(banner01);
 	private ImageIcon banner02 = new ImageIcon("2그린 티 프라푸치노.jpg");
 	private JLabel banner02label = new JLabel(banner01);
 	private ImageIcon banner03 = new ImageIcon("3얼 그레이 티.jpg");
 	private JLabel banner03label = new JLabel(banner01);
-	private JPanel p8 = new JPanel(); //저장
-	private JButton save = new JButton("저장하기");
+	
+	private JPanel p8 = new JPanel(); //수정
+	private JButton save = new JButton("수정하기");
+	
 	private JPanel p9 = new JPanel(); //취소
 	private JButton cancel = new JButton("취소하기");
 
+	private JPanel mainPanel = null;
+	
 	public void p1 () { //제목
 		p1.setSize(980,80);
 		p1.setLocation(0,0);
@@ -239,30 +251,38 @@ public class GuiPersonalInfor extends JFrame  {
 		p9.setLayout(new BorderLayout());
 		p9.add(cancel,BorderLayout.CENTER);
 		cancel.setFont(new Font("Serif",Font.BOLD,30));
+		cancel.addActionListener(this);
+		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==cancel) {
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "member");
+		}
 		
 	}
 
 	public void comInit() { 
-		this.p1();
-		this.p2();
-		this.p3();
-		this.p4();
-		this.p5();
-		this.p6();
-		this.p7();
-		this.p8();
-		this.p9();
+		p1();
+		p2();
+		p3();
+		p4();
+		p5();
+		p6();
+		p7();
+		p8();
+		p9();
 	}
 
-	public GuiPersonalInfor () {
-		super("잡다방");
+	public GuiPersonalInfor (JPanel mainPanel) {
 		this.setSize(1000,800);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(null);
-		comInit();
+		this.mainPanel = mainPanel;
+		this.comInit();
 		this.setVisible(true);
 	}
+
 
 }
 

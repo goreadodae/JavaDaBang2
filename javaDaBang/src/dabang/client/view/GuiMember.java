@@ -72,6 +72,8 @@ public class GuiMember extends JPanel implements ActionListener {
 		myinformanage.setLayout(new BorderLayout());
 		myinformanage.add(menageinforbutton,BorderLayout.CENTER);
 		menageinforbutton.setFont(new Font("Serif",Font.BOLD,30));
+		menageinforbutton.addActionListener(this);
+		
 		myreceipt.add(receiptbutton);
 		myreceipt.setLayout(new BorderLayout());
 		myreceipt.add(receiptbutton,BorderLayout.CENTER);
@@ -86,7 +88,7 @@ public class GuiMember extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==menageinforbutton) {
-			
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "PersonalInfor");
 		}else if(e.getSource()==receiptbutton) {
 			
 		}else if(e.getSource()==backmainbutton) {
