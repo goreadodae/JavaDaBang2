@@ -197,7 +197,7 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 				if(lCon.checkAdmin(field1.getText())) {
 					if(lCon.ckeckAdminPwd(field2.getText())) {
 						JOptionPane.showMessageDialog(null,"로그인 성공");
-						((CardLayout)mainPanel.getLayout()).show(mainPanel, "memberMain");//관리자메인으로 변경해야함
+						((CardLayout)mainPanel.getLayout()).show(mainPanel, "admin");
 					}
 					else JOptionPane.showMessageDialog(null,"비밀번호를 확인하세요");
 				}

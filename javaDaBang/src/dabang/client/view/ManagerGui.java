@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class ManagerGui extends JFrame{
+public class ManagerGui extends JPanel{
 	private JPanel p1 = new JPanel();//매출관리버튼 넣을 패널
 	private JPanel p2 = new JPanel(); //메뉴관리버튼 넣을 패널
 	private JPanel p3 = new JPanel();//재고관리버튼 넣을 패널
@@ -19,6 +19,7 @@ public class ManagerGui extends JFrame{
 	private JButton menuMgr = new JButton(new ImageIcon(new ImageIcon("menumgr.jpg").getImage().getScaledInstance(500,300,Image.SCALE_DEFAULT)));	//메뉴관리
 	private JButton stockMgr = new JButton(new ImageIcon(new ImageIcon("stockmgr.jpg").getImage().getScaledInstance(500, 300, Image.SCALE_DEFAULT)));	//재고관리
 	private JButton memberMgr = new JButton(new ImageIcon(new ImageIcon("membermgr.jpg").getImage().getScaledInstance(500,300, Image.SCALE_DEFAULT))); //회원관리
+	private JPanel mainPanel = null;
 	
 	
 	private void setPanel1()
@@ -91,13 +92,11 @@ public class ManagerGui extends JFrame{
 		setPanel5();
 		
 	}
-	 public ManagerGui() {
+	 public ManagerGui(JPanel mainPanel) {
 		 this.setSize(1000,800);
 		 this.setLayout(null);
-		 this.setResizable(false);
-		 this.setLocationRelativeTo(null);
-		 this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		 this.setBackground(Color.BLACK);
+		 this.mainPanel  = mainPanel;
 		 this.comInit();
 		 this.setVisible(true);
 		 
