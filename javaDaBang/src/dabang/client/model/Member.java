@@ -20,13 +20,13 @@ public class Member implements Serializable{
 	private String phoneNumber;  //폰번
 	private String grade;     //회원등급
 	private double point;     //포인트
-	private ArrayList<ArrayList<OrderList>> list = new ArrayList<ArrayList<OrderList>>();//주문 내역
+	private ArrayList<ArrayList<Menu>> list = new ArrayList<ArrayList<Menu>>();//주문 내역
 
-	public ArrayList<ArrayList<OrderList>> getList() {
+	public ArrayList<ArrayList<Menu>> getList() {
 		return list;
 	}
 
-	public void setList(ArrayList<ArrayList<OrderList>> list) {
+	public void setList(ArrayList<ArrayList<Menu>> list) {
 		this.list = list;
 	}
 

@@ -6,7 +6,6 @@ import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
@@ -17,6 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Properties;
 
 import javax.swing.DefaultListCellRenderer;
@@ -32,8 +32,8 @@ import javax.swing.SwingConstants;
 import dabang.client.model.Espresso;
 import dabang.client.model.Frappuccino;
 import dabang.client.model.Member;
+import dabang.client.model.Menu;
 import dabang.client.model.MenuDrink;
-import dabang.client.model.OrderList;
 import dabang.client.model.Tea;
 
 public class OrderView extends JPanel {
@@ -79,10 +79,14 @@ public class OrderView extends JPanel {
 	private JButton cancelButton = new JButton(img_cancel);
 	private ImageIcon img_event1 = new ImageIcon(new ImageIcon("Image\\OrderImage\\event1.png").getImage().getScaledInstance(500, 150, Image.SCALE_DEFAULT));
 	private JButton toWebPage = new JButton(img_event1);
-	private ArrayList<OrderList> orderAl = null;
-	private OrderList ol = new OrderList();
+	private ArrayList<Menu> orderAl = null;
+	private Menu ol = new Menu();
 	private int sendPrice;
 	private Member accessMember = new Member();
+	Espresso espre = new Espresso();
+	Frappuccino fra = new Frappuccino();
+	Tea te = new Tea();
+	Calendar od = Calendar.getInstance();
 	public void comInit() {
 		ActionListener lisener = new MyActionListener();
 		
@@ -271,7 +275,7 @@ public class OrderView extends JPanel {
 		price = new JLabel(showPrice);
 	}
 	
-	public OrderView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md,
+	public OrderView(JPanel mainPanel, JFrame mainFrame, ArrayList<Menu> orderAl, MenuDrink md,
 			Member accessMember) {
 		this.md = md;
 		this.mainFrame = mainFrame;
@@ -306,21 +310,53 @@ public class OrderView extends JPanel {
 				icedButton.setIcon(img_iced_selected);
 			} else if(e.getSource()==personalO) {
 				if(md.getKindOfDrink()==1) {
-					EspressoCustom ec = new EspressoCustom(mainFrame,"Espresso Personal Option",true);
+					EspressoCustom ec = new EspressoCustom(mainFrame,"Espresso Personal Option",true,espre);
 				}else if(md.getKindOfDrink()==2) {
-					FrappuccinoCustom fc = new FrappuccinoCustom(mainFrame,"Frappuccino Personal Option",true);
+					FrappuccinoCustom fc = new FrappuccinoCustom(mainFrame,"Frappuccino Personal Option",true,fra);
 				}else if(md.getKindOfDrink()==3) {
-					TeaCustom tc = new TeaCustom(mainFrame,"Tea Personal Option",true);
+					TeaCustom tc = new TeaCustom(mainFrame,"Tea Personal Option",true,te);
 				}
 			} else if(e.getSource()==orderButton) {
 				if(goodsNum == 0) {
 					JOptionPane.showMessageDialog(null,"주문 실패");
 				}else {
-					ol.setName(goodsName.getText());
-					ol.setOrderNum(goodsNum);
-					ol.setPrice(sendPrice);
-					ol.setSize((String)sizeCb.getSelectedItem());
-					orderAl.add(ol);
+					if(sizeCb.getSelectedItem().equals("Grande")) {
+						sendPrice += 500;
+					}
+					else if(sizeCb.getSelectedItem().equals("Venti")) {
+						sendPrice += 1000;
+					}
+					switch(md.getKindOfDrink()) {
+					case 1:
+						espre.setKindOfMenu("에스프레소");
+						espre.setMenuName(goodsName.getText());
+						espre.setNumberOfGoods(goodsNum);
+						espre.setPrice(sendPrice);
+						espre.setSize((String)sizeCb.getSelectedItem());
+						Calendar od = Calendar.getInstance();
+						espre.setOrderDate(od);
+						orderAl.add(espre);break;
+					case 2:
+						fra.setKindOfMenu("프라푸치노");
+						fra.setMenuName(goodsName.getText());
+						fra.setNumberOfGoods(goodsNum);
+						fra.setPrice(sendPrice);
+						fra.setSize((String)sizeCb.getSelectedItem());
+						od = Calendar.getInstance();
+						fra.setOrderDate(od);
+						orderAl.add(fra);
+						break;
+					case 3:
+						te.setKindOfMenu("티");
+						te.setMenuName(goodsName.getText());
+						te.setNumberOfGoods(goodsNum);
+						te.setPrice(sendPrice);
+						te.setSize((String)sizeCb.getSelectedItem());
+						od = Calendar.getInstance();
+						te.setOrderDate(od);
+						orderAl.add(te);
+						break;
+					}
 					mainPanel.remove(2);
 					MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md, accessMember);
 					mainPanel.add(mv,"menu",2);

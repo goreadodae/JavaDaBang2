@@ -69,7 +69,7 @@ public class EspressoCustom extends JDialog {
 
 
 
-
+	Espresso eps = new Espresso();
 //	Dialog d = new Dialog(this, "다이얼로그");
 	public void comInit()
 	{
@@ -318,7 +318,7 @@ public class EspressoCustom extends JDialog {
 					System.out.println("휘핑 : "+whip);
 					System.out.println("드리즐 : "+drizzle);
 					
-					Espresso eps = new Espresso();
+					
 					eps.setShot(count2); // 샷 양
 					eps.setSyrupNum(count3); // 시럽 양
 					eps.setWaterAmount(water); //물 양
@@ -343,7 +343,7 @@ public class EspressoCustom extends JDialog {
 		
 	}
 
-	public EspressoCustom(JFrame frame, String title, boolean b)
+	public EspressoCustom(JFrame frame, String title, boolean b, Espresso eps)
 	{
 		super(frame,title,b);
 		this.setLayout(new GridLayout(8,1,10,10));
@@ -351,6 +351,7 @@ public class EspressoCustom extends JDialog {
 		this.setLocation(950,170);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setResizable(false);
+		this.eps = eps;
 		this.comInit();
 		this.setVisible(true);
 	}

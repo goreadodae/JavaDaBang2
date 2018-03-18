@@ -21,13 +21,12 @@ public class MenuDrink extends Menu{
 	
 	public MenuDrink() {}
 	
-	public MenuDrink(int kindOfDrink, String size, String syrup, int syrupNum, int price) {
+	public MenuDrink(int kindOfDrink, String size, String syrup, int syrupNum) {
 		super();
 		this.kindOfDrink = kindOfDrink;
 		this.size = size;
 		this.syrupType = syrup;
 		this.syrupNum = syrupNum;
-		this.price = price;
 	}
 	
 	public String getGoodsName() {
@@ -66,13 +65,6 @@ public class MenuDrink extends Menu{
 	public void setSyrupNum(int syrupNum) {
 		this.syrupNum = syrupNum;
 	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	private int price;//АЁАн
 	
 	
 }

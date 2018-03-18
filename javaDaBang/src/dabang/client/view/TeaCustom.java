@@ -72,7 +72,7 @@ public class TeaCustom extends JDialog{
 
 
 
-
+	Tea t = new Tea();
 
 	public void comInit()
 	{
@@ -328,7 +328,7 @@ public class TeaCustom extends JDialog{
 							}
 						}
 					}
-					Tea t = new Tea();
+					
 					t.setShot(count2);
 					t.setSyrupNum(count3);
 					t.setMilk(milk);
@@ -356,7 +356,7 @@ public class TeaCustom extends JDialog{
 
 	
 
-	public TeaCustom(JFrame frame, String title, boolean b)
+	public TeaCustom(JFrame frame, String title, boolean b,Tea t )
 	{
 		super(frame, title, b);
 
@@ -365,6 +365,7 @@ public class TeaCustom extends JDialog{
 		this.setLocation(950,170);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setResizable(false);
+		this.t = t;
 		this.comInit();
 		this.setVisible(true);
 	}

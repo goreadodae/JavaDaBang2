@@ -1,8 +1,13 @@
 package dabang.client.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Menu {
+public class Menu implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1678568L;
 	private int orderNumber; 	// 주문번호
 	private String kindOfMenu;	// 상품종류
 	private String menuName; 	// 상품이름

@@ -25,8 +25,8 @@ import javax.swing.JTextField;
 import dabang.client.controller.LoginController;
 import dabang.client.controller.MemberController;
 import dabang.client.model.Member;
+import dabang.client.model.Menu;
 import dabang.client.model.MenuDrink;
-import dabang.client.model.OrderList;
 public  class Login extends JPanel implements ActionListener,KeyListener{
 	private static Color bgc = new Color(246,245,239);
 	private JPanel panel1 = new JPanel();//아이디
@@ -63,8 +63,8 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 	private Member accessMember = new Member();
 	private MenuDrink md = new MenuDrink();
 	private JFrame mainFrame = new JFrame();
-	private ArrayList<OrderList> orderAl = new ArrayList<OrderList>();
-	public Login(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md,
+	private ArrayList<Menu> orderAl = new ArrayList<Menu>();
+	public Login(JPanel mainPanel, JFrame mainFrame, ArrayList<Menu> orderAl, MenuDrink md,
 			Member accessMember) 
 	{
 		//		super("잡다방"); //이름설정
@@ -88,6 +88,7 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 		panel1.setBackground(bgc);
 		panel1.add(label1);//아이디
 		panel1.add(field1);//칸
+		field1.addKeyListener(this);
 		centerPanel2.add(panel1);
 	}
 	private void passwordgo()//비번
@@ -208,7 +209,7 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 						}
 						else JOptionPane.showMessageDialog(null,"비밀번호를 확인하세요");
 					}
-					
+					else JOptionPane.showMessageDialog(null,"ID를 확인하세요");
 				}
 			}
 			else if(loginSelect.getSelectedItem()=="관리자") {

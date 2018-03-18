@@ -81,6 +81,7 @@ public class FrappuccinoCustom extends JDialog{
 	private JPanel panel9 = new JPanel();
 	private JButton button9_1 = new JButton("옵션 초기화 하기");
 	private JButton button9_2 = new JButton("확인");
+	private Frappuccino fra = new Frappuccino();
 
 
 	
@@ -405,14 +406,14 @@ public class FrappuccinoCustom extends JDialog{
 										}
 									}
 								}
-								Frappuccino fpn = new Frappuccino();
-								fpn.setFrappuccinoRoast(count2);
-								fpn.setSyrupNum(count3);
-								fpn.setMilkType(milk);
-								fpn.setIceAmount(ice);
-								fpn.setJavaChipNum(count6);
-								fpn.setWhippingAmount(whip);
-								fpn.setDrizzleAmount(drizzle);
+								
+								fra.setFrappuccinoRoast(count2);
+								fra.setSyrupNum(count3);
+								fra.setMilkType(milk);
+								fra.setIceAmount(ice);
+								fra.setJavaChipNum(count6);
+								fra.setWhippingAmount(whip);
+								fra.setDrizzleAmount(drizzle);
 								
 								setVisible(false);	
 									
@@ -433,7 +434,7 @@ public class FrappuccinoCustom extends JDialog{
 					
 				}
 	
-	public FrappuccinoCustom(JFrame frame, String title, boolean b)
+	public FrappuccinoCustom(JFrame frame, String title, boolean b, Frappuccino fra)
 	{
 		super(frame, title, b);
 		this.setLayout(new GridLayout(9, 1, 10, 10));
@@ -441,6 +442,7 @@ public class FrappuccinoCustom extends JDialog{
 		this.setLocation(950,  170);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setResizable(false);		
+		this.fra  = fra;
 		this.comInit();
 		this.setVisible(true);
 	}
