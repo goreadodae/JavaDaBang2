@@ -1,20 +1,22 @@
 package dabang.client.view;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import dabang.client.model.Member;
+import dabang.client.model.MenuDrink;
+import dabang.client.model.OrderList;
 
 public class memberMainView extends JPanel implements ActionListener {
 
@@ -36,6 +38,10 @@ public class memberMainView extends JPanel implements ActionListener {
 	private JPanel mainPanel = null;
 
 	private JButton logoutButton = new JButton("로그아웃");
+	private Member accessMember = new Member();
+	private MenuDrink md = new MenuDrink();
+	private JFrame mainFrame = new JFrame();
+	private ArrayList<OrderList> orderAl = new ArrayList<OrderList>();
 	private void setImage()
 	{
 		//customImage = new ImageIcon(new ImageIcon("order.jpg").getImage().getScaledInstance(500,250, Image.SCALE_DEFAULT)); 
@@ -131,7 +137,8 @@ public class memberMainView extends JPanel implements ActionListener {
 		panel5();
 	}
 
-	public memberMainView(JPanel mainPanel)
+	public memberMainView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md,
+			Member accessMember)
 	{
 		this.setSize(1000,800);
 		//		this.setTitle("잡다방");
@@ -141,6 +148,10 @@ public class memberMainView extends JPanel implements ActionListener {
 		//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//		this.setBackground(Color.BLACK);
 		this.mainPanel = mainPanel;
+		this.accessMember  = accessMember;
+		this.md = md;
+		this.mainFrame = mainFrame;
+		this.orderAl = orderAl;
 		this.comInit();
 		this.setVisible(true);
 	}
@@ -149,12 +160,18 @@ public class memberMainView extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==grade) {
+			mainPanel.remove(4);
+			GuiMember gm = new GuiMember(mainPanel,accessMember);
+			mainPanel.add(gm,"member",4);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "member");
 		}else if(e.getSource()==order) {
+			mainPanel.remove(2);
+			MenuView l = new MenuView(mainPanel, mainFrame, orderAl, md, accessMember);
+			mainPanel.add(l,"menu",2);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "menu");
 		}else if(e.getSource()==logoutButton) {
 			mainPanel.remove(0);
-			Login l = new Login(mainPanel);
+			Login l = new Login(mainPanel, mainFrame,orderAl,md,accessMember);
 			mainPanel.add(l,"Login",0);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "Login");
 		}

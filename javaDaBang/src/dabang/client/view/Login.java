@@ -10,10 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,6 +23,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import dabang.client.controller.LoginController;
+import dabang.client.controller.MemberController;
+import dabang.client.model.Member;
+import dabang.client.model.MenuDrink;
+import dabang.client.model.OrderList;
 public  class Login extends JPanel implements ActionListener,KeyListener{
 	private static Color bgc = new Color(246,245,239);
 	private JPanel panel1 = new JPanel();//아이디
@@ -52,11 +58,14 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 
 
 	LoginController lCon = new LoginController();
-
 	private int loginSuccess = 0;//0로그인 실패, 1사용자 로그인, 2관리자 로그인
-	private JLabel logoLabel = new JLabel();;
-
-	public Login(JPanel mainPanel) 
+	private JLabel logoLabel = new JLabel();
+	private Member accessMember = new Member();
+	private MenuDrink md = new MenuDrink();
+	private JFrame mainFrame = new JFrame();
+	private ArrayList<OrderList> orderAl = new ArrayList<OrderList>();
+	public Login(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md,
+			Member accessMember) 
 	{
 		//		super("잡다방"); //이름설정
 		//this.setTitle("이름") 이랑 같음
@@ -65,6 +74,10 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 		//		this.setDefaultCloseOperation(EXIT_ON_CLOSE); //종료버튼시 아예다꺼버림
 		//		this.setResizable(false);
 		this.mainPanel = mainPanel;
+		this.accessMember  = accessMember;
+		this.md = md;
+		this.mainFrame = mainFrame;
+		this.orderAl = orderAl;
 		this.setLayout(new BorderLayout());
 		this.addKeyListener(this);
 		this.compInit(); //사용자 정의 메소드
@@ -185,7 +198,12 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 				else {
 					if(lCon.checkId(field1.getText())) {
 						if(lCon.checkPwd(field1.getText(), field2.getText())) {
+							MemberController mCon = lCon.memCon();
+							accessMember = mCon.memberSelect(field1.getText());
 							JOptionPane.showMessageDialog(null,"로그인 성공");
+							mainPanel.remove(1);
+							memberMainView mmv = new memberMainView(mainPanel, mainFrame,orderAl,md,accessMember);
+							mainPanel.add(mmv,"memberMain",1);
 							((CardLayout)mainPanel.getLayout()).show(mainPanel, "memberMain");
 						}
 						else JOptionPane.showMessageDialog(null,"비밀번호를 확인하세요");

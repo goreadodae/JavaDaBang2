@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import dabang.client.model.Member;
 import dabang.client.model.MenuDrink;
 import dabang.client.model.OrderList;
 
@@ -60,6 +61,7 @@ public class OrderDessertView extends JPanel {
 	private ArrayList<OrderList> orderAl = null;
 	private OrderList ol = new OrderList();
 	private int sendPrice;
+	private Member accessMember;
 	
 	public void comInit() {
 		ActionListener lisener = new MyActionListener();
@@ -183,11 +185,13 @@ public class OrderDessertView extends JPanel {
 		price = new JLabel(showPrice);
 	}
 	
-	public OrderDessertView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md) {
+	public OrderDessertView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md,
+			Member accessMember) {
 		this.md = md;
 		this.mainFrame = mainFrame;
 		this.mainPanel = mainPanel;
 		this.orderAl = orderAl;
+		this.accessMember = accessMember;
 		this.setSize(1000,800);
 		this.setBackground(Color.WHITE);
 		this.setLayout(null);
@@ -216,7 +220,7 @@ public class OrderDessertView extends JPanel {
 					ol.setPrice(sendPrice);
 					orderAl.add(ol);
 					mainPanel.remove(2);
-					MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md);
+					MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md, accessMember);
 					mainPanel.add(mv,"menu",2);
 					((CardLayout)mainPanel.getLayout()).show(mainPanel, "menu");
 				}

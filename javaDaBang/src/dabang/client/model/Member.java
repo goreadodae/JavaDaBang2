@@ -1,6 +1,7 @@
 package dabang.client.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Member implements Serializable{
 	/**
@@ -19,9 +20,24 @@ public class Member implements Serializable{
 	private String phoneNumber;  //폰번
 	private String grade;     //회원등급
 	private double point;     //포인트
+	private ArrayList<ArrayList<OrderList>> list = new ArrayList<ArrayList<OrderList>>();//주문 내역
+
+	public ArrayList<ArrayList<OrderList>> getList() {
+		return list;
+	}
+
+	public void setList(ArrayList<ArrayList<OrderList>> list) {
+		this.list = list;
+	}
 
 	public Member() {}
-
+	
+	public Member(String id, String passWord, String name) {
+		this.id = id;
+		this.passWord = passWord;
+		this.name = name;
+	}
+	
 	public Member(String id,String passWord,String nickName,
 			String name,int sclc,int ageY,int ageM,int ageD,char gender,String phoneNumber,String grade,double point) {
 		super();

@@ -18,10 +18,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
 
+import dabang.client.controller.MemberController;
+import dabang.client.controller.OrderCon;
+import dabang.client.model.Member;
 import dabang.client.model.MenuDrink;
 import dabang.client.model.OrderList;
 
@@ -91,7 +94,9 @@ public class MenuView extends JPanel implements ActionListener{
 	
 	private JButton logoutButton = new JButton("로그아웃");
 	private int totalPriceNum;
+	private Member accessMember = new Member();
 	
+	private OrderCon oCon = new OrderCon();
 	public void menuInit1() {
 		for(int i=0;i<espPanel.length;i++) {
 			espName[i] = new JLabel();
@@ -373,7 +378,7 @@ public class MenuView extends JPanel implements ActionListener{
 							deleteButton.remove(i);
 							jp.remove(i);
 							mainPanel.remove(2);
-							MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md);
+							MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md, accessMember);
 							mainPanel.add(mv,"menu",2);
 							((CardLayout)mainPanel.getLayout()).show(mainPanel, "menu");
 						}
@@ -401,6 +406,7 @@ public class MenuView extends JPanel implements ActionListener{
 		paymentSouth.add(paymentPayButton);
 		paymentSouth.add(paymentCancelButon);
 		paymentCancelButon.addActionListener(this);
+		paymentPayButton.addActionListener(this);
 	}
 	
 	public void logout() {
@@ -423,7 +429,8 @@ public class MenuView extends JPanel implements ActionListener{
 		this.add(menu,BorderLayout.CENTER);
 	}
 
-	public MenuView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md) {
+	public MenuView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md,
+			Member accessMember) {
 		this.md = md;
 		this.mainFrame = mainFrame;
 		this.setSize(1000,800);
@@ -434,6 +441,7 @@ public class MenuView extends JPanel implements ActionListener{
 		//		this.setLocationRelativeTo(null);
 		this.mainPanel = mainPanel;
 		this.orderAl = orderAl;
+		this.accessMember  = accessMember;
 		this.setBackground(Color.WHITE);
 		comInit();
 		this.setVisible(true);
@@ -454,14 +462,25 @@ public class MenuView extends JPanel implements ActionListener{
 		}else if(e.getSource()==paymentCancelButon) {
 			orderAl.clear();
 			mainPanel.remove(2);
-			MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md);
+			MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md, accessMember);
 			mainPanel.add(mv,"menu",2);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "memberMain");
 		}else if(e.getSource()==logoutButton) {
 			mainPanel.remove(0);
-			Login l = new Login(mainPanel);
+			Login l = new Login(mainPanel, mainFrame, orderAl, md, accessMember);
 			mainPanel.add(l,"Login",0);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "Login");
+		}else if(e.getSource()==paymentPayButton) {
+			
+			oCon.addOrder(accessMember, orderAl);
+			
+			JOptionPane.showMessageDialog(null,"주문이 완료되었습니다.");
+			
+			orderAl.clear();
+			mainPanel.remove(2);
+			MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md, accessMember);
+			mainPanel.add(mv,"menu",2);
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "memberMain");
 		}
 		else {
 			mainPanel.remove(3);
@@ -544,10 +563,10 @@ public class MenuView extends JPanel implements ActionListener{
 			}
 			
 			if(md.getKindOfDrink()>0 && md.getKindOfDrink()<4) {
-				OrderView ov = new OrderView(mainPanel, mainFrame, orderAl, md);
+				OrderView ov = new OrderView(mainPanel, mainFrame, orderAl, md,accessMember);
 				mainPanel.add(ov,"order",3);
 			} else {
-				OrderDessertView odv = new OrderDessertView(mainPanel, mainFrame, orderAl, md);
+				OrderDessertView odv = new OrderDessertView(mainPanel, mainFrame, orderAl, md, accessMember);
 				mainPanel.add(odv,"order",3);
 			}
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "order");

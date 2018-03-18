@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import dabang.client.controller.MemberController;
 import dabang.client.model.Member;
 import dabang.client.model.MenuDrink;
 import dabang.client.model.OrderList;
@@ -18,17 +19,17 @@ public class MainView implements ActionListener {
 	private JPanel[] cards = new JPanel[15];
 	private JPanel mainPanel = new JPanel();
 	private ArrayList<OrderList> orderAl = new ArrayList<OrderList>();
-	
+	private Member accessMember = new Member();
 
 	
 	public void comInit() {
 
 		mainPanel.setLayout(new CardLayout());
-		cards[0] = new Login(mainPanel);
-		cards[1] = new memberMainView(mainPanel);
-		cards[2] = new MenuView(mainPanel, mainFrame, orderAl, md);
-		cards[3] = new OrderView(mainPanel, mainFrame, orderAl, md);
-		cards[4] = new GuiMember(mainPanel); //사용자 나의정보확인 화면
+		cards[0] = new Login(mainPanel, mainFrame,orderAl,md,accessMember);
+		cards[1] = new memberMainView(mainPanel, mainFrame,orderAl,md,accessMember);
+		cards[2] = new MenuView(mainPanel, mainFrame, orderAl, md, accessMember);
+		cards[3] = new OrderView(mainPanel, mainFrame, orderAl, md, accessMember);
+		cards[4] = new GuiMember(mainPanel,accessMember); //사용자 나의정보확인 화면
 		cards[5] = new ManagerGui(mainPanel);
 		cards[6] = new GuiPersonalInfor(mainPanel); //사용자개인정보수정화면
 		cards[7] = new SalesView(mainPanel);
@@ -37,7 +38,7 @@ public class MainView implements ActionListener {
 		cards[10] = new GuiAddmenu(mainPanel); //관리자메뉴관리화면 메뉴추가
 		cards[11] = new Guimodifymenu(mainPanel); //관리자메뉴관리화면 메뉴추가
 		cards[12] = new GuiDeletemenu(mainPanel); //관리자메뉴관리화면 메뉴추가
-		
+	
 		mainPanel.add(cards[0],"Login",0);
 		mainPanel.add(cards[1],"memberMain",1);
 		mainPanel.add(cards[2],"menu",2);

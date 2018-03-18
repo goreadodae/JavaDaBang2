@@ -1,10 +1,19 @@
 package dabang.client.view;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import dabang.client.model.Member;
 
 public class GuiMember extends JPanel implements ActionListener {
 	
@@ -27,6 +36,7 @@ public class GuiMember extends JPanel implements ActionListener {
 	private int count =0;
 	
 	private JPanel mainPanel = null;
+	private Member accessMember = new Member();
 	
 	public void membergrade () {
 		membergrade.setSize(396,490);
@@ -103,10 +113,11 @@ public class GuiMember extends JPanel implements ActionListener {
 		managebutton();
 	}
 
-	public GuiMember (JPanel mainPanel) {
+	public GuiMember (JPanel mainPanel, Member accessMember) {
 		this.setSize(1000,800);
 		this.setLayout(null);
 		this.mainPanel = mainPanel;
+		this.accessMember  = accessMember;
 		this.comInit();
 		this.setVisible(true);
 	}
