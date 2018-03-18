@@ -23,10 +23,10 @@ public class ManagerGui extends JPanel implements ActionListener{
 	private JPanel p3 = new JPanel();//재고관리버튼 넣을 패널
 	private JPanel p4 = new JPanel(); //회원관리버튼 넣을 패널
 	
-	private JButton salesMgr = new JButton(new ImageIcon(new ImageIcon("Image\\AdminMainIamge\\salesmgr.jpg").getImage().getScaledInstance(500, 300, Image.SCALE_DEFAULT))); //매출관리
-	private JButton menuMgr = new JButton(new ImageIcon(new ImageIcon("Image\\AdminMainIamge\\menumgr.jpg").getImage().getScaledInstance(500,300,Image.SCALE_DEFAULT)));	//메뉴관리
-	private JButton stockMgr = new JButton(new ImageIcon(new ImageIcon("Image\\AdminMainIamge\\stockmgr.jpg").getImage().getScaledInstance(500, 300, Image.SCALE_DEFAULT)));	//재고관리
-	private JButton memberMgr = new JButton(new ImageIcon(new ImageIcon("Image\\AdminMainIamge\\membermgr.jpg").getImage().getScaledInstance(500,300, Image.SCALE_DEFAULT))); //회원관리
+	private JButton salesMgr = new JButton(new ImageIcon(new ImageIcon("Image/AdminMainImage/salesmgr.jpg").getImage().getScaledInstance(500, 300, Image.SCALE_DEFAULT))); //매출관리
+	private JButton menuMgr = new JButton(new ImageIcon(new ImageIcon("Image/AdminMainImage/menumgr.jpg").getImage().getScaledInstance(500,300,Image.SCALE_DEFAULT)));	//메뉴관리
+	private JButton stockMgr = new JButton(new ImageIcon(new ImageIcon("Image/AdminMainImage/stockmgr.jpg").getImage().getScaledInstance(500, 300, Image.SCALE_DEFAULT)));	//재고관리
+	private JButton memberMgr = new JButton(new ImageIcon(new ImageIcon("Image/AdminMainImage/membermgr.jpg").getImage().getScaledInstance(500,300, Image.SCALE_DEFAULT))); //회원관리
 	private JPanel mainPanel = null;
 	
 	private JButton logoutButton = new JButton("로그아웃");
