@@ -1,6 +1,7 @@
 package dabang.client.view;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -19,7 +20,7 @@ import dabang.client.controller.MenuManageControl;
 import dabang.client.model.MenuManage;
 
 
-public class Guimodifymenu extends JFrame implements ActionListener{
+public class Guimodifymenu extends JPanel implements ActionListener{
 
 	private JPanel p1 = new JPanel();
 	private JLabel addmenutitle = new JLabel("  메뉴 수정");
@@ -35,7 +36,9 @@ public class Guimodifymenu extends JFrame implements ActionListener{
 	private JButton modifysave = new JButton("수정하기");
 	private JButton cancel = new JButton("취소하기");
 	
-	private JFrame myframe = this;
+	private JPanel myPanel = this;
+	private JPanel mainPanel = null;
+	
 	MenuManageControl menuCon = new MenuManageControl();
 	MenuManage modifymenu= new MenuManage();;
 	
@@ -120,6 +123,7 @@ public class Guimodifymenu extends JFrame implements ActionListener{
 		p32.setLayout(new BorderLayout());
 		p32.add(cancel,BorderLayout.CENTER);
 		cancel.setFont(new Font("Serif",Font.BOLD,30));
+		cancel.addActionListener(this);
 	}
 	
 	@Override
@@ -134,19 +138,21 @@ public class Guimodifymenu extends JFrame implements ActionListener{
 			}else { //메뉴수정 실패
 				JOptionPane.showMessageDialog(this, "수정할 메뉴가 없습니다. 메뉴명을 확인 해주세요.", "등록실패", JOptionPane.ERROR_MESSAGE);
 			}
+		}else if(e.getSource()==cancel) {
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "ManegeMenu");
 		}
 	}
 	
 	private void comInit() {
-		this.p1();
-		this.p2();
-		this.p3();
+		p1();
+		p2();
+		p3();
 		calladdrbutton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==calladdrbutton) {
 					JFileChooser calladdrjc = new JFileChooser();
-					int choiceValue = calladdrjc.showOpenDialog(myframe);
+					int choiceValue = calladdrjc.showOpenDialog(myPanel);
 					if(choiceValue == JFileChooser.APPROVE_OPTION) {
 						System.out.println("선택한 파일 :"+calladdrjc.getSelectedFile());
 					}
@@ -155,14 +161,12 @@ public class Guimodifymenu extends JFrame implements ActionListener{
 		});
 	}
 	
-	public Guimodifymenu () {
-		super("잡다방");
+	public Guimodifymenu (JPanel mainPanel) {
 		this.setSize(1000,800);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(null);
-		comInit();
+		this.comInit();
 		this.setVisible(true);
+		this.mainPanel  = mainPanel;
 	}
 
 }

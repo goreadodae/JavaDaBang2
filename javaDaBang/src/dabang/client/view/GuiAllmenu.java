@@ -1,9 +1,12 @@
 package dabang.client.view;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,7 +22,7 @@ import dabang.client.controller.MenuManageControl;
 import dabang.client.model.MenuManage;
 
 
-public class GuiAllmenu extends JFrame{
+public class GuiAllmenu extends JPanel implements ActionListener{
 
 	private JPanel p1 = new JPanel();
 	private JLabel allmenutitle = new JLabel("전체 메뉴 보기");
@@ -31,6 +34,8 @@ public class GuiAllmenu extends JFrame{
 	 ArrayList<String> menuname = null;
 	 ArrayList<String> menuprice = null;
 	private MenuManage menuInsert ;
+	
+	private JPanel mainPanel = null;
 
 	public void p1 () { //제목
 		p1.setSize(980,90);
@@ -77,10 +82,18 @@ public class GuiAllmenu extends JFrame{
 		p3.setLocation(0,660);
 		p3.setBackground(Color.red);
 		this.add(p3);
+		back.addActionListener(this);
 		p3.add(back);
 		p3.setLayout(new BorderLayout());
 		p3.add(back,BorderLayout.CENTER);
 		back.setFont(new Font("Serif",Font.BOLD,30));
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==back) {
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "ManegeMenu");
+		}
 	}
 
 	private void comInit() {
@@ -95,19 +108,17 @@ public class GuiAllmenu extends JFrame{
 		menuname = mCon.arraytmenuname();
 		menuprice = mCon.arraytmenuprice();
 
-		this.p1();
-		this.p2();
-		this.p3();
+		p1();
+		p2();
+		p3();
 	}
 
-	public GuiAllmenu () {
-		super("잡다방");
+	public GuiAllmenu (JPanel mainPanel) {
 		this.setSize(1000,800);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(null);
-		comInit();
+		this.comInit();
 		this.setVisible(true);
+		this.mainPanel  = mainPanel;
 	}
 
 

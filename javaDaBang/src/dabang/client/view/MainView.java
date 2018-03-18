@@ -15,7 +15,7 @@ import dabang.client.model.OrderList;
 public class MainView implements ActionListener {
 	private MenuDrink md = new MenuDrink();
 	private JFrame mainFrame = new JFrame();
-	private JPanel[] cards = new JPanel[8];
+	private JPanel[] cards = new JPanel[15];
 	private JPanel mainPanel = new JPanel();
 	private ArrayList<OrderList> orderAl = new ArrayList<OrderList>();
 	
@@ -32,6 +32,11 @@ public class MainView implements ActionListener {
 		cards[5] = new ManagerGui(mainPanel);
 		cards[6] = new GuiPersonalInfor(mainPanel); //사용자개인정보수정화면
 		cards[7] = new SalesView(mainPanel);
+		cards[8] = new GuiManegeMenu(mainPanel); //관리자메뉴관리화면
+		cards[9] = new GuiAllmenu(mainPanel); //관리자메뉴관리화면 전체보기
+		cards[10] = new GuiAddmenu(mainPanel); //관리자메뉴관리화면 메뉴추가
+		cards[11] = new Guimodifymenu(mainPanel); //관리자메뉴관리화면 메뉴추가
+		cards[12] = new GuiDeletemenu(mainPanel); //관리자메뉴관리화면 메뉴추가
 		
 		mainPanel.add(cards[0],"Login",0);
 		mainPanel.add(cards[1],"memberMain",1);
@@ -41,6 +46,11 @@ public class MainView implements ActionListener {
 		mainPanel.add(cards[5],"admin",5);
 		mainPanel.add(cards[6],"PersonalInfor",6); //사용자개인정보수정화면
 		mainPanel.add(cards[7],"sales",7);
+		mainPanel.add(cards[8],"ManegeMenu",8); //관리자메뉴관리화면
+		mainPanel.add(cards[9],"Allmenu",9); //관리자메뉴관리화면 전체보기
+		mainPanel.add(cards[10],"Addmenu",10); //관리자메뉴관리화면 메뉴추가
+		mainPanel.add(cards[11],"modifymenu",11); //관리자메뉴관리화면 메뉴추가
+		mainPanel.add(cards[12],"Deletemenu",12); //관리자메뉴관리화면 메뉴추가
 		//this.add("login",login);
 		mainFrame.add(mainPanel);
 		//login.button1.addActionListener(this);

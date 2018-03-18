@@ -1,6 +1,7 @@
 package dabang.client.view;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -18,7 +19,7 @@ import javax.swing.JTextField;
 import dabang.client.controller.MenuManageControl;
 import dabang.client.model.MenuManage;
 
-public class GuiAddmenu extends JFrame implements ActionListener{
+public class GuiAddmenu extends JPanel implements ActionListener{
 
 	private JPanel p1 = new JPanel();
 	private JLabel addmenutitle = new JLabel("  메뉴 추가");
@@ -34,7 +35,9 @@ public class GuiAddmenu extends JFrame implements ActionListener{
 	private JButton save = new JButton("추가하기");
 	private JButton cancel = new JButton("취소하기");
 
-	private JFrame myframe = this;
+	private JPanel mypanel = this;
+	private JPanel mainPanel = new JPanel();
+
 	MenuManageControl menuCon = new MenuManageControl();
 
 	public void p1 () { //제목
@@ -110,17 +113,20 @@ public class GuiAddmenu extends JFrame implements ActionListener{
 		JPanel p32 = new JPanel();
 		p3.add(p31);
 		p3.add(p32);
+		
+		save.addActionListener(this);
 		p31.add(save);
 		p31.setLayout(new BorderLayout());
 		p31.add(save,BorderLayout.CENTER);
 		save.setFont(new Font("Serif",Font.BOLD,30));
-		save.addActionListener(this);
+		
+		cancel.addActionListener(this);
 		p32.add(cancel);
 		p32.setLayout(new BorderLayout());
 		p32.add(cancel,BorderLayout.CENTER);
 		cancel.setFont(new Font("Serif",Font.BOLD,30));
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==save) {
@@ -132,8 +138,14 @@ public class GuiAddmenu extends JFrame implements ActionListener{
 			}else { //메뉴등록 실패
 				JOptionPane.showMessageDialog(this, "중복된 메뉴가 있습니다. 다른 메뉴를 등록해주세요.", "등록실패", JOptionPane.ERROR_MESSAGE);
 			}
+		}else if(e.getSource()==cancel) {
+//			mainPanel.remove(8);
+//			GuiManegeMenu gm = new GuiManegeMenu(mainPanel);
+//			mainPanel.add(gm,"ManegeMenu",8);
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "ManegeMenu");
 		}
 	}
+
 
 	private void comInit() {
 		this.p1();
@@ -143,7 +155,7 @@ public class GuiAddmenu extends JFrame implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==calladdrbutton) {
 					JFileChooser calladdrjc = new JFileChooser();
-					int choiceValue = calladdrjc.showOpenDialog(myframe);
+					int choiceValue = calladdrjc.showOpenDialog(mypanel);
 					if(choiceValue == JFileChooser.APPROVE_OPTION) {
 						addmenupictureaddr=new JLabel(calladdrjc.getSelectedFile().getPath());
 					}
@@ -153,13 +165,11 @@ public class GuiAddmenu extends JFrame implements ActionListener{
 		this.p3();
 	}
 
-	public GuiAddmenu () {
-		super("잡다방");
+	public GuiAddmenu (JPanel mainPanel) {
 		this.setSize(1000,800);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(null);
-		comInit();
+		this.comInit();
+		this.mainPanel = mainPanel;
 		this.setVisible(true);
 	}
 

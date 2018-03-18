@@ -1,6 +1,7 @@
 package dabang.client.view;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -20,7 +21,7 @@ import dabang.client.model.MenuManage;
 
 
 
-public class GuiDeletemenu extends JFrame implements ActionListener{
+public class GuiDeletemenu extends JPanel implements ActionListener{
 	
 	private JPanel p1 = new JPanel();
 	private JLabel addmenutitle = new JLabel("  메뉴 삭제");
@@ -31,7 +32,9 @@ public class GuiDeletemenu extends JFrame implements ActionListener{
 	private JButton deletesave = new JButton("삭제하기");
 	private JButton deletecancel = new JButton("취소하기");
 	
-	private JFrame myframe = this;
+	private JPanel myPanel = this;
+	private JPanel mainPanel = null;
+	
 	MenuManageControl menuCon = new MenuManageControl();
 	MenuManage deletemenu= new MenuManage();;
 	
@@ -84,6 +87,7 @@ public class GuiDeletemenu extends JFrame implements ActionListener{
 		p32.setLayout(new BorderLayout());
 		p32.add(deletecancel,BorderLayout.CENTER);
 		deletecancel.setFont(new Font("Serif",Font.BOLD,30));
+		deletecancel.addActionListener(this);
 	}
 	
 	@Override
@@ -95,23 +99,23 @@ public class GuiDeletemenu extends JFrame implements ActionListener{
 			}else { //메뉴수정 실패
 				JOptionPane.showMessageDialog(this, "삭제할 메뉴가 없습니다. 메뉴명을 확인 해주세요.", "삭제실패", JOptionPane.ERROR_MESSAGE);
 			}
+		}else if(e.getSource()==deletecancel) {
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "ManegeMenu");
 		}
 	}
 	
 	private void comInit() {
-		this.p1();
-		this.p2();
-		this.p3();
+		p1();
+		p2();
+		p3();
 	}
 	
-	public GuiDeletemenu () {
-		super("잡다방");
+	public GuiDeletemenu (JPanel mainPanel) {
 		this.setSize(1000,800);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(null);
-		comInit();
+		this.comInit();
 		this.setVisible(true);
+		this.mainPanel  = mainPanel;
 	}
 
 }
