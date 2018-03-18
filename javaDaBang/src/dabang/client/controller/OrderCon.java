@@ -15,9 +15,14 @@ import dabang.client.model.OrderList;
 
 public class OrderCon {
 	private HashMap<String, ArrayList> orderList = new HashMap<String, ArrayList>();
-	private ArrayList al = new ArrayList();
+	private ArrayList<OrderList> al = new ArrayList<OrderList>();
 	public void addOrder(Member accessMember, ArrayList <OrderList> ol) {
-		al.add(ol);
+		for(int i=0;i<orderList.get(accessMember.getId()).size();i++) {
+			al.add((OrderList)orderList.get(accessMember.getId()).get(i));
+		}
+		for(int i=0;i<ol.size();i++) {
+			al.add(ol.get(i));
+		}
 		orderList.put(accessMember.getId(), al);
 	}
 	public ArrayList selectOrder(String id) {
@@ -36,10 +41,6 @@ public class OrderCon {
         // TODO Auto-generated method stub
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("order.txt"))){
         	orderList = (HashMap<String, ArrayList>) ois.readObject();
-        	Iterator<String> it = orderList.keySet().iterator();
-    		while(it.hasNext()) {
-    			al.add(orderList.get(it.next()));
-    		}
         }catch(IOException e){
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

@@ -79,7 +79,6 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 		this.mainFrame = mainFrame;
 		this.orderAl = orderAl;
 		this.setLayout(new BorderLayout());
-		this.addKeyListener(this);
 		this.compInit(); //사용자 정의 메소드
 
 		this.setVisible(true); //가시적으로 보여주어라
@@ -96,6 +95,7 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 		panel2.setBackground(bgc);
 		panel2.add(label2);//비번
 		panel2.add(field2);//비번칸
+		field2.addKeyListener(this);
 		centerPanel2.add(panel2);
 	}
 
@@ -228,7 +228,6 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println(e.getKeyCode());
 		if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 			button1.doClick();
 		}
