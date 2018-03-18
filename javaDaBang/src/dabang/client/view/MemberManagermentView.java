@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Vector;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -33,9 +34,14 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.CellEditorListener;
+import javax.swing.event.ChangeEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
 
 import dabang.client.controller.LoginController;
 import dabang.client.controller.MemberController;
@@ -167,7 +173,7 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 			data[i][10] =testMem[i].getPoint();                             
 		}
 		String[] columnName = {"아이디","별명","이름","양력","년도","월","일","성별","PH","등급","포인트"};
-		
+
 
 		model = new DefaultTableModel(data, columnName) 
 		{public boolean isCellEditable(int rowlndex,int mCollnDex) {return false;}};//수정불가코드
@@ -183,7 +189,7 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 		table.getColumnModel().getColumn(8).setPreferredWidth(200);//폰번칸
 		table.getColumnModel().getColumn(9).setPreferredWidth(70);//등급칸
 		table.getColumnModel().getColumn(10).setPreferredWidth(100);//포인트칸크기
-        /*DefaultTableCellRenderer tableCell = new DefaultTableCellRenderer();
+		/*DefaultTableCellRenderer tableCell = new DefaultTableCellRenderer();
         tableCell.setHorizontalAlignment(SwingConstants.CENTER);
         TableColumnModel CellModel = table.getColumnModel();
         for(int i=0;i<CellModel.getColumnCount();i++){
@@ -223,14 +229,14 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 		dialog.add(diabutton1);
 		dialog.add(diaexitbutton);   
 	}
-///////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////
 	public void DelData()//////삭제
 	{
 		int yes_no_select = JOptionPane.showConfirmDialog(null, 
 				"정말 삭제하겠습니까?", "삭제 확인 창", JOptionPane.YES_NO_CANCEL_OPTION);
 		if(yes_no_select==JOptionPane.YES_OPTION)
 		{
-            int deleteRow = table.getSelectedColumn();
+			int deleteRow = table.getSelectedColumn();
 			if(deleteRow == -1) return;
 			else 
 			{
@@ -240,60 +246,79 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 		}
 		else return;       
 	}
-	
 
-	private void westyes()//수정창에서 다쓰고 확인
-	{
 
-		for(int i=0;i<data.length;i++) 
-		{
-			        
-		} 
+
+		  protected JTable createTable()
+		  {
+		        TableCellRenderer renderer = new DefaultTableCellRenderer() ;
+
+		        final TableCellEditor editor = new DefaultCellEditor(new JTextField());
+		        editor.addCellEditorListener(new CellEditorListener() {
+		            @Override
+		            public void editingStopped(ChangeEvent e) {
+		                // 수정을 끝내고 enter 를 입력하면 ChangeEvent가 도착한다.
+		                String value = (String) editor.getCellEditorValue();
+		                TableModel model = table.getModel();
+		                int rowIdx = table.getSelectedRow();
+		                int colIdx = table.getSelectedColumn();
+
+		                //현재 선택된 셀에서 편집이 이루어졌으므로 모델의 값을 갱신해준다.
+		                model.setValueAt(value, rowIdx, colIdx);
+		            }
+		            
+		            @Override
+		            public void editingCanceled(ChangeEvent e) {
+		                // TODO Auto-generated method stub
+		                
+		            }
+		        });
+		        
+		
 	}
-	
-//////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////
 
 	//showtable.table.setValueAt(west.tf[1].getText(), updateRow, 12);   
 
-@Override
-public void actionPerformed(ActionEvent e) {
-	if(e.getSource()==button1)//수정창누를시
-	{
-		dialog.setSize(700,400);
-		dialog.setLocation(200, 200);
-		dialog.setVisible(true);
-	}
-	if(e.getSource()==deletebutton)//삭제버튼누를시
-	{
-		DelData();
-	}
-	if(e.getSource()==exitbutton)//관리창나가기
-	{
-		this.dispose();
-	}
-	if(e.getSource()==diabutton1)//수정가즈아
-	{
-		this.westyes();
-		// dialog.tf[0].setText(" ");
-		dialog.dispose();
-	}
-	if(e.getSource()==diaexitbutton)//수정창에서나가기
-	{
-		dialog.dispose();
-	}
-}
-/////////////////////////////////////////////// 되는지 실험하는곳 
-public static void main(String[] args) {
-	try {
-		for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-			if ("Nimbus".equals(info.getName())) {
-				UIManager.setLookAndFeel(info.getClassName());
-				break;
-			}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==button1)//수정창누를시
+		{
+			dialog.setSize(700,400);
+			dialog.setLocation(200, 200);
+			dialog.setVisible(true);
 		}
-	} catch (Exception e) {
-		// If Nimbus is not available, you can set the GUI to another look and feel.
+		if(e.getSource()==deletebutton)//삭제버튼누를시
+		{
+			DelData();
+		}
+		if(e.getSource()==exitbutton)//관리창나가기
+		{
+			this.dispose();
+		}
+		if(e.getSource()==diabutton1)//수정가즈아
+		{
+			createTable();
+			// dialog.tf[0].setText(" ");
+			dialog.dispose();
+		}
+		if(e.getSource()==diaexitbutton)//수정창에서나가기
+		{
+			dialog.dispose();
+		}
 	}
-	new MemberManagermentView();
-}
+	/////////////////////////////////////////////// 되는지 실험하는곳 
+	public static void main(String[] args) {
+		try {
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (Exception e) {
+			// If Nimbus is not available, you can set the GUI to another look and feel.
+		}
+		new MemberManagermentView();
+	}
 }
