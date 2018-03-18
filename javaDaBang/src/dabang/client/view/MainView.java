@@ -9,15 +9,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import dabang.client.model.Member;
-import dabang.client.model.Menu;
 import dabang.client.model.MenuDrink;
+import dabang.client.model.OrderList;
 
 public class MainView implements ActionListener {
 	private MenuDrink md = new MenuDrink();
 	private JFrame mainFrame = new JFrame();
 	private JPanel[] cards = new JPanel[15];
 	private JPanel mainPanel = new JPanel();
-	private ArrayList<Menu> orderAl = new ArrayList<Menu>();
+	private ArrayList<OrderList> orderAl = new ArrayList<OrderList>();
 	private Member accessMember = new Member();
 
 	

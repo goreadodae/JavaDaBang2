@@ -6,6 +6,7 @@ import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
@@ -26,8 +27,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import dabang.client.model.Member;
-import dabang.client.model.Menu;
 import dabang.client.model.MenuDrink;
+import dabang.client.model.OrderList;
 
 
 public class OrderDessertView extends JPanel {
@@ -59,8 +60,8 @@ public class OrderDessertView extends JPanel {
 	private JButton cancelButton = new JButton(img_cancel);
 	private ImageIcon img_event1 = new ImageIcon(new ImageIcon("Image\\OrderImage\\event1.png").getImage().getScaledInstance(500, 150, Image.SCALE_DEFAULT));
 	private JButton toWebPage = new JButton(img_event1);
-	private ArrayList<Menu> orderAl = null;
-	private Menu ol = new Menu();
+	private ArrayList<OrderList> orderAl = null;
+	private OrderList ol = new OrderList();
 	private int sendPrice;
 	private Member accessMember;
 	
@@ -186,7 +187,7 @@ public class OrderDessertView extends JPanel {
 		price = new JLabel(showPrice);
 	}
 	
-	public OrderDessertView(JPanel mainPanel, JFrame mainFrame, ArrayList<Menu> orderAl, MenuDrink md,
+	public OrderDessertView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md,
 			Member accessMember) {
 		this.md = md;
 		this.mainFrame = mainFrame;
@@ -216,8 +217,8 @@ public class OrderDessertView extends JPanel {
 				if(goodsNum == 0) {
 					JOptionPane.showMessageDialog(null,"주문 실패");
 				}else {
-					ol.setMenuName(goodsName.getText());
-					ol.setOrderNumber(goodsNum);
+					ol.setName(goodsName.getText());
+					ol.setOrderNum(goodsNum);
 					ol.setPrice(sendPrice);
 					orderAl.add(ol);
 					mainPanel.remove(2);

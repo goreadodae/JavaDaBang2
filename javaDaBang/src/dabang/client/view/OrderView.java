@@ -6,6 +6,7 @@ import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
@@ -31,8 +32,8 @@ import javax.swing.SwingConstants;
 import dabang.client.model.Espresso;
 import dabang.client.model.Frappuccino;
 import dabang.client.model.Member;
-import dabang.client.model.Menu;
 import dabang.client.model.MenuDrink;
+import dabang.client.model.OrderList;
 import dabang.client.model.Tea;
 
 public class OrderView extends JPanel {
@@ -78,8 +79,8 @@ public class OrderView extends JPanel {
 	private JButton cancelButton = new JButton(img_cancel);
 	private ImageIcon img_event1 = new ImageIcon(new ImageIcon("Image\\OrderImage\\event1.png").getImage().getScaledInstance(500, 150, Image.SCALE_DEFAULT));
 	private JButton toWebPage = new JButton(img_event1);
-	private ArrayList<Menu> orderAl = null;
-	private Menu ol = new Menu();
+	private ArrayList<OrderList> orderAl = null;
+	private OrderList ol = new OrderList();
 	private int sendPrice;
 	private Member accessMember = new Member();
 	public void comInit() {
@@ -270,7 +271,7 @@ public class OrderView extends JPanel {
 		price = new JLabel(showPrice);
 	}
 	
-	public OrderView(JPanel mainPanel, JFrame mainFrame, ArrayList<Menu> orderAl, MenuDrink md,
+	public OrderView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md,
 			Member accessMember) {
 		this.md = md;
 		this.mainFrame = mainFrame;
@@ -315,27 +316,11 @@ public class OrderView extends JPanel {
 				if(goodsNum == 0) {
 					JOptionPane.showMessageDialog(null,"주문 실패");
 				}else {
-					Espresso espre = new Espresso();
-					Frappuccino fra = new Frappuccino();
-					Tea te = new Tea();
-					switch(md.getKindOfDrink()) {
-					case 1:
-						espre.setMenuName(goodsName.getText());
-						espre.setOrderNumber(goodsNum);
-						espre.setPrice(sendPrice);
-						espre.setSize((String)sizeCb.getSelectedItem());
-						orderAl.add(espre);break;
-					case 2:
-						fra.setMenuName(goodsName.getText());
-						fra.setOrderNumber(goodsNum);
-						fra.setPrice(sendPrice);
-						fra.setSize((String)sizeCb.getSelectedItem());orderAl.add(fra);break;
-					case 3:
-						te.setMenuName(goodsName.getText());
-						te.setOrderNumber(goodsNum);
-						te.setPrice(sendPrice);
-						te.setSize((String)sizeCb.getSelectedItem());orderAl.add(te);break;
-					}
+					ol.setName(goodsName.getText());
+					ol.setOrderNum(goodsNum);
+					ol.setPrice(sendPrice);
+					ol.setSize((String)sizeCb.getSelectedItem());
+					orderAl.add(ol);
 					mainPanel.remove(2);
 					MenuView mv = new MenuView(mainPanel, mainFrame, orderAl, md, accessMember);
 					mainPanel.add(mv,"menu",2);

@@ -1,5 +1,6 @@
 package dabang.client.controller;
 
+import java.awt.Menu;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,17 +10,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import dabang.client.model.Member;
-import dabang.client.model.Menu;
+import dabang.client.model.OrderList;
 
 public class OrderCon {
 	private HashMap<String, ArrayList> orderList = new HashMap<String, ArrayList>();
-	private ArrayList<Menu> al = new ArrayList<Menu>();
-	public void addOrder(Member accessMember, ArrayList <Menu> ol) {
-		for(int i=0;i<orderList.get(accessMember.getId()).size();i++) {
-			al.add((Menu)orderList.get(accessMember.getId()).get(i));
-		}
-		for(int i=0;i<ol.size();i++) {
-			al.add(ol.get(i));
+	private ArrayList<OrderList> al = new ArrayList<OrderList>();
+	public void addOrder(Member accessMember, ArrayList <OrderList> ol) {
+		if(orderList.isEmpty()) {
+			for(int i=0;i<ol.size();i++) {
+				al.add(ol.get(i));
+			}
+		}else {
+			for(int i=0;i<orderList.get(accessMember.getId()).size();i++) {
+				al.add((OrderList)orderList.get(accessMember.getId()).get(i));
+			}
+			for(int i=0;i<ol.size();i++) {
+				al.add(ol.get(i));
+			}
 		}
 		orderList.put(accessMember.getId(), al);
 	}
