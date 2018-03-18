@@ -471,9 +471,17 @@ public class MenuView extends JPanel implements ActionListener{
 			mainPanel.add(l,"Login",0);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "Login");
 		}else if(e.getSource()==paymentPayButton) {
-			
+			oCon.loadOrder();
 			oCon.addOrder(accessMember, orderAl);
+			oCon.saveOrder();
 			
+			oCon.loadOrder();
+			ArrayList al = oCon.selectOrder(accessMember.getId());
+			System.out.println(al);
+			for(int i=0; i<al.size();i++) {
+				
+				System.out.println(al.get(i));
+			}
 			JOptionPane.showMessageDialog(null,"주문이 완료되었습니다.");
 			
 			orderAl.clear();
