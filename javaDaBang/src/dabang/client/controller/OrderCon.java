@@ -7,18 +7,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 
 import dabang.client.model.Member;
-import dabang.client.model.OrderList;
+import dabang.client.model.Menu;
 
 public class OrderCon {
 	private HashMap<String, ArrayList> orderList = new HashMap<String, ArrayList>();
-	private ArrayList<OrderList> al = new ArrayList<OrderList>();
-	public void addOrder(Member accessMember, ArrayList <OrderList> ol) {
+	private ArrayList<Menu> al = new ArrayList<Menu>();
+	public void addOrder(Member accessMember, ArrayList <Menu> ol) {
 		for(int i=0;i<orderList.get(accessMember.getId()).size();i++) {
-			al.add((OrderList)orderList.get(accessMember.getId()).get(i));
+			al.add((Menu)orderList.get(accessMember.getId()).get(i));
 		}
 		for(int i=0;i<ol.size();i++) {
 			al.add(ol.get(i));

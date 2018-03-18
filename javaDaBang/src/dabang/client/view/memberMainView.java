@@ -15,8 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import dabang.client.model.Member;
+import dabang.client.model.Menu;
 import dabang.client.model.MenuDrink;
-import dabang.client.model.OrderList;
 
 public class memberMainView extends JPanel implements ActionListener {
 
@@ -41,7 +41,7 @@ public class memberMainView extends JPanel implements ActionListener {
 	private Member accessMember = new Member();
 	private MenuDrink md = new MenuDrink();
 	private JFrame mainFrame = new JFrame();
-	private ArrayList<OrderList> orderAl = new ArrayList<OrderList>();
+	private ArrayList<Menu> orderAl = new ArrayList<Menu>();
 	private void setImage()
 	{
 		//customImage = new ImageIcon(new ImageIcon("order.jpg").getImage().getScaledInstance(500,250, Image.SCALE_DEFAULT)); 
@@ -137,7 +137,7 @@ public class memberMainView extends JPanel implements ActionListener {
 		panel5();
 	}
 
-	public memberMainView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md,
+	public memberMainView(JPanel mainPanel, JFrame mainFrame, ArrayList<Menu> orderAl, MenuDrink md,
 			Member accessMember)
 	{
 		this.setSize(1000,800);

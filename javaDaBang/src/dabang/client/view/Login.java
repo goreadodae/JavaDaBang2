@@ -25,8 +25,8 @@ import javax.swing.JTextField;
 import dabang.client.controller.LoginController;
 import dabang.client.controller.MemberController;
 import dabang.client.model.Member;
+import dabang.client.model.Menu;
 import dabang.client.model.MenuDrink;
-import dabang.client.model.OrderList;
 public  class Login extends JPanel implements ActionListener,KeyListener{
 	private static Color bgc = new Color(246,245,239);
 	private JPanel panel1 = new JPanel();//아이디
@@ -63,8 +63,8 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 	private Member accessMember = new Member();
 	private MenuDrink md = new MenuDrink();
 	private JFrame mainFrame = new JFrame();
-	private ArrayList<OrderList> orderAl = new ArrayList<OrderList>();
-	public Login(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md,
+	private ArrayList<Menu> orderAl = new ArrayList<Menu>();
+	public Login(JPanel mainPanel, JFrame mainFrame, ArrayList<Menu> orderAl, MenuDrink md,
 			Member accessMember) 
 	{
 		//		super("잡다방"); //이름설정

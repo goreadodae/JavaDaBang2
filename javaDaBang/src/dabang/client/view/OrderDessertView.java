@@ -26,8 +26,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import dabang.client.model.Member;
+import dabang.client.model.Menu;
 import dabang.client.model.MenuDrink;
-import dabang.client.model.OrderList;
+
 
 public class OrderDessertView extends JPanel {
 	private JFrame mainFrame = null;
@@ -58,8 +59,8 @@ public class OrderDessertView extends JPanel {
 	private JButton cancelButton = new JButton(img_cancel);
 	private ImageIcon img_event1 = new ImageIcon(new ImageIcon("Image\\OrderImage\\event1.png").getImage().getScaledInstance(500, 150, Image.SCALE_DEFAULT));
 	private JButton toWebPage = new JButton(img_event1);
-	private ArrayList<OrderList> orderAl = null;
-	private OrderList ol = new OrderList();
+	private ArrayList<Menu> orderAl = null;
+	private Menu ol = new Menu();
 	private int sendPrice;
 	private Member accessMember;
 	
@@ -185,7 +186,7 @@ public class OrderDessertView extends JPanel {
 		price = new JLabel(showPrice);
 	}
 	
-	public OrderDessertView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md,
+	public OrderDessertView(JPanel mainPanel, JFrame mainFrame, ArrayList<Menu> orderAl, MenuDrink md,
 			Member accessMember) {
 		this.md = md;
 		this.mainFrame = mainFrame;
@@ -215,8 +216,8 @@ public class OrderDessertView extends JPanel {
 				if(goodsNum == 0) {
 					JOptionPane.showMessageDialog(null,"주문 실패");
 				}else {
-					ol.setName(goodsName.getText());
-					ol.setOrderNum(goodsNum);
+					ol.setMenuName(goodsName.getText());
+					ol.setOrderNumber(goodsNum);
 					ol.setPrice(sendPrice);
 					orderAl.add(ol);
 					mainPanel.remove(2);

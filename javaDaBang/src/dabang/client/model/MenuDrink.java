@@ -3,7 +3,7 @@ package dabang.client.model;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class MenuDrink {
+public class MenuDrink extends Menu{
 	private int kindOfDrink;//음료종류
 	private String goodsName;//상품이름
 	private String size;//Short,Tall,Grande,Venti

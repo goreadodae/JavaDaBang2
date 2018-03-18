@@ -22,11 +22,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import dabang.client.controller.MemberController;
 import dabang.client.controller.OrderCon;
 import dabang.client.model.Member;
+import dabang.client.model.Menu;
 import dabang.client.model.MenuDrink;
-import dabang.client.model.OrderList;
 
 public class MenuView extends JPanel implements ActionListener{
 	private static Color bgc = new Color(246,245,239);
@@ -83,7 +82,7 @@ public class MenuView extends JPanel implements ActionListener{
 	private ArrayList<JPanel> payList = new ArrayList<JPanel>();
 
 	private JPanel mainPanel = null;
-	private ArrayList<OrderList> orderAl = null;
+	private ArrayList<Menu> orderAl = null;
 
 	ArrayList<JPanel> jp = null;
 	ArrayList<JLabel> orderName = null;
@@ -337,10 +336,11 @@ public class MenuView extends JPanel implements ActionListener{
 			orderSize.add(new JLabel());
 			orderPrice.add(new JLabel());
 			orderCancel.add(new JLabel());
-			orderName.get(i).setText(orderAl.get(i).getName());
-			orderNum.get(i).setText(Integer.toString(orderAl.get(i).getOrderNum())+" 개");
-			orderSize.get(i).setText("사이즈 : "+orderAl.get(i).getSize());
-			orderPrice.get(i).setText(Integer.toString(orderAl.get(i).getPrice()*orderAl.get(i).getOrderNum())+"원");
+			orderName.get(i).setText(orderAl.get(i).getMenuName());
+			orderNum.get(i).setText(Integer.toString(orderAl.get(i).getOrderNumber())+" 개");
+
+			orderSize.get(i).setText("사이즈 : "+((MenuDrink)(orderAl.get(i))).getSize());
+			orderPrice.get(i).setText(Integer.toString(orderAl.get(i).getPrice()*orderAl.get(i).getOrderNumber())+"원");
 			orderName.get(i).setFont(f1);
 			
 			jp.get(i).add(orderName.get(i),BorderLayout.NORTH);
@@ -366,7 +366,7 @@ public class MenuView extends JPanel implements ActionListener{
 			jp.get(i).setBackground(Color.white);
 //			jp.get(i).setLayout(new GridLayout(5,1));
 			payList.add(jp.get(i));
-			totalPriceNum += orderAl.get(i).getPrice()*orderAl.get(i).getOrderNum();
+			totalPriceNum += orderAl.get(i).getPrice()*orderAl.get(i).getOrderNumber();
 			deleteButton.get(i).addActionListener(new ActionListener() {
 				
 				@Override
@@ -429,7 +429,7 @@ public class MenuView extends JPanel implements ActionListener{
 		this.add(menu,BorderLayout.CENTER);
 	}
 
-	public MenuView(JPanel mainPanel, JFrame mainFrame, ArrayList<OrderList> orderAl, MenuDrink md,
+	public MenuView(JPanel mainPanel, JFrame mainFrame, ArrayList<Menu> orderAl, MenuDrink md,
 			Member accessMember) {
 		this.md = md;
 		this.mainFrame = mainFrame;
