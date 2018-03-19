@@ -175,7 +175,7 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 
 	private void picme()
 	{
-		logo = new ImageIcon(new ImageIcon("Image\\LoginImage\\logo.png").getImage().getScaledInstance(300,300,Image.SCALE_DEFAULT));
+		logo = new ImageIcon(new ImageIcon("Image/LoginImage/jobdabanglogo.png").getImage().getScaledInstance(300,300,Image.SCALE_DEFAULT));
 		JLabel logoLabel = new JLabel("asdf");
 		logoLabel.setIcon(logo);
 		logoLabel.setPreferredSize(new Dimension(300,300));
