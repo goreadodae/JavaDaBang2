@@ -27,7 +27,11 @@ import dabang.client.model.Sales;
 
 public class SalesView extends JPanel implements ActionListener {
 	private JPanel mainPanel = null;
-	private DefaultTableModel model = new DefaultTableModel();
+	private DefaultTableModel model = new DefaultTableModel() {
+		public boolean isCellEditable(int i, int c) {
+			return false;
+		}
+	};
 	private JTable salesTable = new JTable(model);
 	private JLabel titleLabel = new JLabel("매출 관리",JLabel.CENTER);
 	private JButton backButton = new JButton("뒤로가기");
@@ -52,7 +56,7 @@ public class SalesView extends JPanel implements ActionListener {
 		model.addColumn("제품명");
 		model.addColumn("총 판매 수량");
 		model.addColumn("총 매출액");
-
+		
 		oCon.loadOrder();
 		orderList = oCon.selectAll();
 
