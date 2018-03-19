@@ -18,7 +18,7 @@ public class MainView implements ActionListener {
 	private JPanel[] cards = new JPanel[15];
 	private JPanel mainPanel = new JPanel();
 	private ArrayList<Menu> orderAl = new ArrayList<Menu>();
-	private Member accessMember = new Member();
+	private Member accessMember = new Member("0", "0", "0");
 
 	
 	public void comInit() {
