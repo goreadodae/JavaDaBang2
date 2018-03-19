@@ -8,6 +8,9 @@ import dabang.client.model.Member;
 public class MemberView {
     Scanner sc = new Scanner(System.in);
     MemberController mCon = new MemberController();
+    private Member mb = new Member();
+    
+    
     public void mainMenu() {
         while(true) {
             System.out.println("\n\n- - - - - - 회원 관리 프로그램 - - - - - -");
@@ -70,8 +73,9 @@ public class MemberView {
             char userGender = sc.next().charAt(0);
             System.out.print("회원 폰번호 입력 : ");
             String phoneNumber = sc.next();
+            int visitCount = mb.getVisitCount();
             mCon.memberModify(new Member(userId,userPwd,userNickName,userName,userSclc,userYear,
-            		userMonth,userDay,userGender,phoneNumber,"실버",0.0));
+            		userMonth,userDay,userGender,phoneNumber,visitCount,"실버",0.0));
             System.out.println("변경이 완료되었습니다.");
         }
         else {
@@ -109,6 +113,7 @@ public class MemberView {
     }
     private void memberJoin() {
         // TODO Auto-generated method stub
+    	
         System.out.print("\n\n========== 회원 가입 하기 ==========\n\n");
         System.out.print("회원 아이디 입력 : ");
         String userId = sc.next();
@@ -130,9 +135,11 @@ public class MemberView {
         char userGender = sc.next().charAt(0);
         System.out.print("회원 폰번호 입력 : ");
         String phoneNumber = sc.next();
+        int visitCount = 0; // 방문횟수 디폴트 0
+        
  
         if(mCon.memberJoin(new Member(userId,userPwd,userNickName,userName,userSclc,userYear,
-        		userMonth,userDay,userGender,phoneNumber,"실버",0.0))) {
+        		userMonth,userDay,userGender,phoneNumber,visitCount,"실버",0.0))) {
             System.out.println("회원 가입이 완료 되었습니다.");
         }
         else {
