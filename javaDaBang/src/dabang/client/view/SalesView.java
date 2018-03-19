@@ -82,8 +82,9 @@ public class SalesView extends JPanel implements ActionListener {
 		
 		int number = 1;
 		for(int i=0;i<salesAl.size();i++) {
+			String priceForm = String.format("%,d", salesAl.get(i).getTotalSalesPrice());
 			model.addRow(new Object[] {number++,salesAl.get(i).getMenuName(),
-					salesAl.get(i).getTotalSalesCount(),salesAl.get(i).getTotalSalesPrice()});
+					salesAl.get(i).getTotalSalesCount(),priceForm});
 		}
 	}
 
