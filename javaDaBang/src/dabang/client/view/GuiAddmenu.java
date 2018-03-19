@@ -7,8 +7,15 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Properties;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,13 +31,18 @@ public class GuiAddmenu extends JPanel implements ActionListener{
 	private JPanel p1 = new JPanel();
 	private JLabel addmenutitle = new JLabel("  메뉴 추가");
 	private JPanel p2 = new JPanel();
-	private JLabel addmenunamelabel = new JLabel("   메뉴명");
-	private JTextField tallmenu = new JTextField(25);
+	
+	private JLabel addEgmenunamelabel = new JLabel("   영어 메뉴명");
+	private JTextField taddEgmenu = new JTextField(25);
+	private JLabel addKormenunamelabel = new JLabel("   한글 메뉴명");
+	private JTextField taddKormenu = new JTextField(25);
+	
 	private JLabel addmenupricelabel = new JLabel("   가격");
 	private JTextField tprice = new JTextField(25);
 	private JLabel addmenupicturelabel = new JLabel("   사진");
 	private JPanel p3 = new JPanel();
-	private JLabel addmenupictureaddr=new JLabel("사진");
+	private JComboBox kindofbox = new JComboBox(); //메뉴종류 선택 콤보박스
+	private JLabel addmenupictureaddr=null;
 	private JButton calladdrbutton = new JButton("불러오기");
 	private JButton save = new JButton("추가하기");
 	private JButton cancel = new JButton("취소하기");
@@ -38,6 +50,8 @@ public class GuiAddmenu extends JPanel implements ActionListener{
 	private JPanel mypanel = this;
 	private JPanel mainPanel = new JPanel();
 
+	private Properties props = new Properties();
+	
 	MenuManageControl menuCon = new MenuManageControl();
 
 	public void p1 () { //제목
@@ -55,8 +69,9 @@ public class GuiAddmenu extends JPanel implements ActionListener{
 		MenuManage m = new MenuManage();
 		p2.setSize(980,570);
 		p2.setLocation(0,90);
-		p2.setBackground(Color.blue);
+		//p2.setBackground(Color.blue);
 		this.add(p2);
+		
 		p2.setLayout(new GridLayout(3,1));
 		JPanel p21 = new JPanel();
 		JPanel p22 = new JPanel();
@@ -64,32 +79,53 @@ public class GuiAddmenu extends JPanel implements ActionListener{
 		p2.add(p21);
 		p2.add(p22);
 		p2.add(p23);
-		p21.setLayout(new GridLayout(2,1));
+		
+		p21.setLayout(new GridLayout(2,2));
 		JPanel p211 = new JPanel();
 		JPanel p212 = new JPanel();
-		p21.add(p211);
-		p21.add(p212);
-		p211.add(addmenunamelabel);
-		addmenunamelabel.setFont(new Font("Serif",Font.BOLD,30));
+		JPanel p213 = new JPanel();
+		JPanel p214 = new JPanel();
+		p22.add(p211);
+		p22.add(p212);
+		p22.add(p213);
+		p22.add(p214);
+		
+		p211.add(addmenupricelabel);
+		p212.add(addKormenunamelabel);
+		p213.add(taddEgmenu);
+		p214.add(taddKormenu);
+		addmenupricelabel.setFont(new Font("Serif",Font.BOLD,30));
 		p211.setLayout(new BorderLayout());
-		p211.add(addmenunamelabel,BorderLayout.WEST);
-		p212.add(tallmenu);
-		tallmenu.setFont(new Font("Serif",Font.BOLD,25));
+		p211.add(addmenupricelabel,BorderLayout.CENTER);
+		addKormenunamelabel.setFont(new Font("Serif",Font.BOLD,30));
 		p212.setLayout(new BorderLayout());
-		p212.add(tallmenu,BorderLayout.CENTER);
+		p212.add(addKormenunamelabel,BorderLayout.CENTER);
+		
+		taddEgmenu.setFont(new Font("Serif",Font.BOLD,25));
+		p213.setLayout(new BorderLayout());
+		p213.add(tprice,BorderLayout.CENTER);
+		taddKormenu.setFont(new Font("Serif",Font.BOLD,25));
+		p214.setLayout(new BorderLayout());
+		p214.add(taddKormenu,BorderLayout.CENTER);
+
 		p22.setLayout(new GridLayout(2,1));
 		JPanel p221 = new JPanel();
 		JPanel p222 = new JPanel();
 		p22.add(p221);
 		p22.add(p222);
+		
 		p221.add(addmenupricelabel);
 		p222.add(tprice);
+		
 		addmenupricelabel.setFont(new Font("Serif",Font.BOLD,30));
 		p221.setLayout(new BorderLayout());
-		p221.add(addmenupricelabel,BorderLayout.WEST);
+		p221.add(addmenupricelabel,BorderLayout.CENTER);
+		
 		tprice.setFont(new Font("Serif",Font.BOLD,25));
 		p222.setLayout(new BorderLayout());
 		p222.add(tprice,BorderLayout.CENTER);
+	
+		
 		p23.setLayout(new GridLayout(2,1));
 		JPanel p231 = new JPanel();
 		JPanel p232 = new JPanel();
@@ -99,8 +135,10 @@ public class GuiAddmenu extends JPanel implements ActionListener{
 		addmenupicturelabel.setFont(new Font("Serif",Font.BOLD,30));
 		p231.setLayout(new BorderLayout());
 		p231.add(addmenupicturelabel,BorderLayout.WEST);
-		p232.add(addmenupictureaddr);
+//		p232.add(addmenupictureaddr);
 		p232.add(calladdrbutton);
+		
+		
 	}
 
 	public void p3 () { //저장하기,취소하기
@@ -131,8 +169,11 @@ public class GuiAddmenu extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==save) {
 			MenuManage menuInsert = new MenuManage();
-			menuInsert.setMenuname(tallmenu.getText());
+			menuInsert.setEgmenuename(taddEgmenu.getText());
+			menuInsert.setEgmenuename(taddKormenu.getText());
 			menuInsert.setMenuprice(Integer.valueOf(tprice.getText()));
+			//menuInsert.setPhotoaddr(photoaddr);
+			//menuInsert.setKindofmenu(kindofmenu);
 			if(menuCon.menuPlus(menuInsert)) { //메뉴등록 완료
 				JOptionPane.showMessageDialog(this, "메뉴 등록이 되었습니다", "등록완료", JOptionPane.INFORMATION_MESSAGE);
 			}else { //메뉴등록 실패
@@ -157,11 +198,12 @@ public class GuiAddmenu extends JPanel implements ActionListener{
 					JFileChooser calladdrjc = new JFileChooser();
 					int choiceValue = calladdrjc.showOpenDialog(mypanel);
 					if(choiceValue == JFileChooser.APPROVE_OPTION) {
-						addmenupictureaddr=new JLabel(calladdrjc.getSelectedFile().getPath());
+					//	addmenupictureaddr=new JLabel(calladdrjc.getSelectedFile().getPath());
 					}
 				}
 			}
 		});
+		
 		this.p3();
 	}
 

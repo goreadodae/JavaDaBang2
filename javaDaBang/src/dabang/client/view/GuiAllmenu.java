@@ -47,7 +47,6 @@ public class GuiAllmenu extends JPanel implements ActionListener{
 	private JPanel mainPanel = null;
 
 	private Properties props = new Properties();
-	private MenuDrink md = null;
 
 	public void p1 () { //Á¦¸ñ
 		p1.setSize(980,90);
@@ -111,7 +110,7 @@ public class GuiAllmenu extends JPanel implements ActionListener{
 	private void comInit() {
 
 
-		String str  =  null;
+/*		String str  =  null;
 		String s[] = null;
 		String showPrice = null;
 
@@ -129,12 +128,11 @@ public class GuiAllmenu extends JPanel implements ActionListener{
 				mCon.menuPlus(new MenuManage(s[0],Integer.parseInt(s[3])));
 			}
 
-
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 		menuname = mCon.arraytmenuname();
 		menuprice = mCon.arraytmenuprice();
