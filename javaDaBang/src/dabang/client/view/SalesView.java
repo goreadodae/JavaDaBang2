@@ -80,12 +80,16 @@ public class SalesView extends JPanel implements ActionListener {
 		Collections.sort(salesAl);
 		Collections.reverse(salesAl);
 		
-		int number = 1;
+		int number = 1, countSum = 0, priceSum = 0;
 		for(int i=0;i<salesAl.size();i++) {
 			String priceForm = String.format("%,d", salesAl.get(i).getTotalSalesPrice());
 			model.addRow(new Object[] {number++,salesAl.get(i).getMenuName(),
 					salesAl.get(i).getTotalSalesCount(),priceForm});
+			countSum += salesAl.get(i).getTotalSalesCount();
+			priceSum += salesAl.get(i).getTotalSalesPrice();
 		}
+		
+		model.addRow(new Object[] {"гу╟Х"," ",countSum,String.format("%,d",priceSum)});
 	}
 
 	public void comInit() {
