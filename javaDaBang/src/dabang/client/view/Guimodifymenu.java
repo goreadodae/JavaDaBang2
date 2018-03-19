@@ -45,7 +45,7 @@ public class Guimodifymenu extends JPanel implements ActionListener{
 	public void p1 () { //Á¦¸ñ
 		p1.setSize(980,90);
 		p1.setLocation(0,0);
-		p1.setBackground(Color.red);
+		//p1.setBackground(Color.red);
 		this.add(p1);
 		p1.add(addmenutitle);
 		addmenutitle.setFont(new Font("Serif",Font.BOLD,34));

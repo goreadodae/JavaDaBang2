@@ -3,7 +3,9 @@ package dabang.client.controller;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -27,10 +29,10 @@ public class MenuManageControl {
 	String s[] = null;
 
 	public boolean menuPlus(MenuManage menuInsert) { //메뉴추가
-		if(props.containsKey(menuInsert)) {
+		if(props.containsKey(menuInsert.getEgmenuename())) {
 			return false;
 		}else {
-			props.put(menuInsert.getKormenurname(),menuInsert);
+			props.put(menuInsert.getEgmenuename(),menuInsert.toString());
 			//adminmenu.put(menuInsert.getKormenurname(),menuInsert);
 			return true;
 		}
@@ -110,6 +112,22 @@ public class MenuManageControl {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void filesave() //파일 저장
+	{
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("menu.properties")))
+		{
+			oos.writeObject(props);
+
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
 	}
 	
 	public MenuManageControl () {

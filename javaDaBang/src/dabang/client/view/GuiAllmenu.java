@@ -51,7 +51,7 @@ public class GuiAllmenu extends JPanel implements ActionListener{
 	public void p1 () { //제목
 		p1.setSize(980,90);
 		p1.setLocation(0,0);
-		p1.setBackground(Color.red);
+		//p1.setBackground(Color.red);
 		this.add(p1);
 		p1.add(allmenutitle);
 		allmenutitle.setFont(new Font("Serif",Font.BOLD,34));
@@ -62,7 +62,7 @@ public class GuiAllmenu extends JPanel implements ActionListener{
 	public void p2 () { //메뉴전체출력
 		p2.setSize(980,570);
 		p2.setLocation(0,90);
-		p2.setBackground(Color.blue);
+		//p2.setBackground(Color.blue);
 		/*for(int i=0;i<menuAll.size();i++) {
 			p2.add(new Label(menuAll.get(i).toString()));
 		}*/

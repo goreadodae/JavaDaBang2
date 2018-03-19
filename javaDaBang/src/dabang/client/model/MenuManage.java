@@ -10,7 +10,7 @@ public class MenuManage {
 	
 	
 	public MenuManage() {}
-	public MenuManage(String egmenuename, String kormenurname,int menuprice, String photoaddr,int kindofmenu) {
+	public MenuManage(String egmenuename, String kormenurname,int menuprice,int kindofmenu, String photoaddr) {
 		this.egmenuename=egmenuename;
 		this.kormenurname=kormenurname;
 		this.menuprice=menuprice;
@@ -51,7 +51,7 @@ public class MenuManage {
 	}
 	
 	public String toString () {
-		return this.egmenuename + "\t" + this.kormenurname + "\t" + this.menuprice + "\t" + this.photoaddr + "\t" +this.kindofmenu + "\n" ;
+		return this.egmenuename + "/" + this.kormenurname + "/" + this.menuprice + "/" + this.photoaddr + "/" +this.kindofmenu ;
 	}
 	
 	

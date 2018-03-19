@@ -41,7 +41,7 @@ public class GuiDeletemenu extends JPanel implements ActionListener{
 	public void p1 () { //제목
 		p1.setSize(980,90);
 		p1.setLocation(0,0);
-		p1.setBackground(Color.red);
+		//p1.setBackground(Color.red);
 		this.add(p1);
 		p1.add(addmenutitle);
 		addmenutitle.setFont(new Font("Serif",Font.BOLD,34));
@@ -52,23 +52,30 @@ public class GuiDeletemenu extends JPanel implements ActionListener{
 	public void p2 () { //메뉴삭제
 		p2.setSize(980,570);
 		p2.setLocation(0,90);
-		p2.setBackground(Color.blue);
+		//p2.setBackground(Color.blue);
 		this.add(p2);
 		
-		p2.setLayout(new GridLayout(3,1));
+		p2.setLayout(new GridLayout(2,1));
 		JPanel p21 = new JPanel();
 		JPanel p22 = new JPanel();
 		p2.add(p21);
 		p2.add(p22);
 		
 		p21.add(deletemenunamelabel);
+		deletemenunamelabel.setFont(new Font("Serif",Font.BOLD,34));
+		p21.setLayout(new BorderLayout());
+		p21.add(deletemenunamelabel,BorderLayout.CENTER);
+		
 		p22.add(tddletemenu);
+		tddletemenu.setFont(new Font("Serif",Font.BOLD,34));
+		p22.setLayout(new BorderLayout());
+		p22.add(tddletemenu,BorderLayout.WEST);
 	}
 	
 	public void p3 () { //삭제하기,취소하기
 		p3.setSize(980,90);
 		p3.setLocation(0,660);
-		p3.setBackground(Color.red);
+		//p3.setBackground(Color.red);
 		this.add(p3);
 		
 		p3.setLayout(new GridLayout(1,2));
