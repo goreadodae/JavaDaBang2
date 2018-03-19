@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import dabang.client.model.Member;
@@ -161,10 +162,14 @@ public class memberMainView extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==grade) {
-			mainPanel.remove(4);
-			GuiMember gm = new GuiMember(mainPanel,accessMember);
-			mainPanel.add(gm,"member",4);
-			((CardLayout)mainPanel.getLayout()).show(mainPanel, "member");
+			if(accessMember.getId().equals("anonymous")) {
+				JOptionPane.showMessageDialog(null, "비회원은 내정보 열람이 불가능합니다. <^오^>");
+			} else {
+				mainPanel.remove(4);
+				GuiMember gm = new GuiMember(mainPanel,accessMember);
+				mainPanel.add(gm,"member",4);
+				((CardLayout)mainPanel.getLayout()).show(mainPanel, "member");
+			}
 		}else if(e.getSource()==order) {
 			mainPanel.remove(2);
 			MenuView l = new MenuView(mainPanel, mainFrame, orderAl, md, accessMember);
