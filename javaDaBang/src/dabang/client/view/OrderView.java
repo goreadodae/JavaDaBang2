@@ -326,6 +326,9 @@ public class OrderView extends JPanel {
 					else if(sizeCb.getSelectedItem().equals("Venti")) {
 						sendPrice += 1000;
 					}
+					else if(sizeCb.getSelectedItem().equals("Short")) {
+						sendPrice -= 500;
+					}
 					switch(md.getKindOfDrink()) {
 					case 1:
 						espre.setKindOfMenu("에스프레소");
