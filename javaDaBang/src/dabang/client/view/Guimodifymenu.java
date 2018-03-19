@@ -129,9 +129,9 @@ public class Guimodifymenu extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==modifysave) {
-			menuCon.menuPlus(new MenuManage("아메",200));
+//			menuCon.menuPlus(new MenuManage("아메",200));
 			modifymenu=new MenuManage();
-			modifymenu.setMenuname(tallmenu.getText());
+//			modifymenu.setMenuName(tallmenu.getText());
 			modifymenu.setMenuprice(Integer.valueOf(tprice.getText()));
 			if(menuCon.menumodify(modifymenu)) { //메뉴수정 완료
 				JOptionPane.showMessageDialog(this, "메뉴 수정이 되었습니다", "등록완료", JOptionPane.INFORMATION_MESSAGE);

@@ -93,13 +93,14 @@ public class GuiDeletemenu extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==deletesave) {
-			menuCon.menuPlus(new MenuManage("아메",200));
+//			menuCon.menuPlus(new MenuManage("아메",200));
 			if(menuCon.menuDelete(tddletemenu.getText())) { //메뉴수정 완료
 				JOptionPane.showMessageDialog(this, "메뉴 삭제가 되었습니다", "삭제완료", JOptionPane.INFORMATION_MESSAGE);
 			}else { //메뉴수정 실패
 				JOptionPane.showMessageDialog(this, "삭제할 메뉴가 없습니다. 메뉴명을 확인 해주세요.", "삭제실패", JOptionPane.ERROR_MESSAGE);
 			}
 		}else if(e.getSource()==deletecancel) {
+			
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "ManegeMenu");
 		}
 	}
