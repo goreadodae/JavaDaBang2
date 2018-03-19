@@ -9,12 +9,16 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import dabang.client.model.Member;
+import dabang.client.model.Menu;
+import dabang.client.model.MenuDrink;
 
 public class ManagerGui extends JPanel implements ActionListener{
 	private static Color bgc = new Color(246,245,239);
@@ -121,8 +125,12 @@ public class ManagerGui extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource()==logoutButton) {
+			Member m = new Member("weloveminsu","0521","admin");
 			mainPanel.remove(0);
-			Login l = new Login(mainPanel,null,null,null,null);//수정해야함
+			ArrayList <Menu> menu = new ArrayList<Menu>();
+			MenuDrink md = new MenuDrink();
+			JFrame mainFrame = new JFrame();
+			Login l = new Login(mainPanel,mainFrame,menu,md,m);//수정해야함
 			mainPanel.add(l,"Login",0);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "Login");
 		}else if(e.getSource()==salesMgr) {
