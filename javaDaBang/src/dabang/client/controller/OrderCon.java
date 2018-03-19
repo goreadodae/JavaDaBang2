@@ -39,6 +39,9 @@ public class OrderCon {
 	public ArrayList selectOrder(String id) {
 		return orderList.get(id);
 	}
+	public HashMap<String, ArrayList> selectAll() {
+		return orderList;
+	}
 	public void saveOrder() {
         // TODO Auto-generated method stub
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("order.txt"))){
