@@ -132,7 +132,7 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 		for(int i=0; i<testMem.size();i++) {
 			data[i] = new Object[11];
 		}
-		
+		//안녕하세요
 
 		for(int i=0;i<data.length;i++) //불러오는거
 		{
@@ -144,7 +144,7 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 			}
 			else if(testMem.get(i).getSclc() == 2) { //2 음력일시
 				data[i][3]  ="음력";
-			}
+			}   
 			data[i][4]  =testMem.get(i).getAgeY();//연도
 			data[i][5]  =testMem.get(i).getAgeM();//월
 			data[i][6]  =testMem.get(i).getAgeD();//일
