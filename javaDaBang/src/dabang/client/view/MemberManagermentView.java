@@ -139,7 +139,12 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 			data[i][0]  =testMem.get(i).getId();//아이디
 			data[i][1]  =testMem.get(i).getNickName();//별명
 			data[i][2]  =testMem.get(i).getName();//이름
-			data[i][3]  =testMem.get(i).getSclc();//양/음
+			if(testMem.get(i).getSclc() == 1) {   //1 양력일시
+				data[i][3]  ="양력";
+			}
+			else if(testMem.get(i).getSclc() == 2) { //2 음력일시
+				data[i][3]  ="음력";
+			}
 			data[i][4]  =testMem.get(i).getAgeY();//연도
 			data[i][5]  =testMem.get(i).getAgeM();//월
 			data[i][6]  =testMem.get(i).getAgeD();//일
