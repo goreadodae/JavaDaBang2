@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -29,6 +30,7 @@ import dabang.client.model.Menu;
 import dabang.client.model.MenuDrink;
 public  class Login extends JPanel implements ActionListener,KeyListener{
 	private static Color bgc = new Color(246,245,239);
+
 	private JPanel panel1 = new JPanel();//아이디
 	private JPanel panel2 = new JPanel();//비밀번호
 	private JPanel panel3 = new JPanel();//맨위에 
@@ -45,6 +47,7 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 	private JLabel label3 = new JLabel();//맨위
 	private JLabel label4 = new JLabel();
 	private JLabel label5 = new JLabel();
+
 	private JTextField field1 = new JTextField(10);//아이디
 	private JPasswordField field2 = new JPasswordField(10);//비밀번호
 	private JButton button1 = new JButton("로그인");
@@ -80,7 +83,9 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 		this.orderAl = orderAl;
 		this.setLayout(new BorderLayout());
 		this.compInit(); //사용자 정의 메소드
-
+		label1.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 20));//아이디
+		label2.setFont(new Font("맑은 고딕 Semilight", Font.BOLD, 20));//비밀번호
+		loginSelect.setFont(new Font("맑은 고딕 Semilight", Font.PLAIN, 15));
 		this.setVisible(true); //가시적으로 보여주어라
 	}
 	private void idgo()//아이디

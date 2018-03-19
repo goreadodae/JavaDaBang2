@@ -21,9 +21,9 @@ import dabang.client.model.MenuDrink;
 
 
 public class memberMainView extends JPanel implements ActionListener {
-
-	private Font ft = new Font("Bitstream Vera Sans Mono",Font.BOLD,50);
-	private Font ft2 = new Font("Bitstream Vera Sans Mono",Font.BOLD,30);
+	private static Color bgc = new Color(246,245,239);
+	private Font ft = new Font("Bitstream Vera Sans Monoi",Font.BOLD,50);
+	private Font ft2 = new Font("맑은 고딕 Semilight",Font.BOLD,30);
 	private JPanel p1 = new JPanel();
 	private JPanel p2 = new JPanel();
 	private JPanel p3 = new JPanel();
@@ -33,8 +33,8 @@ public class memberMainView extends JPanel implements ActionListener {
 	private JLabel storeName = new JLabel("JAVADABANG");
 	private JLabel hi = new JLabel("안녕하세요 잡다방입니다");
 
-	private JButton grade = new JButton(new ImageIcon(new ImageIcon("Image\\membermainview\\myinfo.jpg").getImage().getScaledInstance(500,250, Image.SCALE_DEFAULT)));
-	private JButton order = new JButton(new ImageIcon(new ImageIcon("Image\\membermainview\\order.jpg").getImage().getScaledInstance(500, 250, Image.SCALE_DEFAULT)));
+	private JButton grade = new JButton(new ImageIcon(new ImageIcon("Image\\membermainview\\myinfo.jpg").getImage().getScaledInstance(500,400, Image.SCALE_DEFAULT)));
+	private JButton order = new JButton(new ImageIcon(new ImageIcon("Image\\membermainview\\order.jpg").getImage().getScaledInstance(500, 400, Image.SCALE_DEFAULT)));
 	private JButton custom = new JButton(new ImageIcon(new ImageIcon("Image\\membermainview\\customorder.jpg").getImage().getScaledInstance(500, 250,Image.SCALE_DEFAULT)));
 
 	private JPanel mainPanel = null;
@@ -54,8 +54,8 @@ public class memberMainView extends JPanel implements ActionListener {
 	{
 		p1.setSize(1000,70);
 		p1.setLocation(0,100);
-		p1.setBackground(Color.white);
-
+		p1.setBackground(bgc);
+		hi.setText(accessMember.getNickName()+"님, 안녕하세요 잡다방입니다");
 		//인사
 		hi.setSize(1000,100);
 		hi.setLocation(340,70);
@@ -70,11 +70,11 @@ public class memberMainView extends JPanel implements ActionListener {
 
 	private void panel2()
 	{
-		p2.setSize(500,250);
+		p2.setSize(500,400);
 		p2.setLocation(0,170);
 		p2.setBackground(Color.BLUE);
 		p2.setLayout(null);//주문버튼 넣을꺼임
-		order.setSize(500,250);
+		order.setSize(500,400);
 		order.setLocation(0,0);
 		p2.add(order);
 		order.addActionListener(this);
@@ -83,10 +83,10 @@ public class memberMainView extends JPanel implements ActionListener {
 
 	private void panel3()
 	{
-		p3.setSize(500,250);
+		p3.setSize(500,400);
 		p3.setLocation(500,170);
 		p3.setLayout(null);
-		grade.setSize(500,250);
+		grade.setSize(500,400);
 		grade.setLocation(0,0);
 		p3.add(grade);
 		grade.addActionListener(this);
@@ -126,6 +126,7 @@ public class memberMainView extends JPanel implements ActionListener {
 		storeName.setSize(1000,100);
 		storeName.setLocation(340,0);
 		storeName.setFont(ft);
+		this.setBackground(bgc);
 		logoutButton.setSize(90,30);
 		logoutButton.setLocation(850, 35);
 		logoutButton.addActionListener(this);
