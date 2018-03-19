@@ -165,30 +165,26 @@ public class MemberManagermentView extends JFrame implements ActionListener{
       data[8] = new Object[11];
       data[9] = new Object[11];
 
-      for(int i=0;i<data.length;i++) 
+      for(int i=0;i<data.length;i++) //불러오는거
       {
-         data[i][0] =testMem[i].getId();
-         data[i][1] =testMem[i].getNickName();
-         data[i][2] =testMem[i].getName();
-         data[i][3] =testMem[i].getSclc();
-         data[i][4] =testMem[i].getAgeY();
-         data[i][5] =testMem[i].getAgeD();
-         data[i][6] =testMem[i].getAgeM();
-         data[i][7] =testMem[i].getGender();
-         data[i][8] =testMem[i].getPhoneNumber();
-         data[i][9] =testMem[i].getGrade();
-         data[i][10] =testMem[i].getPoint();                             
+         data[i][0] =testMem[i].getId();//아이디
+         data[i][1] =testMem[i].getNickName();//별명
+         data[i][2] =testMem[i].getName();//이름
+         data[i][3] =testMem[i].getSclc();//양/음
+         data[i][4] =testMem[i].getAgeY();//연도
+         data[i][5] =testMem[i].getAgeM();//월
+         data[i][6] =testMem[i].getAgeD();//일
+         data[i][7] =testMem[i].getGender();//성별
+         data[i][8] =testMem[i].getPhoneNumber();//폰번
+         data[i][9] =testMem[i].getGrade();//등급
+         data[i][10] =testMem[i].getPoint();//포인토                        
 
-
-         String[] columnName = {"아이디","별명","이름","양력","년도","월","일","성별","PH","등급","포인트"};
-
-         model = new DefaultTableModel(data, columnName) 
-         {public boolean isCellEditable(int rowlndex,int mCollnDex) {return false;}};//수정불가코드
+         String[] columnName = {"아이디","별명","이름","양력","년도","월","일","성별","PH","등급","포인트"};//제목
          table = new JTable(model);
          model = new DefaultTableModel(data, columnName) 
          {
             public boolean isCellEditable(int rowlndex,int mCollnDex) {return false;}};//수정불가코드
-      }
+         }
       table = new JTable(model);
       table.getColumnModel().getColumn(0).setPreferredWidth(100);//아이디칸크기
       table.getColumnModel().getColumn(1).setPreferredWidth(100);//별명칸
@@ -236,7 +232,7 @@ public class MemberManagermentView extends JFrame implements ActionListener{
                   model.removeRow(deleteRow);
              }
              */
-         int deleteRow = table.getSelectedColumn(); //클릭한줄 선택
+         int deleteRow = table.getSelectedRow(); //클릭한줄 선택
          model.removeRow(deleteRow);
    ////////////////////////////////////////////////////////////////
       }
