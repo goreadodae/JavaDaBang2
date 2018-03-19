@@ -193,6 +193,14 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 		{
 			new Application(lCon);
 		}
+		else if(e.getSource()==button2) {
+			accessMember.setId("anonymous");
+			JOptionPane.showMessageDialog(null,"비회원 주문 입니다");
+			mainPanel.remove(1);
+			memberMainView mmv = new memberMainView(mainPanel, mainFrame,orderAl,md,accessMember);
+			mainPanel.add(mmv,"memberMain",1);
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "memberMain");
+		}
 		else if(e.getSource()==button1) {
 			if(loginSelect.getSelectedItem()=="사용자") {
 				if(field1.getText().length()==0) JOptionPane.showMessageDialog(null,"ID를 입력하여주세요");

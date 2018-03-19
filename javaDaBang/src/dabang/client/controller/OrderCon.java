@@ -21,11 +21,17 @@ public class OrderCon {
 				al.add(ol.get(i));
 			}
 		}else {
-			for(int i=0;i<orderList.get(accessMember.getId()).size();i++) {
-				al.add((Menu)orderList.get(accessMember.getId()).get(i));
-			}
-			for(int i=0;i<ol.size();i++) {
-				al.add(ol.get(i));
+			if(orderList.containsKey(accessMember.getId())) {
+				for(int i=0;i<orderList.get(accessMember.getId()).size();i++) {
+					al.add((Menu)orderList.get(accessMember.getId()).get(i));
+				}
+				for(int i=0;i<ol.size();i++) {
+					al.add(ol.get(i));
+				}
+			}else {
+				for(int i=0;i<ol.size();i++) {
+					al.add(ol.get(i));
+				}
 			}
 		}
 		orderList.put(accessMember.getId(), al);
