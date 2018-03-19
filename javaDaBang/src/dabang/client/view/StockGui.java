@@ -1,7 +1,9 @@
 package dabang.client.view;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -23,16 +25,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.text.StyledEditorKit.BoldAction;
 
 import dabang.client.controller.StockController;
 import dabang.client.model.Stock;
 
 
-public class StockGui extends JFrame implements ActionListener{
+public class StockGui extends JPanel implements ActionListener{
 	Stock stockInfo = new Stock();
 	StockController stkCon = new StockController();
 
-	//정보수정창 다이어로그 변수들
+	//정보수정창 다이어로그dabang.client.model 변수들
 	private JDialog revision = new JDialog(); //수정
 	private JLabel reSerialNum = new JLabel("시리얼 번호");
 	private JLabel reIngerName = new JLabel("재고명");
@@ -107,12 +110,14 @@ public class StockGui extends JFrame implements ActionListener{
 	private JTextField inputUnit = new JTextField(10);
 	private JTextField dupliMessage = new  JTextField(15);
 
-	private JPanel mainPanel = null;
+	private JPanel mainPanel = new JPanel();
 
 	ArrayList<Integer> serialNum = null;
 	ArrayList<String> ingredients = null;
 	ArrayList<Integer> unit = null;
-	ArrayList<Calendar> expiryDateC = null; 
+	ArrayList<Calendar> expiryDateC = null;
+	private JButton backButton = new JButton("뒤로가기");
+	private static Color bgc = new Color(246,245,239);
 
 	//Object[] data = new Object[4];
 
@@ -122,8 +127,16 @@ public class StockGui extends JFrame implements ActionListener{
 		titlePanel.setSize(1000,70);
 		titlePanel.setLocation(0,0);
 		//titlePanel.setBackground(Color.blue);
+		titleLabel.setFont(new Font("맑은 고딕",Font.BOLD,50));
 		serialLabel.setLayout(new BorderLayout());
+		titlePanel.setLayout(new BorderLayout());
+		titlePanel.setBackground(bgc);
 		titlePanel.add(titleLabel,BorderLayout.CENTER);
+		JPanel backPanel = new JPanel();
+		backPanel.setBackground(bgc);
+		backPanel.add(backButton);
+		backButton.addActionListener(this);
+		titlePanel.add(backPanel,BorderLayout.EAST);
 		this.add(titlePanel);
 	}
 
@@ -133,7 +146,7 @@ public class StockGui extends JFrame implements ActionListener{
 		insertPanel.setLayout(null);
 		insertPanel.setSize(750,320);
 		insertPanel.setLocation(0,70);
-		insertPanel.setBackground(Color.yellow);
+		insertPanel.setBackground(bgc);
 
 		//패널안에 라벨과 텍스트필드 설정
 		//시리얼번호
@@ -198,7 +211,7 @@ public class StockGui extends JFrame implements ActionListener{
 		buttonPanel.setLayout(null);
 		buttonPanel.setSize(250,320);
 		buttonPanel.setLocation(750,70);
-		buttonPanel.setBackground(Color.GREEN);
+		buttonPanel.setBackground(bgc);
 
 		addButton.setSize(110,50);
 		addButton.setLocation(10,10);
@@ -410,7 +423,7 @@ public class StockGui extends JFrame implements ActionListener{
 		contentsPanel.setLayout(new FlowLayout());
 		contentsPanel.setSize(1000,410);
 		contentsPanel.setLocation(0,390);
-		contentsPanel.setBackground(Color.darkGray);
+		contentsPanel.setBackground(bgc);
 
 		createTable();
 
@@ -590,18 +603,25 @@ public class StockGui extends JFrame implements ActionListener{
 			forDelete();
 			
 		}
+		else if(e.getSource()==backButton) {
+			mainPanel.remove(13);
+			StockGui sv = new StockGui(mainPanel);
+			mainPanel.add(sv,"Stock",13);
+			((CardLayout)mainPanel.getLayout()).show(mainPanel,"admin");
+		}
 		
 
 	}
 
-	public StockGui()
+	public StockGui(JPanel mainPanel)
 	{
 		//this.mainPanel  = mainPanel;
 		this.setSize(1000,800);
 		this.setLayout(null);
-		this.setResizable(false);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.mainPanel = mainPanel;
+//		this.setResizable(false);
+//		this.setLocationRelativeTo(null);
+//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.comInit();
 		this.setVisible(true);
 	}
