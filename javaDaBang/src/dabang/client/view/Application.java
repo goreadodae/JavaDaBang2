@@ -306,7 +306,7 @@ public class Application extends JFrame implements ActionListener {
 			else if(phoneField.getText().length()==0) JOptionPane.showMessageDialog(null,"휴대폰번호를 입력해주세요");
 			else {
 				m = new Member(idField.getText(),pwdField.getText(),nickNameField.getText(),nameField.getText(),
-						sclc,ageY,ageM,ageD,gender,phoneField.getText(),"Welcome",0.0);
+						sclc,ageY,ageM,ageD,gender,phoneField.getText(),m.getVisitCount(),"Welcome",0.0);
 				if(mCon.memberJoin(m)) {
 					mCon.saveMember();
 					JOptionPane.showMessageDialog(null,"가입에 성공하였습니다.");

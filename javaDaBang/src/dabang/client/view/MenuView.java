@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import dabang.client.controller.MemberController;
 import dabang.client.controller.OrderCon;
 import dabang.client.model.Member;
 import dabang.client.model.Menu;
@@ -96,6 +97,7 @@ public class MenuView extends JPanel implements ActionListener{
 	private Member accessMember = new Member();
 	
 	private OrderCon oCon = new OrderCon();
+	private MemberController mCon = new MemberController();
 	public void menuInit1() {
 		for(int i=0;i<espPanel.length;i++) {
 			espName[i] = new JLabel();
@@ -475,8 +477,12 @@ public class MenuView extends JPanel implements ActionListener{
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "Login");
 		}else if(e.getSource()==paymentPayButton) {
 			oCon.loadOrder();
+			mCon.loadMember();
+			accessMember.setVisitCount(accessMember.getVisitCount()+1);
 			oCon.addOrder(accessMember, orderAl);
+			mCon.memberModify(accessMember);
 			oCon.saveOrder();
+			mCon.saveMember();
 			oCon.loadOrder();
 			ArrayList al = oCon.selectOrder(accessMember.getId());
 			System.out.println(al);
@@ -484,6 +490,7 @@ public class MenuView extends JPanel implements ActionListener{
 				
 				System.out.println(al.get(i));
 			}
+			
 			JOptionPane.showMessageDialog(null,"주문이 완료되었습니다.");
 			
 			orderAl.clear();

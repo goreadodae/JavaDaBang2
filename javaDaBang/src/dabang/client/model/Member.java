@@ -20,6 +20,7 @@ public class Member implements Serializable{
 	private String phoneNumber;  //폰번
 	private String grade;     //회원등급
 	private double point;     //포인트
+	private int visitCount; //방문횟수
 	private ArrayList<ArrayList<Menu>> list = new ArrayList<ArrayList<Menu>>();//주문 내역
 
 	public ArrayList<ArrayList<Menu>> getList() {
@@ -39,7 +40,7 @@ public class Member implements Serializable{
 	}
 	
 	public Member(String id,String passWord,String nickName,
-			String name,int sclc,int ageY,int ageM,int ageD,char gender,String phoneNumber,String grade,double point) {
+			String name,int sclc,int ageY,int ageM,int ageD,char gender,String phoneNumber,int visitCount, String grade,double point) {
 		super();
 		this.id = id;
 		this.passWord = passWord;
@@ -51,6 +52,7 @@ public class Member implements Serializable{
 		this.ageD = ageD;
 		this.gender = gender;
 		this.phoneNumber = phoneNumber;
+		this.visitCount = visitCount;
 		this.grade = grade;
 		this.point = point;
 	}
@@ -76,7 +78,16 @@ public class Member implements Serializable{
 		this.grade = grade;
 		this.point = point;
 	}
-//관리용
+	
+	public int getVisitCount() {
+		return visitCount;
+	}
+
+	public void setVisitCount(int visitCount) {
+		this.visitCount = visitCount;
+	}
+
+	//관리용
 	public char getGender() {
 		return gender;
 	}
@@ -167,6 +178,7 @@ public class Member implements Serializable{
 				this.gender       +
 				this.phoneNumber  +
 				this.grade        +
+				this.visitCount   +
 				this.point;
 	}
 
