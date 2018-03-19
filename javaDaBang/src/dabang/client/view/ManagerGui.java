@@ -65,6 +65,7 @@ public class ManagerGui extends JPanel implements ActionListener{
 		stockMgr.setSize(500,300);
 		stockMgr.setLocation(0,0);
 		p3.add(stockMgr);
+		stockMgr.addActionListener(this);
 		menuPanel.add(p3);
 		
 	}
@@ -130,6 +131,8 @@ public class ManagerGui extends JPanel implements ActionListener{
 			((CardLayout)mainPanel.getLayout()).show(mainPanel,"sales");
 		}else if(e.getSource()==menuMgr) {
 			((CardLayout)mainPanel.getLayout()).show(mainPanel,"ManegeMenu");
+		}else if(e.getSource()==stockMgr) {
+			((CardLayout)mainPanel.getLayout()).show(mainPanel,"Stock");
 		}
 	}
 
