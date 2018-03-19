@@ -12,9 +12,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import dabang.client.controller.MemberController;
 
 public class ManagerGui extends JPanel implements ActionListener{
 	private static Color bgc = new Color(246,245,239);
@@ -78,6 +78,7 @@ public class ManagerGui extends JPanel implements ActionListener{
 		memberMgr.setSize(500, 300);
 		memberMgr.setLocation(0,0);
 		p4.add(memberMgr);
+		memberMgr.addActionListener(this);
 		menuPanel.add(p4);
 	
 		
@@ -133,6 +134,8 @@ public class ManagerGui extends JPanel implements ActionListener{
 			((CardLayout)mainPanel.getLayout()).show(mainPanel,"ManegeMenu");
 		}else if(e.getSource()==stockMgr) {
 			((CardLayout)mainPanel.getLayout()).show(mainPanel,"Stock");
+		}else if(e.getSource()==memberMgr) {
+			new MemberManagermentView();
 		}
 	}
 
