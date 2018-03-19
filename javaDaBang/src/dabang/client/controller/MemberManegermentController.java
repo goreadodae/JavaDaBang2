@@ -33,18 +33,7 @@ public class MemberManegermentController extends JFrame{
      int updateRow; //전역변수 선언
      
      //생성자 구현
-     public MemberManegermentController(){
-           setTitle("JTable 응용(추가/수정/삭제)");
-     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-           
-           add(west, BorderLayout.WEST);
-           add(buttons,BorderLayout.SOUTH);
-           add(showtable.scrollPane, BorderLayout.CENTER);
-           
-           setSize(600,300);
-           setLocation(700, 300);
-           setVisible(true);
-       }
+   
      
      //West 내부 클래스 구현
      class West extends JPanel{ //왼쪽 담당하는 애들이 또 나뉘어서 붙여야 하므로, JPanel

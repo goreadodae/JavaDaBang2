@@ -67,16 +67,9 @@ public class MemberManagermentView extends JFrame implements ActionListener{
    private Object [][] data = new Object[10][11];
    private Member testMem [] = new Member[11];
    int updateRow;
-   private JLabel labelid = new JLabel("수정할 내용 ^ㅅ^");
+   private JLabel fixlabel = new JLabel("수정할 내용(수정할곳 클릭하고 쓰세연)");
    private MemberController memC = new MemberController();
-
-
-
-
-
-
-
-   private JTextField labelidf = new JTextField(20);
+   private JTextField fixtextfield = new JTextField(20);
 
    public MemberManagermentView() //메인 창 
    {
@@ -134,8 +127,8 @@ public class MemberManagermentView extends JFrame implements ActionListener{
    {
       fix.setPreferredSize(new Dimension(1000,40));
       fix.setBackground(Color.yellow);
-      fix.add(labelid);//수정라벨
-      fix.add(labelidf);//수정tf
+      fix.add(fixlabel);//수정라벨
+      fix.add(fixtextfield);//수정tf
       diabutton1.addActionListener(this);
       diaexitbutton.addActionListener(this);
       this.add(fix);
@@ -167,16 +160,16 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 
       for(int i=0;i<data.length;i++) //불러오는거
       {
-         data[i][0] =testMem[i].getId();//아이디
-         data[i][1] =testMem[i].getNickName();//별명
-         data[i][2] =testMem[i].getName();//이름
-         data[i][3] =testMem[i].getSclc();//양/음
-         data[i][4] =testMem[i].getAgeY();//연도
-         data[i][5] =testMem[i].getAgeM();//월
-         data[i][6] =testMem[i].getAgeD();//일
-         data[i][7] =testMem[i].getGender();//성별
-         data[i][8] =testMem[i].getPhoneNumber();//폰번
-         data[i][9] =testMem[i].getGrade();//등급
+         data[i][0]  =testMem[i].getId();//아이디
+         data[i][1]  =testMem[i].getNickName();//별명
+         data[i][2]  =testMem[i].getName();//이름
+         data[i][3]  =testMem[i].getSclc();//양/음
+         data[i][4]  =testMem[i].getAgeY();//연도
+         data[i][5]  =testMem[i].getAgeM();//월
+         data[i][6]  =testMem[i].getAgeD();//일
+         data[i][7]  =testMem[i].getGender();//성별
+         data[i][8]  =testMem[i].getPhoneNumber();//폰번
+         data[i][9]  =testMem[i].getGrade();//등급
          data[i][10] =testMem[i].getPoint();//포인토                        
 
          String[] columnName = {"아이디","별명","이름","양력","년도","월","일","성별","PH","등급","포인트"};//제목
@@ -197,13 +190,15 @@ public class MemberManagermentView extends JFrame implements ActionListener{
       table.getColumnModel().getColumn(8).setPreferredWidth(200);//폰번칸
       table.getColumnModel().getColumn(9).setPreferredWidth(70);//등급칸
       table.getColumnModel().getColumn(10).setPreferredWidth(100);//포인트칸크기
-      /*DefaultTableCellRenderer tableCell = new DefaultTableCellRenderer();
-        tableCell.setHorizontalAlignment(SwingConstants.CENTER);
-        TableColumnModel CellModel = table.getColumnModel();
-        for(int i=0;i<CellModel.getColumnCount();i++){
-            CellModel.getColumn(i).setCellRenderer(tableCell);
-         }*/
-
+      /*
+       DefaultTableCellRenderer tableCell = new DefaultTableCellRenderer();
+       tableCell.setHorizontalAlignment(SwingConstants.CENTER);
+       TableColumnModel CellModel = table.getColumnModel();
+       for(int i=0;i<CellModel.getColumnCount();i++)
+       {
+       CellModel.getColumn(i).setCellRenderer(tableCell);
+       }
+      */
       table.getTableHeader().setReorderingAllowed(false);//이동막기
       table.getTableHeader().setResizingAllowed(false);//크기조절막기
       scroll = new JScrollPane (table);//스크롤에 테이블넣음
@@ -212,8 +207,6 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 
       add(scroll);//추가함      
    }   
-
-
    ///////////////////////////////////////////////////////////////////////////////////////////
 
    public void DelData()//////삭제
@@ -246,7 +239,19 @@ public class MemberManagermentView extends JFrame implements ActionListener{
          //////////////////////////////////////////////////////수정로직   
          int rowIdx = table.getSelectedRow(); //선택행
          int colIdx = table.getSelectedColumn();//선택열
-         table.setValueAt(labelidf.getText(), rowIdx, colIdx);//수정
+        // table.setValueAt(fixtextfield.getText(), rowIdx, colIdx);//수정
+         data[rowIdx][colIdx]  =testMem[colIdx].getId();//아이디
+         data[rowIdx][colIdx]  =testMem[colIdx].getNickName();//별명
+         data[rowIdx][colIdx]  =testMem[colIdx].getName();//이름
+         data[rowIdx][colIdx]  =testMem[colIdx].getSclc();//양/음
+         data[rowIdx][colIdx]  =testMem[colIdx].getAgeY();//연도
+         data[rowIdx][colIdx]  =testMem[colIdx].getAgeM();//월
+         data[rowIdx][colIdx]  =testMem[colIdx].getAgeD();//일
+         data[rowIdx][colIdx]  =testMem[colIdx].getGender();//성별
+         data[rowIdx][colIdx]  =testMem[colIdx].getPhoneNumber();//폰번
+         data[rowIdx][colIdx]  =testMem[colIdx].getGrade();//등급
+         data[rowIdx][colIdx]  =testMem[colIdx].getPoint();//포인토    
+         
          //setValueAt(가져올 위치, 행, 열)
          //////////////////////////////////////////////////////수정로직끝
       }
