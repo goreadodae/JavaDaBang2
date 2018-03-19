@@ -21,6 +21,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import dabang.client.controller.MemberController;
@@ -29,8 +31,10 @@ import dabang.client.model.Member;
 
 public class MemberManagermentView extends JFrame implements ActionListener{
 	private JPanel titlepanel = new JPanel();//간판
-	private JLabel label1 = new JLabel("회원관리 (아이디,성별,등급,포인트 수정불가)");//타이틀에 할말
+	private JLabel label1 = new JLabel("회원관리");//타이틀에 할말
+	private JLabel notice = new JLabel("(양력or음력 수정은 1번양력 2번음력)    (아이디,성별,등급,포인트 수정불가)    (수정은 수정할곳 클릭후 밑에 쓰고 수정클릭)");//타이틀에 할말
 	private JPanel buttonpanel = new JPanel();//버튼넣은패널
+	private JPanel noticepanel = new JPanel();//공지사항패널
 	private JButton button1 = new JButton("수정");
 	private JButton diabutton1 = new JButton("확인");
 	private JButton diaexitbutton = new JButton("취소");
@@ -47,7 +51,7 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 	private Object [][] data = null;
 	private ArrayList<Member> testMem = new ArrayList<Member>();
 	int updateRow;
-	private JLabel fixlabel = new JLabel("수정할 내용(수정할곳 클릭하고 쓰세연)");
+	private JLabel fixlabel = new JLabel("수정할 내용을 써라람쥐 : ");
 	private MemberController memC = new MemberController();
 	private JTextField fixtextfield = new JTextField(20);
 	
@@ -56,7 +60,7 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 	public MemberManagermentView() //메인 창 
 	{
 		super("회원관리"); //이름설정
-		this.setSize(1000,500); //프레임 사이즈
+		this.setSize(1000,560); //프레임 사이즈
 		this.setLocationRelativeTo(null); //화면 가운데로 위치설정
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); //종료버튼시 아예다꺼버림
 		this.setResizable(false);
@@ -69,6 +73,7 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 		picture();
 		title();
 		table();
+		noticelabel();
 		fixlabel();
 		button();
 	}
@@ -78,7 +83,7 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 	}
 	private void title()//타이틀패널
 	{
-		//setborder(new TitledBorder(new LineBorder(Color.MAGENTA,2),"입력"));
+		
 		label1.setIcon(picup); //사진(아직없음)
 		titlepanel.setBackground(Color.yellow);//바탕
 		titlepanel.add(label1);//글한마디  ㅎ 
@@ -102,6 +107,12 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 		exitbutton.setPreferredSize(new Dimension(330, 70));
 		buttonpanel.add(exitbutton);
 		this.add(buttonpanel);
+	}
+	private void noticelabel()
+	{
+	    noticepanel.setBorder(new TitledBorder(new LineBorder(Color.MAGENTA,2),"                                                                                                       Notice"));
+		noticepanel.add(notice);
+		this.add(noticepanel);
 	}
 
 	private void fixlabel()//수정창
@@ -251,17 +262,4 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 		}
 	}
 	/////////////////////////////////////////////// 되는지 실험하는곳 
-	public static void main(String[] args) {
-		try {
-			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (Exception e) {
-			// If Nimbus is not available, you can set the GUI to another look and feel.
-		}
-		new MemberManagermentView();
-	}
 }
