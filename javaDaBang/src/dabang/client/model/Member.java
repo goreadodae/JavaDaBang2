@@ -3,6 +3,8 @@ package dabang.client.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 public class Member implements Serializable{
 	/**
 	 * 
@@ -159,6 +161,18 @@ public class Member implements Serializable{
 		this.phoneNumber = phoneNumber;
 	}
 	public String getGrade() {
+		if(0 <= visitCount && visitCount < 2)
+		{
+			return "welcome";
+		}
+		else if (2 <= visitCount &&	visitCount <4)
+		{
+			return "green";
+		}
+		else if(4 <= visitCount)
+		{
+			return "gold";
+		}
 		return grade;
 	}
 	public void setGrade(String grade) {
