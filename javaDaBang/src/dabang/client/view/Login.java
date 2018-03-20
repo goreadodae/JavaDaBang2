@@ -200,6 +200,7 @@ public  class Login extends JPanel implements ActionListener,KeyListener{
 		}
 		else if(e.getSource()==button2) {
 			accessMember.setId("anonymous");
+			accessMember.setNickName("비회원");
 			JOptionPane.showMessageDialog(null,"비회원 주문 입니다");
 			mainPanel.remove(1);
 			memberMainView mmv = new memberMainView(mainPanel, mainFrame,orderAl,md,accessMember);
