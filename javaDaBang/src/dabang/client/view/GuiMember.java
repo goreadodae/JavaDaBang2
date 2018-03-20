@@ -158,10 +158,18 @@ public class GuiMember extends JPanel implements ActionListener {
 			mainPanel.add(gpi,"PersonalInfor",6);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "PersonalInfor");
 		}else if(e.getSource()==receiptbutton) {
-			mainPanel.remove(14);
-			ReceiptView rv = new ReceiptView(mainPanel,accessMember);
-			mainPanel.add(rv,"receipt",14);
-			((CardLayout)mainPanel.getLayout()).show(mainPanel, "receipt");
+			OrderCon oCon = new OrderCon();
+			oCon.loadOrder();
+			ArrayList al = oCon.selectOrder(accessMember.getId());
+			
+			if(al==null) {
+				JOptionPane.showMessageDialog(null, "주문 내역이 없습니다.");
+			} else {
+				mainPanel.remove(14);
+				ReceiptView rv = new ReceiptView(mainPanel,accessMember);
+				mainPanel.add(rv,"receipt",14);
+				((CardLayout)mainPanel.getLayout()).show(mainPanel, "receipt");
+			}
 		}else if(e.getSource()==backmainbutton) {
 			mainPanel.remove(1);
 			JFrame mainFrame = new JFrame();
