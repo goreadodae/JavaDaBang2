@@ -3,7 +3,6 @@ package dabang.client.view;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -17,7 +16,6 @@ import java.util.Iterator;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,7 +23,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.text.StyledEditorKit.BoldAction;
+import javax.swing.table.DefaultTableModel;
 
 import dabang.client.controller.StockController;
 import dabang.client.model.Stock;
@@ -96,9 +94,9 @@ public class StockGui extends JPanel implements ActionListener{
 
 	private JPanel contentsPanel = new JPanel();//출력(테이블 창)
 	private String header[] = {"Serial No.","Ingredients", "Unit","Expiry Date"};
-	private Object contents[][] = new Object[15][4];
+	private Object contents[][] = new Object[100][4];
 
-	//private DefaultTableModel model = new DefaultTableModel();
+	private DefaultTableModel model = new DefaultTableModel();
 
 	private JScrollPane scroll = new JScrollPane();
 
