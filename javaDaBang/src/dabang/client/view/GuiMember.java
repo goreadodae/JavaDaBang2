@@ -13,9 +13,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import dabang.client.controller.MemberController;
+import dabang.client.controller.OrderCon;
 import dabang.client.model.Member;
 import dabang.client.model.Menu;
 import dabang.client.model.MenuDrink;
@@ -46,6 +48,7 @@ public class GuiMember extends JPanel implements ActionListener {
 	private JPanel mainPanel = null;
 	private Member accessMember = new Member();
 	private MemberController mCon = new MemberController();
+	
 	public void membergrade () {
 		
 		membergrade.setSize(396,490);
@@ -135,6 +138,8 @@ public class GuiMember extends JPanel implements ActionListener {
 		myreceipt.setLayout(new BorderLayout());
 		myreceipt.add(receiptbutton,BorderLayout.CENTER);
 		receiptbutton.setFont(new Font("Serif",Font.BOLD,30));
+		receiptbutton.addActionListener(this);
+		
 		managebutton02.add(backmainbutton);
 		managebutton02.setLayout(new BorderLayout());
 		managebutton02.add(backmainbutton,BorderLayout.CENTER);
@@ -153,7 +158,10 @@ public class GuiMember extends JPanel implements ActionListener {
 			mainPanel.add(gpi,"PersonalInfor",6);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "PersonalInfor");
 		}else if(e.getSource()==receiptbutton) {
-
+			mainPanel.remove(14);
+			ReceiptView rv = new ReceiptView(mainPanel,accessMember);
+			mainPanel.add(rv,"receipt",14);
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "receipt");
 		}else if(e.getSource()==backmainbutton) {
 			mainPanel.remove(1);
 			JFrame mainFrame = new JFrame();

@@ -38,6 +38,7 @@ public class MainView implements ActionListener {
 		cards[11] = new Guimodifymenu(mainPanel); //관리자메뉴관리화면 메뉴추가
 		cards[12] = new GuiDeletemenu(mainPanel); //관리자메뉴관리화면 메뉴추가
 		cards[13] = new StockGui(mainPanel);
+		cards[14] = new ReceiptView(mainPanel,accessMember); //영수증 보기
 	
 		mainPanel.add(cards[0],"Login",0);
 		mainPanel.add(cards[1],"memberMain",1);
@@ -53,6 +54,7 @@ public class MainView implements ActionListener {
 		mainPanel.add(cards[11],"modifymenu",11); //관리자메뉴관리화면 메뉴추가
 		mainPanel.add(cards[12],"Deletemenu",12); //관리자메뉴관리화면 메뉴추가
 		mainPanel.add(cards[13], "Stock", 13);
+		mainPanel.add(cards[14],"receipt",14); //영수증 보기
 		//this.add("login",login);
 		mainFrame.add(mainPanel);
 		//login.button1.addActionListener(this);
