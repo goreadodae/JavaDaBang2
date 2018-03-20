@@ -1,44 +1,62 @@
 package dabang.client.view;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+import dabang.client.controller.MemberController;
+import dabang.client.model.Member;
 
 public class GuiPersonalInfor extends JPanel implements ActionListener {
 
 	private JPanel p1 = new JPanel(); //제목
 	private JLabel modifytitle = new JLabel("개인 정보 확인 및 수정");
-	
+
 	private JPanel p2 = new JPanel(); //아이디
 	private JLabel modifyid = new JLabel("  아이디");
 	private JLabel modifyidlabel = new JLabel("ID입니당");
-	
+
 	private JPanel p3 = new JPanel(); //이름 /남,여
 	private JLabel modifyname = new JLabel("  이름");
 	private JTextField modifynametext = new JTextField(10);
 	private JRadioButton man = new JRadioButton("남",false);
 	private JRadioButton woman = new JRadioButton("여",false);
-	
+
 	private JPanel p4 = new JPanel(); //생년월일
 	private JLabel birthtitle = new JLabel("  생년월일");
 	private JComboBox birthbox = new JComboBox();
 	private JComboBox monthbox = new JComboBox();
 	private JComboBox datebox = new JComboBox();
 	private JComboBox sclcbox = new JComboBox();
-	
+
 	private JPanel p5 = new JPanel(); //휴대폰
 	private JLabel modifynumber = new JLabel(" 휴대폰");
 	private JTextField modifynumbertext = new JTextField(20);
 	private JCheckBox chagree = new JCheckBox("SMS를 통한 이벤트 정보수신에 동의합니다[선택]",false);
-	
+
 	private JPanel p6 = new JPanel(); //별명
 	private JLabel modifynickname = new JLabel(" 별명");
 	private JTextField modifynicknametext = new JTextField(7);
 	private JButton overnickname = new JButton("중복확인");
-	
+
 	private JPanel p7 = new JPanel(); //광고사진
 	private ImageIcon banner01 = new ImageIcon("1카라멜마키아또.jpg");
 	private JLabel banner01label = new JLabel(banner01);
@@ -46,15 +64,17 @@ public class GuiPersonalInfor extends JPanel implements ActionListener {
 	private JLabel banner02label = new JLabel(banner01);
 	private ImageIcon banner03 = new ImageIcon("3얼 그레이 티.jpg");
 	private JLabel banner03label = new JLabel(banner01);
-	
+
 	private JPanel p8 = new JPanel(); //수정
 	private JButton save = new JButton("수정하기");
-	
+
 	private JPanel p9 = new JPanel(); //취소
 	private JButton cancel = new JButton("취소하기");
-
+	private ButtonGroup gender = new ButtonGroup();
 	private JPanel mainPanel = null;
-	
+
+	private Member accessMember = new Member();
+	private MemberController mCon = new MemberController();
 	public void p1 () { //제목
 		p1.setSize(980,80);
 		p1.setLocation(0,0);
@@ -77,11 +97,12 @@ public class GuiPersonalInfor extends JPanel implements ActionListener {
 		p2.add(p21);
 		p2.add(p22);
 		p21.add(modifyid);
+		modifyidlabel.setText(accessMember.getId());
 		modifyid.setFont(new Font("Serif",Font.BOLD,25));
 		p21.setLayout(new BorderLayout());
 		p21.add(modifyid,BorderLayout.WEST);
 		p22.add(modifyidlabel);
-		
+
 	}
 
 	public void p3 () { //이름/남,여
@@ -104,8 +125,16 @@ public class GuiPersonalInfor extends JPanel implements ActionListener {
 		p32.add(p321);
 		p32.add(p322);
 		p321.add(modifynametext);
+		modifynametext.setText(accessMember.getName());
 		modifynametext.setFont(new Font("Serif",Font.BOLD,30));
-		ButtonGroup gender = new ButtonGroup();
+		
+		if(accessMember.getGender()=='남') {
+			man.setSelected(true);
+			woman.setSelected(false);		
+		}else {
+			man.setSelected(false);
+			woman.setSelected(true);
+		}
 		gender.add(man);
 		gender.add(woman);
 		p322.add(man);
@@ -126,23 +155,23 @@ public class GuiPersonalInfor extends JPanel implements ActionListener {
 		String month[] = new String[12];
 		String date[] = new String[32];
 		String sclc[] = {"양","음"};
-		
+
 		int year = 1920;
 		while(true) {
-			 birth.add(Integer.toString(year++));
-			 if(year==2019) break;
+			birth.add(Integer.toString(year++));
+			if(year==2019) break;
 		}
 		for(int i=0;i<birth.size();i++) {
 			birthbox.addItem(birth.get(i));
 		}
 		for(int i=0;i<12;i++) {
-			 month [i] = Integer.toString(i+1);
+			month [i] = Integer.toString(i+1);
 		}
 		for(int i=0;i<month.length;i++) {
 			monthbox.addItem(month[i]);
 		}
 		for(int i=0;i<31;i++) {
-			 date [i] = Integer.toString(i+1);
+			date [i] = Integer.toString(i+1);
 		}
 		for(int i=0;i<date.length;i++) {
 			datebox.addItem(date[i]);
@@ -150,12 +179,16 @@ public class GuiPersonalInfor extends JPanel implements ActionListener {
 		for(int i=0;i<sclc.length;i++) {
 			sclcbox.addItem(sclc[i]);
 		}
-		
+		birthbox.setSelectedItem(Integer.toString(accessMember.getAgeY()));
+		monthbox.setSelectedItem(Integer.toString(accessMember.getAgeM()));
+		datebox.setSelectedItem(Integer.toString(accessMember.getAgeD()));
+		sclcbox.setSelectedItem(Integer.toString(accessMember.getSclc()));
+
 		birthbox.setPreferredSize(new Dimension(130,50));
 		monthbox.setPreferredSize(new Dimension(130,50));
 		datebox.setPreferredSize(new Dimension(130,50));
 		sclcbox.setPreferredSize(new Dimension(130,50));
-		
+
 		p41.add(birthtitle);
 		birthtitle.setFont(new Font("Serif",Font.BOLD,25));
 		p41.setLayout(new BorderLayout());
@@ -164,7 +197,7 @@ public class GuiPersonalInfor extends JPanel implements ActionListener {
 		p42.add(monthbox);
 		p42.add(datebox);
 		p42.add(sclcbox);
-		
+
 
 	}
 
@@ -185,6 +218,7 @@ public class GuiPersonalInfor extends JPanel implements ActionListener {
 		p51.setLayout(new BorderLayout());
 		p51.add(modifynumber,BorderLayout.WEST);
 		p52.add(modifynumbertext);
+		modifynumbertext.setText(accessMember.getPhoneNumber());
 		modifynumbertext.setFont(new Font("Serif",Font.BOLD,30));
 		modifynicknametext.setSize(500, 35);
 		p53.add(chagree);
@@ -210,9 +244,11 @@ public class GuiPersonalInfor extends JPanel implements ActionListener {
 		p62.add(p621);
 		p62.add(p622);
 		p621.add(modifynicknametext);
+		modifynicknametext.setText(accessMember.getNickName());
 		modifynicknametext.setFont(new Font("Serif",Font.BOLD,30));
 		p622.add(overnickname);
-		
+		overnickname.addActionListener(this);
+
 
 	}
 
@@ -221,11 +257,11 @@ public class GuiPersonalInfor extends JPanel implements ActionListener {
 		p7.setLocation(600,335);
 		p7.setBackground(Color.pink);
 		this.add(p7);
-		
-		
+
+
 		p7.add(banner01label);
-		
-		
+
+
 		//p7.setLayout(new BorderLayout());
 		//p7.add(banner01rlabel,BorderLayout.CENTER);
 
@@ -236,10 +272,11 @@ public class GuiPersonalInfor extends JPanel implements ActionListener {
 		p8.setLocation(0,635);
 		p8.setBackground(Color.white);
 		this.add(p8);
-		
+
 		p8.setLayout(new BorderLayout());
 		p8.add(save,BorderLayout.CENTER);
 		save.setFont(new Font("Serif",Font.BOLD,30));
+		save.addActionListener(this);
 	}
 
 	public void p9 () { //취소
@@ -247,23 +284,58 @@ public class GuiPersonalInfor extends JPanel implements ActionListener {
 		p9.setLocation(490,635);
 		p9.setBackground(Color.red);
 		this.add(p9);
-		
+
 		p9.setLayout(new BorderLayout());
 		p9.add(cancel,BorderLayout.CENTER);
 		cancel.setFont(new Font("Serif",Font.BOLD,30));
 		cancel.addActionListener(this);
-		
+
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==cancel) {
+			mainPanel.remove(6);
+			GuiPersonalInfor gpi = new GuiPersonalInfor(mainPanel,accessMember);
+			mainPanel.add(gpi,"PersonalInfor",6);
+			((CardLayout)mainPanel.getLayout()).show(mainPanel, "member");
+		}else if(e.getSource()==save) {
+			accessMember.setName(modifynametext.getText());
+			if(man.isSelected()) {
+				accessMember.setGender('남');
+				System.out.println("남자");
+			}else accessMember.setGender('여');
+
+			accessMember.setAgeY(Integer.valueOf((String)birthbox.getSelectedItem()));
+			accessMember.setAgeM(Integer.valueOf((String)monthbox.getSelectedItem()));
+			accessMember.setAgeD(Integer.valueOf((String)datebox.getSelectedItem()));
+			if(((String)sclcbox.getSelectedItem()).equals("양")){
+				accessMember.setSclc(1);
+			}else accessMember.setSclc(2);
+			
+			accessMember.setPhoneNumber(modifynumbertext.getText());
+			accessMember.setNickName(modifynicknametext.getText());
+			mCon.loadMember();
+			mCon.memberModify(accessMember);
+			mCon.saveMember();
+			JOptionPane.showMessageDialog(null, "수정완료되었습니다");
+			mainPanel.remove(6);
+			GuiPersonalInfor gpi = new GuiPersonalInfor(mainPanel,accessMember);
+			mainPanel.add(gpi,"PersonalInfor",6);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "member");
 		}
-		
+		else if(e.getSource()==overnickname) {
+			if(mCon.nickNameCheck(modifynicknametext.getText())) {
+				JOptionPane.showMessageDialog(null,"해당 닉네임은 중복입니다");
+				modifynicknametext.setText("");
+			}
+			else
+				JOptionPane.showMessageDialog(null,"해당 닉네임은 수정가능합니다");
+		}
 	}
 
 	public void comInit() { 
+		mCon.loadMember();
 		p1();
 		p2();
 		p3();
@@ -275,7 +347,8 @@ public class GuiPersonalInfor extends JPanel implements ActionListener {
 		p9();
 	}
 
-	public GuiPersonalInfor (JPanel mainPanel) {
+	public GuiPersonalInfor (JPanel mainPanel,Member accessMember) {
+		this.accessMember = accessMember;
 		this.setSize(1000,800);
 		this.setLayout(null);
 		this.mainPanel = mainPanel;

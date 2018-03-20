@@ -30,7 +30,7 @@ public class MainView implements ActionListener {
 		cards[3] = new OrderView(mainPanel, mainFrame, orderAl, md, accessMember);
 		cards[4] = new GuiMember(mainPanel,accessMember); //사용자 나의정보확인 화면
 		cards[5] = new ManagerGui(mainPanel);
-		cards[6] = new GuiPersonalInfor(mainPanel); //사용자개인정보수정화면
+		cards[6] = new GuiPersonalInfor(mainPanel,accessMember); //사용자개인정보수정화면
 		cards[7] = new SalesView(mainPanel);
 		cards[8] = new GuiManegeMenu(mainPanel); //관리자메뉴관리화면
 		cards[9] = new GuiAllmenu(mainPanel); //관리자메뉴관리화면 전체보기

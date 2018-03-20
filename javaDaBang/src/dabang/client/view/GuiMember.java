@@ -7,14 +7,18 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import dabang.client.controller.MemberController;
 import dabang.client.model.Member;
+import dabang.client.model.Menu;
+import dabang.client.model.MenuDrink;
 
 public class GuiMember extends JPanel implements ActionListener {
 
@@ -141,14 +145,22 @@ public class GuiMember extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==menageinforbutton) {
-
 			mainPanel.remove(4);
 			GuiMember gm = new GuiMember(mainPanel,accessMember);
 			mainPanel.add(gm,"member",4);
+			mainPanel.remove(6);
+			GuiPersonalInfor gpi = new GuiPersonalInfor(mainPanel,accessMember);
+			mainPanel.add(gpi,"PersonalInfor",6);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "PersonalInfor");
 		}else if(e.getSource()==receiptbutton) {
 
 		}else if(e.getSource()==backmainbutton) {
+			mainPanel.remove(1);
+			JFrame mainFrame = new JFrame();
+			ArrayList<Menu> orderAl= new ArrayList<Menu>();
+			MenuDrink md = new MenuDrink();
+			memberMainView mmv = new memberMainView(mainPanel, mainFrame,orderAl,md,accessMember);
+			mainPanel.add(mmv,"memberMain",1);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "memberMain");
 		}
 
