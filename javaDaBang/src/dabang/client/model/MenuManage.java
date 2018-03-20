@@ -51,7 +51,7 @@ public class MenuManage {
 	}
 	
 	public String toString () {
-		return this.egmenuename + "/" + this.kormenurname + "/" + this.menuprice + "/" + this.photoaddr + "/" +this.kindofmenu ;
+		return this.egmenuename + "/" + this.kormenurname + "/" + this.photoaddr + "/" + this.menuprice + "/" +this.kindofmenu ;
 	}
 	
 	

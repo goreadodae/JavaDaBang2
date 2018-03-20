@@ -102,7 +102,11 @@ public class GuiAllmenu extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==back) {
+		if(e.getSource()==back) 
+		{
+			mainPanel.remove(9);
+			GuiAllmenu ga = new GuiAllmenu(mainPanel);
+			mainPanel.add(ga,"Allmenu",9); 
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "ManegeMenu");
 		}
 	}

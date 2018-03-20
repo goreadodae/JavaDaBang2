@@ -197,6 +197,9 @@ public class GuiAddmenu extends JPanel implements ActionListener{
 //			mainPanel.remove(8);
 //			GuiManegeMenu gm = new GuiManegeMenu(mainPanel);
 //			mainPanel.add(gm,"ManegeMenu",8);
+			mainPanel.remove(9);
+			GuiAllmenu ga = new GuiAllmenu(mainPanel);
+			mainPanel.add(ga,"Allmenu",9);
 			((CardLayout)mainPanel.getLayout()).show(mainPanel, "ManegeMenu");
 		}
 	}

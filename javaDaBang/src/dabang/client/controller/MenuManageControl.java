@@ -49,7 +49,7 @@ public class MenuManageControl {
 	}
 
 	public boolean menuDelete(String deletemenuname) { //메뉴삭제
-		if(adminmenu.containsKey(deletemenuname)) {
+		if(props.containsKey(deletemenuname)) {
 			adminmenu.remove(deletemenuname);
 			return true;
 		}
@@ -116,7 +116,7 @@ public class MenuManageControl {
 	
 	public void filesave() //파일 저장
 	{
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("menu.properties")))
+		/*try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("menu.properties")))
 		{
 			oos.writeObject(props);
 
@@ -125,6 +125,16 @@ public class MenuManageControl {
 			e.printStackTrace();
 		} catch (IOException e) {
 
+			e.printStackTrace();
+		}*/
+		
+		try {
+			props.store(new FileOutputStream("menu.properties"), "this is test" );
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
