@@ -51,7 +51,7 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 	private Object [][] data = null;
 	private ArrayList<Member> testMem = new ArrayList<Member>();
 	int updateRow;
-	private JLabel fixlabel = new JLabel("수정할 내용을 써라람쥐 : ");
+	private JLabel fixlabel = new JLabel("수정할 내용을 입력해주세요ㅕ : ");
 	private MemberController memC = new MemberController();
 	private JTextField fixtextfield = new JTextField(20);
 	
@@ -213,7 +213,7 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 	private void westyes()//수정창
 	{
 		int yes_no_select = JOptionPane.showConfirmDialog(null, 
-				"정말 수정하세연?", "★★★★★마지막 기회★★★★★", JOptionPane.YES_NO_CANCEL_OPTION     );
+				"정말 수정하십니까?", "관리자", JOptionPane.YES_NO_CANCEL_OPTION     );
 		if(yes_no_select==JOptionPane.YES_OPTION)
 		{
 			//////////////////////////////////////////////////////수정로직   
@@ -238,7 +238,7 @@ public class MemberManagermentView extends JFrame implements ActionListener{
 			//9 등급수정x
 			//10 포인트수정x
             default:
-  JOptionPane.showMessageDialog(null, "그건 수정불가입니다람쥐^ㅅ^", "★★★★★★★  다람이  ★★★★★★★", JOptionPane.ERROR_MESSAGE);
+  JOptionPane.showMessageDialog(null, "수정이 불가능한 항목입니다", "관리자", JOptionPane.ERROR_MESSAGE);
 			}
 			mCon.memberModify(m);
 			mCon.saveMember();
